@@ -43,7 +43,6 @@ from tqdm import tqdm
 
 from ..power import POWER_FIELDS, normalize_power_summary
 from ..resources import ResourceLimitError
-from .afd_perfmodel import AFDPerformanceModel, AICAFDPerformanceModel, attach_afd_measurements
 from .config import Candidate, OptimizationGoal, OptimizationTarget, SmartSearchConfig
 from .deploy import build_backend_deployment
 from .discovery import resolve_providers
@@ -149,7 +148,7 @@ class _BranchSearchState:
 def _branch_sampler_seed(seed: int, deployment_mode: str) -> int:
     """Derive a stable seed from branch identity, independent of active-branch order."""
 
-    offsets = {"agg": 0, "disagg": 1, "afd": 2, "afd+pd": 3}
+    offsets = {"agg": 0, "disagg": 1}
     try:
         return seed + offsets[deployment_mode]
     except KeyError as exc:  # SearchSpace validation currently makes this unreachable.
@@ -585,7 +584,6 @@ def _materialize_one(
     providers: Mapping[str, SweepConfigProvider],
     provider_plans: Mapping[str, AdapterSearchPlan],
     runner_factory: RunnerFactory,
-    afd_performance_model: AFDPerformanceModel | None = None,
     prediction_config_factory: Callable[[dict[str, Any], ReplaySpec], dict[str, Any]] | None = None,
     encoder_catalog: Mapping[str, Any] | None = None,
     estimator_resolver: ForwardPassEstimatorResolver | None = None,
@@ -619,11 +617,14 @@ def _materialize_one(
                 )
         estimator_resolver = estimator_resolver or ForwardPassEstimatorResolver(config.search_space)
         forward_pass_estimators = estimator_resolver.resolve_candidate(sample)
-        backend_version = (
-            next(iter(forward_pass_estimators.values())).backend_version
-            if forward_pass_estimators
-            else config.search_space.requested_backend_version(selection["backend"])
-        )
+        if sample.get("afd_roles"):
+            backend_version = estimator_resolver.resolve_afd_version(sample, forward_pass_estimators)
+        else:
+            backend_version = (
+                next(iter(forward_pass_estimators.values())).backend_version
+                if forward_pass_estimators
+                else config.search_space.requested_backend_version(selection["backend"])
+            )
         if backend_version is None:
             if sample["deployment_mode"] == "disagg":
                 role_hardware = {role: sample[f"{role}_hardware_sku"] for role in ("prefill", "decode")}
@@ -708,13 +709,9 @@ def _materialize_one(
         backend_deployment = build_backend_deployment(
             sample, backend_version=backend_version, encoder=encoder, forward_pass_estimators=forward_pass_estimators
         )
-        if sample["deployment_mode"] in {"afd", "afd+pd"}:
-            backend_deployment = attach_afd_measurements(
-                backend_deployment,
-                sample=sample,
-                workload=workload_payload,
-                performance_model=afd_performance_model or AICAFDPerformanceModel(),
-            )
+        # No compile-time measurement freeze — the native afd
+        # provider measures at replay time (infeasible candidates fail there,
+        # e.g. via the per-pool memory gate).
         adapter_specs: dict[str, AdapterReplaySpec] = {}
         for name, provider in providers.items():
             candidate_context = CandidateContext(
@@ -1121,7 +1118,6 @@ class Sweeper:
         sampler_factory: Callable[..., BranchSampler] = make_branch_sampler,
         show_progress: bool = True,
         prediction_config_factory: Callable[[dict[str, Any], ReplaySpec], dict[str, Any]] | None = None,
-        afd_performance_model: AFDPerformanceModel | None = None,
         output_requirements: ReplayOutputRequirements | None = None,
     ) -> None:
         self._runner_factory = runner_factory
@@ -1130,7 +1126,6 @@ class Sweeper:
         self._sampler_factory = sampler_factory
         self._show_progress = show_progress
         self._prediction_config_factory = prediction_config_factory
-        self._afd_performance_model = afd_performance_model or AICAFDPerformanceModel()
 
     def run(
         self,
@@ -1173,7 +1168,6 @@ class Sweeper:
         sampler_factory = self._sampler_factory
         show_progress = self._show_progress
         prediction_config_factory = self._prediction_config_factory
-        afd_performance_model = self._afd_performance_model
 
         estimator_resolver = ForwardPassEstimatorResolver(config.search_space)
         goal = config.goal
@@ -1664,7 +1658,6 @@ class Sweeper:
                             providers=resolved_providers,
                             provider_plans=provider_plans,
                             runner_factory=runner_factory,
-                            afd_performance_model=afd_performance_model,
                             prediction_config_factory=prediction_config_factory,
                             encoder_catalog=encoder_catalog,
                         )

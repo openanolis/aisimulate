@@ -1,205 +1,198 @@
 # SPDX-FileCopyrightText: Copyright (c) 2026 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 # SPDX-License-Identifier: Apache-2.0
 
-"""Golden and fail-closed contracts for analytical AFD artifacts."""
-
-from __future__ import annotations
+"""Role-indexed AFD contract artifacts and fail-closed schema handling."""
 
 import json
-from dataclasses import replace
+from dataclasses import asdict, replace
 from pathlib import Path
 
 import pytest
 
-from aisimulate.afd_artifacts import (
-    AFDQualificationError,
-    build_afd_qualification,
-    write_afd_qualification_artifacts,
-)
-from aisimulate.sweeper.afd_parallel import AFDParallelConfig, AFDTopology
-from aisimulate.sweeper.parallel_enum import ParallelShape, ReplicaParallelConfig
+from aisimulate.afd_artifacts import AFDQualificationError, build_afd_qualification, write_afd_qualification_artifacts
+from aisimulate.sweeper.afd_parallel import AFDTopology
 from aisimulate.sweeper.replay import BackendDeploymentSpec, ReplaySpec
 
 
-def _measurement(phase: str) -> dict:
-    return {
-        "phase": phase,
-        "attention_ms": 1.25,
-        "ffn_ms": 2.5,
-        "a_to_f_ms": 0.125,
-        "f_to_a_ms": 0.25,
-        "num_layers": 64,
-        "provenance": {
-            "provider": "golden",
-            "backend_version": "1.3.0rc14",
-            "input_length": 1024,
-            "output_length": 128,
+@pytest.fixture(autouse=True)
+def source_metadata(monkeypatch):
+    monkeypatch.setattr(
+        "aisimulate.afd_artifacts.validate_afd_model",
+        lambda model: {
+            "num_experts": 128,
+            "layers": 48,
+            "num_moe_layers": 48,
+            "num_shared_experts": 0,
+            "architecture": "Qwen3MoeForCausalLM",
+            "extra_params": None,
+            "moe_inter_size": 768,
+            "raw_config": {},
         },
-    }
+    )
 
 
-def _spec(*, combined_with_pd: bool = False, afd_phase: str = "decode") -> ReplaySpec:
-    topology = AFDTopology(
-        n_a_nodes=1,
-        n_f_nodes=1,
-        gpus_per_node=8,
-        tp_a=4,
-        a_batch_size=64,
-        f_moe_ep_size=1,
-        num_microbatches=4,
-        pipeline_model="conservative",
-        phase=afd_phase if combined_with_pd else "both",
-        combined_with_pd=combined_with_pd,
-        is_moe=False,
-    )
-    companion = (
-        ReplicaParallelConfig(
-            shape=ParallelShape(tp=2, pp=1, dp=1, moe_tp=1, moe_ep=1),
-            replicas=2,
-        )
-        if combined_with_pd
-        else None
-    )
-    parallel = AFDParallelConfig(topology=topology, companion=companion)
-    parallel_config = {
-        "afd": topology.provenance()["topology"],
-        "afd_provenance": parallel.provenance(),
-    }
-    deployment_kwargs = {}
-    if companion is not None:
-        companion_role = "prefill" if afd_phase == "decode" else "decode"
-        prefix = f"{companion_role}_"
-        parallel_config.update(
-            {
-                f"{prefix}tp": 2,
-                f"{prefix}pp": 1,
-                f"{prefix}attention_dp": 1,
-                f"{prefix}moe_tp": 1,
-                f"{prefix}moe_ep": 1,
-                f"{prefix}strategy": "tp",
-                f"{prefix}replicas": 2,
+def _spec(mode="agg", afd_roles=("aggregated",), layout="four_stage"):
+    roles = ("aggregated",) if mode == "agg" else ("prefill", "decode")
+    parallel, metadata, kwargs = {}, {}, {}
+    for role in roles:
+        prefix = "" if role == "aggregated" else f"{role}_"
+        count = 1 if role in afd_roles else 2
+        if role in afd_roles:
+            topology = AFDTopology(
+                n_a_nodes=1,
+                n_f_nodes=1,
+                gpus_per_node=8,
+                a_tp_size=1,
+                batch_size_per_a_replica=16,
+                is_moe=True,
+                num_experts=128,
+                pipeline_layout=layout,
+                a_system="h200_sxm",
+                f_system="h200_sxm",
+            )
+            parallel[role] = {"type": "afd", **topology.provenance()}
+            raw = {"afd": topology.provenance()["topology"]}
+            metadata[role] = {
+                "provider": "afd",
+                "measurement_required": False,
+                "model": "Qwen/Qwen3-30B-A3B",
+                "config": topology.provenance()["topology"],
             }
-        )
-        deployment_kwargs = {
-            f"{companion_role}_engine_args": {
-                "worker_type": companion_role,
-                "timing_model": {"type": "fixed", f"{companion_role}_ms": 5.0},
-            },
-            f"num_{companion_role}_workers": 2,
-        }
-    measurements = [_measurement(afd_phase)]
-    if not combined_with_pd:
-        measurements.insert(0, _measurement("prefill"))
+        else:
+            raw = {"timing_model": {"type": "fixed", "prefill_ms": 1, "decode_ms": 1}}
+            parallel.update({prefix + "tp": 2, prefix + "pp": 1, prefix + "attention_dp": 1})
+        parallel[prefix + "replicas"] = count
+        kwargs["agg_engine_args" if role == "aggregated" else role + "_engine_args"] = raw
+        kwargs["num_workers" if role == "aggregated" else "num_" + role + "_workers"] = count
     return ReplaySpec(
         backend_deployment=BackendDeploymentSpec(
-            deployment_mode=topology.adapter_topology,
-            backend="trtllm",
-            backend_version="1.3.0rc14",
-            parallel_config=parallel_config,
-            performance_model_metadata={
-                "afd": {
-                    "provider": "golden",
-                    "measurement_required": False,
-                    "measurement_api_version": 1,
-                    "measurements": measurements,
-                }
-            },
-            **deployment_kwargs,
+            deployment_mode=mode,
+            backend="sglang",
+            backend_version="0.5.14",
+            parallel_config=parallel,
+            performance_model_metadata=metadata,
+            **kwargs,
         ),
-        workload={
-            "kind": "synthetic",
-            "isl": 1024,
-            "osl": 128,
-            "request_count": 16,
-            "concurrency": 4,
-        },
-        goal={"sla": {"ttft_ms": 800.0, "itl_ms": 30.0}},
-        concurrency=4,
+        workload={"isl": 16, "osl": 4, "concurrency": 2, "request_count": 4},
+        goal={},
     )
 
 
-def test_pure_afd_qualification_matches_golden() -> None:
+@pytest.mark.parametrize(
+    "mode,afd_roles,total",
+    [
+        ("agg", ("aggregated",), 16),
+        ("disagg", ("prefill",), 20),
+        ("disagg", ("decode",), 20),
+        ("disagg", ("prefill", "decode"), 32),
+    ],
+)
+def test_qualification_accounts_for_every_role(mode, afd_roles, total):
+    artifact = build_afd_qualification(_spec(mode, afd_roles))
+    assert artifact["schema_version"] == 2
+    plan = artifact["deployment_plan"]
+    assert plan["gpu_accounting"]["total_gpus"] == total
+    for role in afd_roles:
+        assert plan["roles"][role]["schema_version"] == 2
+        assert plan["roles"][role]["memory"]["phase"] == ("both" if role == "aggregated" else role)
+    assert artifact["qualification"]["native_deployment_supported"] is False
+
+
+@pytest.mark.parametrize("layout", ["four_stage", "two_stage"])
+def test_role_preserves_pipeline_layout(layout):
+    assert (
+        build_afd_qualification(_spec(layout=layout))["deployment_plan"]["roles"]["aggregated"]["topology"][
+            "pipeline_layout"
+        ]
+        == layout
+    )
+
+
+def test_pure_afd_qualification_matches_golden():
     rendered = json.dumps(build_afd_qualification(_spec()), indent=2, sort_keys=True) + "\n"
-    golden = Path(__file__).parent / "golden" / "afd-qualification.json"
-
-    assert rendered == golden.read_text(encoding="utf-8")
+    assert rendered == (Path(__file__).parent / "golden" / "afd-qualification.json").read_text()
 
 
-def test_afd_plus_pd_qualification_preserves_companion_and_gpu_accounting() -> None:
-    artifact = build_afd_qualification(_spec(combined_with_pd=True))
-
-    companion = artifact["deployment_plan"]["pools"]["companion"]
-    assert companion == {
-        "role": "prefill",
-        "workers": 2,
-        "gpus": 4,
-        "parallelism": {
-            "tp": 2,
-            "pp": 1,
-            "attention_dp": 1,
-            "moe_tp": 1,
-            "moe_ep": 1,
-            "strategy": "tp",
-            "replicas": 2,
-        },
-        "engine_args": {
-            "worker_type": "prefill",
-            "timing_model": {"type": "fixed", "prefill_ms": 5.0},
-        },
-    }
-    assert artifact["deployment_plan"]["gpu_accounting"]["total_gpus"] == 20
+@pytest.mark.parametrize("mode,roles", [("agg", ("aggregated",)), ("disagg", ("prefill", "decode"))])
+def test_qualification_normalizes_legacy_provider_without_mutating_saved_metadata(mode, roles):
+    canonical = _spec(mode=mode, afd_roles=roles)
+    saved = _spec(mode=mode, afd_roles=roles)
+    for role in roles:
+        saved.backend_deployment.performance_model_metadata[role]["provider"] = "aic-afd"
+    wire = json.loads(json.dumps(asdict(saved)))
+    wire["backend_deployment"] = BackendDeploymentSpec(**wire["backend_deployment"])
+    restored = ReplaySpec(**wire)
+    actual = build_afd_qualification(restored)
+    expected = build_afd_qualification(canonical)
+    # The fingerprint identifies the original saved input, including its spelling.
+    assert actual["identity"].pop("replay_spec_sha256") != expected["identity"].pop("replay_spec_sha256")
+    assert actual == expected
+    for role in roles:
+        assert restored.backend_deployment.performance_model_metadata[role]["provider"] == "aic-afd"
 
 
-def test_afd_plus_pd_qualification_supports_decode_companion() -> None:
-    artifact = build_afd_qualification(_spec(combined_with_pd=True, afd_phase="prefill"))
-
-    companion = artifact["deployment_plan"]["pools"]["companion"]
-    assert companion["role"] == "decode"
-    assert companion["workers"] == 2
-    assert companion["engine_args"]["worker_type"] == "decode"
-
-
-def test_qualification_rejects_unresolved_measurements() -> None:
+@pytest.mark.parametrize("schema", [1, 3, 4, 5, 6])
+def test_qualification_rejects_legacy_topology_schemas(schema):
     spec = _spec()
-    deployment = replace(
-        spec.backend_deployment,
-        performance_model_metadata={"afd": {"provider": "unresolved", "measurement_required": True}},
-    )
-
-    with pytest.raises(AFDQualificationError, match="resolved layer measurements"):
-        build_afd_qualification(replace(spec, backend_deployment=deployment))
+    spec.backend_deployment.parallel_config["aggregated"]["schema_version"] = schema
+    with pytest.raises(AFDQualificationError, match="schema"):
+        build_afd_qualification(spec)
 
 
-def test_qualification_rejects_inconsistent_gpu_accounting() -> None:
+def test_qualification_rejects_legacy_replay_api():
+    with pytest.raises(AFDQualificationError, match="API version"):
+        build_afd_qualification(replace(_spec(), api_version=1))
+
+
+@pytest.mark.parametrize("role", ["prefill", "decode"])
+def test_any_role_provenance_failure_rejects_the_whole_artifact(role):
+    spec = _spec("disagg", ("prefill", "decode"))
+    spec.backend_deployment.parallel_config[role]["gpu_accounting"]["afd_total_gpus"] = 1
+    with pytest.raises(AFDQualificationError, match=role):
+        build_afd_qualification(spec)
+
+
+@pytest.mark.parametrize("role", ["prefill", "decode"])
+def test_missing_provider_identity_fails_for_either_role(role):
+    spec = _spec("disagg", ("prefill", "decode"))
+    spec.backend_deployment.performance_model_metadata[role]["measurement_required"] = True
+    with pytest.raises(AFDQualificationError, match=role):
+        build_afd_qualification(spec)
+
+
+def test_routing_identity_conflict_is_not_normalized_away():
     spec = _spec()
-    parallel_config = dict(spec.backend_deployment.parallel_config)
-    provenance = dict(parallel_config["afd_provenance"])
-    provenance["gpu_accounting"] = {
-        **provenance["gpu_accounting"],
-        "total_gpus": 999,
-    }
-    parallel_config["afd_provenance"] = provenance
-    deployment = replace(spec.backend_deployment, parallel_config=parallel_config)
-
-    with pytest.raises(AFDQualificationError, match="gpu_accounting is inconsistent"):
-        build_afd_qualification(replace(spec, backend_deployment=deployment))
+    spec.backend_deployment.parallel_config["aggregated"]["topology"]["routing_location"] = "f"
+    with pytest.raises(AFDQualificationError, match="provenance"):
+        build_afd_qualification(spec)
 
 
-def test_write_afd_artifacts_is_deterministic_and_non_afd_is_noop(tmp_path) -> None:
-    paths = write_afd_qualification_artifacts(tmp_path, _spec())
-    assert paths is not None
-    replay_path, qualification_path = paths
-    first = (replay_path.read_bytes(), qualification_path.read_bytes())
+def test_artifacts_are_deterministic_and_ordinary_replay_is_a_noop(tmp_path):
+    paths = write_afd_qualification_artifacts(tmp_path, _spec("disagg", ("prefill", "decode")))
+    before = [p.read_bytes() for p in paths]
+    assert [
+        p.read_bytes() for p in write_afd_qualification_artifacts(tmp_path, _spec("disagg", ("prefill", "decode")))
+    ] == before
+    assert write_afd_qualification_artifacts(tmp_path, _spec("agg", ())) is None
 
-    write_afd_qualification_artifacts(tmp_path, _spec())
-    assert first == (replay_path.read_bytes(), qualification_path.read_bytes())
 
-    non_afd = replace(
-        _spec(),
-        backend_deployment=BackendDeploymentSpec(
-            deployment_mode="agg",
-            backend="vllm",
-            backend_version="0.20.1",
-        ),
-    )
-    assert write_afd_qualification_artifacts(tmp_path, non_afd) is None
+def test_invalid_role_does_not_write_partial_artifacts(tmp_path):
+    spec = _spec("disagg", ("prefill", "decode"))
+    spec.backend_deployment.parallel_config["decode"]["schema_version"] = 1
+    with pytest.raises(AFDQualificationError):
+        write_afd_qualification_artifacts(tmp_path, spec)
+    assert list(tmp_path.iterdir()) == []
+
+
+def test_current_saved_contract_qualifies_and_checks_accounting():
+    spec = _spec()
+    deployment = spec.backend_deployment
+    provenance = deployment.parallel_config["aggregated"]
+    assert provenance["schema_version"] == 2
+    provenance["topology"].pop("f_gpus_per_node")
+    # Fixture metadata and raw args deliberately share that same saved mapping.
+    qualified = build_afd_qualification(spec)
+    assert qualified["deployment_plan"]["roles"]["aggregated"]["topology"]["f_gpus_per_node"] == 8
+    provenance["gpu_accounting"]["f_gpu_count"] = 4
+    with pytest.raises(AFDQualificationError, match="provenance"):
+        build_afd_qualification(spec)

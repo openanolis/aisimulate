@@ -307,3 +307,45 @@ def test_tp_that_does_not_split_heads_is_skipped_not_fatal(caplog):
     assert {c.shape.tp for c in cfgs} <= {1, 2, 4, 8}
     assert "num_heads 40 should be divisible by tp_size 16" in caplog.text
     assert "tp=16 dp=1 moe_tp=1 moe_ep=16" in caplog.text
+
+
+def test_pinned_roles_prepare_memory_only_for_authored_shapes(monkeypatch):
+    from aisimulate.sweeper.parallel_enum import ReplicaParallelConfig
+
+    facts = ModelHardware(
+        model_name="model",
+        hardware_sku="hardware",
+        backend="sglang",
+        is_moe=False,
+        mla=False,
+        enable_wideep=False,
+        weight_bytes=1,
+        vram_per_gpu=80,
+        gpus_per_node=8,
+        max_context=2048,
+    )
+    monkeypatch.setattr(mh_mod, "resolve_model_hardware", lambda *a, **k: facts)
+    seen = []
+
+    def feasible(shapes, **kwargs):
+        seen.extend(shapes)
+        return dict.fromkeys(shapes, 4096)
+
+    monkeypatch.setattr(mh_mod, "feasible_shape_tokens", feasible)
+    pinned = [
+        ReplicaParallelConfig(shape=ParallelShape(tp=2, dp=1, moe_tp=1, moe_ep=1), replicas=1),
+        ReplicaParallelConfig(shape=ParallelShape(tp=1, dp=1, moe_tp=1, moe_ep=1), replicas=1),
+    ]
+    assert (
+        parallel_configs_for(
+            "model",
+            "hardware",
+            backend="sglang",
+            gpu_budget=64,
+            deployment_mode="agg",
+            candidate_configs=pinned,
+            max_seq_len=1024,
+        )
+        == pinned
+    )
+    assert seen == [p.shape for p in pinned]

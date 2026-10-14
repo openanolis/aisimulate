@@ -270,7 +270,7 @@ def test_runner_capabilities_reject_spec_version_backend_and_hook():
     )
     with pytest.raises(ValueError, match="ReplaySpec API version"):
         capabilities.require_compatible(wrong_version)
-    with pytest.raises(ValueError, match="runner version 1"):
+    with pytest.raises(ValueError, match="runner version 2"):
         capabilities.require_replay_spec_version(REPLAY_SPEC_API_VERSION + 1)
 
     wrong_backend = ReplaySpec(backend_deployment=_deployment(backend="sglang"), workload={}, goal={})
@@ -297,7 +297,7 @@ def test_sweep_config_provider_protocol_is_structural():
 
 def test_public_contract_versions_start_at_one():
     assert API_VERSION == 1
-    assert REPLAY_SPEC_API_VERSION == 1
+    assert REPLAY_SPEC_API_VERSION == 2
 
 
 def test_lazy_exports_are_listed_in_public_api():

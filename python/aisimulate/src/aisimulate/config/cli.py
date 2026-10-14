@@ -19,7 +19,7 @@ from .common import (
     StrictModel,
     load_yaml,
 )
-from .engine import EnginePredictionConfig, EngineRecommendationConfig
+from .engine import EnginePredictionConfig, EngineRecommendationConfig, has_afd
 from .traffic import (
     SyntheticSource,
     TraceSource,
@@ -38,10 +38,7 @@ class CorePredictionConfig(StrictModel):
     def _validate_cross_component(self) -> CorePredictionConfig:
         _validate_epd(self.traffic, self.engine)
         source = self.traffic.source
-        if self.engine.mode == "afd" and isinstance(source, SyntheticSource) and source.cached_prefix_tokens:
-            raise ValueError("cached_prefix_tokens is unsupported for AFD")
-        if self.engine.mode == "afd" and not isinstance(source, SyntheticSource):
-            raise ValueError("AFD prediction requires fixed-length synthetic request traffic")
+        # The native AFD path serves trace and prefix-cached workloads.
         if isinstance(source, TraceSource) and source.format == "mooncake-delta" and self.engine.mode != "aggregated":
             raise ValueError(f"{source.format} requires aggregated engine mode")
         return self
@@ -67,11 +64,11 @@ class CoreRecommendationConfig(StrictModel):
             raise ValueError("engine.hardware='auto' requires one optimization.hardware")
         source = self.traffic.source if self.traffic is not None else None
         modes = set(self.engine.mode.choices) if hasattr(self.engine.mode, "choices") else {self.engine.mode}
-        if "afd" in modes and isinstance(source, SyntheticSource) and source.cached_prefix_tokens:
-            raise ValueError("cached_prefix_tokens is unsupported for AFD")
-        if "afd" in modes and source is not None and not isinstance(source, SyntheticSource):
-            raise ValueError("AFD recommendation requires fixed-length synthetic request traffic")
-        if "afd" in modes and self.traffic is not None and self.traffic.load.type == "kv_capacity_fraction":
+        if (
+            has_afd(self.engine.workers)
+            and self.traffic is not None
+            and self.traffic.load.type == "kv_capacity_fraction"
+        ):
             raise ValueError("AFD recommendation requires an absolute traffic load, not kv_capacity_fraction")
         if isinstance(source, TraceSource) and source.format == "mooncake-delta" and "disaggregated" in modes:
             raise ValueError(f"{source.format} requires aggregated engine mode")
