@@ -1,5 +1,8 @@
 // SPDX-FileCopyrightText: Copyright (c) 2025-2026 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 // SPDX-License-Identifier: Apache-2.0
+// Modified native port of heterogeneous AFD/fabric behavior; source revision and
+// original paths: root THIRD_PARTY_NOTICES.md (AISimulate heterogeneous AFD).
+// Source: https://github.com/LPhgh/aisimulate/tree/af56328c4ba7ffa1b8c42c8375244568c2e7bb8c
 
 //! Typed system hardware spec parsed from `python/aisimulate/src/aisimulate_core/systems/*.yaml`.
 //!
@@ -118,6 +121,9 @@ pub struct NodeSpec {
     /// Inter-rack bandwidth, bytes/s. Optional.
     #[serde(default)]
     pub inter_rack_bw: Option<f64>,
+    /// Cross-rack propagation latency in seconds; absent preserves p2p_latency.
+    #[serde(default)]
+    pub inter_rack_latency: Option<f64>,
 }
 
 /// Miscellaneous, mostly empirical, configuration.
@@ -176,6 +182,17 @@ impl SystemSpec {
             return node.inter_node_bw;
         }
         node.inter_rack_bw.unwrap_or(node.inter_node_bw)
+    }
+
+    /// Propagation latency for the chosen scale-up/scale-out domain.
+    pub fn get_p2p_latency(&self, num_gpus: u32) -> f64 {
+        let node = &self.node;
+        if num_gpus <= node.num_gpus_per_rack.unwrap_or(u32::MAX) {
+            return node.p2p_latency;
+        }
+        node.inter_rack_latency
+            .unwrap_or(node.p2p_latency)
+            .max(node.p2p_latency)
     }
 }
 
@@ -252,6 +269,7 @@ mod tests {
                 p2p_latency: 0.0,
                 num_gpus_per_rack: Some(72),
                 inter_rack_bw: Some(10.0),
+                inter_rack_latency: None,
             },
             misc: MiscSpec::default(),
         };
@@ -290,7 +308,8 @@ mod tests {
                 pcie_bw: None,
                 p2p_latency: 0.0,
                 num_gpus_per_rack: Some(72),
-                inter_rack_bw: None, // unset
+                inter_rack_bw: None,
+                inter_rack_latency: None, // unset
             },
             misc: MiscSpec::default(),
         };

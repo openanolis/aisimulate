@@ -31,7 +31,7 @@
 use std::path::{Path, PathBuf};
 use std::sync::Arc;
 
-use pyo3::exceptions::PyValueError;
+use pyo3::exceptions::{PyNotImplementedError, PyValueError};
 use pyo3::prelude::*;
 use pyo3::sync::GILOnceCell;
 use pyo3::types::PyType;
@@ -49,6 +49,59 @@ use crate::{BackendKind, DataType, DatabaseMode, ENGINE_CONFIG_SCHEMA_VERSION};
 #[pyfunction]
 fn _build_smoke() -> u32 {
     ENGINE_CONFIG_SCHEMA_VERSION
+}
+
+/// Shared AFD execution preflight, without constructing a model or loading data.
+#[pyfunction]
+fn validate_afd_routing_location(location: &str) -> PyResult<()> {
+    let location: crate::AfdRoutingLocation = serde_json::from_value(location.into())
+        .map_err(|error| PyValueError::new_err(format!("invalid routing_location: {error}")))?;
+    location.ensure_supported().map_err(aic_to_py)
+}
+
+#[pyfunction]
+fn validate_afd_attention_tp(a_tp_size: u32) -> PyResult<()> {
+    crate::perfmodel::afd::validate_afd_attention_tp(a_tp_size).map_err(aic_to_py)
+}
+
+#[pyfunction]
+#[pyo3(signature = (a_tp_size, n_a_nodes, n_f_nodes, gpus_per_node, f_moe_ep_size=None, num_experts=None, *, f_gpus_per_node=None))]
+fn resolve_afd_parallelism(
+    a_tp_size: u32,
+    n_a_nodes: u32,
+    n_f_nodes: u32,
+    gpus_per_node: u32,
+    f_moe_ep_size: Option<u32>,
+    num_experts: Option<u32>,
+    f_gpus_per_node: Option<u32>,
+) -> PyResult<String> {
+    let resolved = crate::perfmodel::afd::resolve_afd_parallelism(
+        a_tp_size,
+        n_a_nodes,
+        n_f_nodes,
+        gpus_per_node,
+        f_moe_ep_size,
+        num_experts,
+        f_gpus_per_node,
+    )
+    .map_err(aic_to_py)?;
+    serde_json::to_string(&resolved).map_err(|e| PyValueError::new_err(e.to_string()))
+}
+
+#[pyfunction]
+fn validate_afd_model_shape(
+    num_layers: u32,
+    num_experts: u32,
+    topk: u32,
+    num_shared_experts: u32,
+    num_moe_layers: u32,
+) -> PyResult<()> {
+    crate::perfmodel::afd::AfdModelShape {
+        num_shared_experts,
+        num_moe_layers,
+    }
+    .validate(num_layers, num_experts, topk)
+    .map_err(aic_to_py)
 }
 
 /// Cached handles to the canonical SDK exception classes
@@ -105,6 +158,9 @@ fn sdk_error_type(
 /// (cargo test without the sdk on `sys.path`) the conversion degrades to
 /// `PyValueError` with the same message.
 pub(crate) fn aic_to_py(e: AicError) -> PyErr {
+    if let AicError::NotImplemented(message) = e {
+        return PyNotImplementedError::new_err(message);
+    }
     let sdk_class: Option<(&'static GILOnceCell<Py<PyType>>, &str)> = if e.is_missing_perf_data() {
         Some((&PERF_DATA_NOT_AVAILABLE_ERROR, "PerfDataNotAvailableError"))
     } else if matches!(e, AicError::EmpiricalNotImplemented(_)) {
@@ -1032,6 +1088,7 @@ fn op_from_spec_json(py: Python<'_>, spec_json: &str) -> PyResult<Py<PyAny>> {
 /// config API.
 #[derive(Clone, Debug)]
 struct EngineBuildRequest {
+    afd_pool_role: Option<crate::AfdPoolRole>,
     model_path: String,
     system: String,
     backend: String,
@@ -1090,6 +1147,7 @@ impl AicEngineBuilder {
     ) -> Self {
         Self {
             request: EngineBuildRequest {
+                afd_pool_role: None,
                 model_path: model_path.into(),
                 system: system.into(),
                 backend: backend.as_str().to_owned(),
@@ -1491,6 +1549,15 @@ fn compile_engine_from_request(request: EngineBuildRequest) -> Result<Engine, Ai
         let engine_mod = py.import("aisimulate_core.sdk.engine")?;
         let kwargs = pyo3::types::PyDict::new(py);
         kwargs.set_item("backend_version", request.backend_version.as_deref())?;
+        if let Some(role) = request.afd_pool_role {
+            kwargs.set_item(
+                "afd_pool_role",
+                match role {
+                    crate::AfdPoolRole::A => "a",
+                    crate::AfdPoolRole::F => "f",
+                },
+            )?;
+        }
         kwargs.set_item("tp_size", request.tp_size)?;
         kwargs.set_item("pp_size", request.pp_size)?;
         kwargs.set_item("attention_dp_size", request.attention_dp_size)?;
@@ -1626,6 +1693,7 @@ pub(crate) fn compile_forward_pass_model_to_engine(
         )
     })?;
     compile_engine_from_request(EngineBuildRequest {
+        afd_pool_role: config.afd_pool_role,
         model_path: config.model.clone(),
         system: config.system.clone(),
         backend: config.backend.as_str().to_owned(),
@@ -1774,6 +1842,12 @@ fn engine_build_request(
         .and_then(|s| s.nextn)
         .unwrap_or(0);
     Ok(EngineBuildRequest {
+        afd_pool_role: config
+            .extra
+            .get("afd_pool_role")
+            .map(|role| serde_json::from_value(serde_json::Value::String(role.clone())))
+            .transpose()
+            .map_err(|e| AicError::InvalidEngineConfig(format!("invalid AFD pool role: {e}")))?,
         model_path: config.model_name.clone(),
         system: config.system_name.clone(),
         backend: config.backend.as_str().to_owned(),
@@ -2053,6 +2127,8 @@ impl PyForwardPassPerfModel {
             }
         };
         let config = crate::ForwardPassPerfModelConfig {
+            afd_routing_location: None,
+            afd_pool_role: None,
             model: request.model_path,
             system: request.system,
             backend: legacy.backend,
@@ -2243,6 +2319,14 @@ impl PyForwardPassPerfModel {
 /// The removed `build_aic_engine` flat adapter is intentionally not exposed;
 /// embedded callers use `AicEngineBuilder`.
 pub(crate) fn register(m: &Bound<'_, PyModule>) -> PyResult<()> {
+    m.add(
+        "AFD_DEFAULT_ROUTING_LOCATION",
+        crate::AfdRoutingLocation::default().as_str(),
+    )?;
+    m.add_function(wrap_pyfunction!(validate_afd_routing_location, m)?)?;
+    m.add_function(wrap_pyfunction!(validate_afd_attention_tp, m)?)?;
+    m.add_function(wrap_pyfunction!(resolve_afd_parallelism, m)?)?;
+    m.add_function(wrap_pyfunction!(validate_afd_model_shape, m)?)?;
     m.add_function(wrap_pyfunction!(_build_smoke, m)?)?;
     m.add_function(wrap_pyfunction!(engine_spec_bincode_from_json, m)?)?;
     m.add_function(wrap_pyfunction!(weights_ops_json, m)?)?;
