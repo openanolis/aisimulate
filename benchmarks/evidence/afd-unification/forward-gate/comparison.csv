@@ -1,0 +1,11 @@
+case_id,model_id,database_mode,phase,metric,classification,exceed_count,consensus_required,base_median_us,head_median_us,median_delta_us,median_ratio,invalid_reasons
+qwen3-32b/silicon/context/bs1-isl1024,qwen3-32b,SILICON,context,cold,IMPROVEMENT,0,4,31.084,30.75,-0.33399999999999963,0.989254922146442,
+qwen3-32b/silicon/context/bs1-isl1024,qwen3-32b,SILICON,context,warm,IMPROVEMENT,0,4,9.1665,9.125,-0.041499999999999204,0.9954726449571811,
+qwen3-32b/silicon/generation/bs1-isl1024,qwen3-32b,SILICON,generation,cold,IMPROVEMENT,0,4,39.75,35.667,-4.082999999999998,0.8972830188679246,
+qwen3-32b/silicon/generation/bs1-isl1024,qwen3-32b,SILICON,generation,warm,IMPROVEMENT,0,4,22.125,22.084,-0.04100000000000037,0.9981468926553673,
+deepseek-v3.2-b200_sxm-vllm-0.24.0-tp8-pp1-adp1-mtp1-ep8/silicon/context/bs1-isl1024-prefix0,deepseek-v3.2-b200_sxm-vllm-0.24.0-tp8-pp1-adp1-mtp1-ep8,SILICON,context,cold,UNSTABLE,1,4,44.708,40.25,-4.457999999999998,0.9002863022277893,
+deepseek-v3.2-b200_sxm-vllm-0.24.0-tp8-pp1-adp1-mtp1-ep8/silicon/context/bs1-isl1024-prefix0,deepseek-v3.2-b200_sxm-vllm-0.24.0-tp8-pp1-adp1-mtp1-ep8,SILICON,context,warm,OK,0,4,9.0,9.0415,0.041499999999999204,1.0046111111111111,
+deepseek-v3.2-b200_sxm-vllm-0.24.0-tp8-pp1-adp1-mtp1-ep8/silicon/generation/bs1-isl1024-prefix0,deepseek-v3.2-b200_sxm-vllm-0.24.0-tp8-pp1-adp1-mtp1-ep8,SILICON,generation,cold,IMPROVEMENT,0,4,24.541,24.5,-0.04100000000000037,0.9983293264333156,
+deepseek-v3.2-b200_sxm-vllm-0.24.0-tp8-pp1-adp1-mtp1-ep8/silicon/generation/bs1-isl1024-prefix0,deepseek-v3.2-b200_sxm-vllm-0.24.0-tp8-pp1-adp1-mtp1-ep8,SILICON,generation,warm,OK,0,4,17.208,17.291,0.08300000000000196,1.004823337982334,
+deepseek-v3.2-b200_sxm-vllm-0.24.0-tp8-pp1-adp1-mtp1-ep8/silicon/generation/bs128-isl1024-prefix0,deepseek-v3.2-b200_sxm-vllm-0.24.0-tp8-pp1-adp1-mtp1-ep8,SILICON,generation,cold,UNSTABLE,1,4,30.542,26.25,-4.292000000000002,0.8594722022133455,
+deepseek-v3.2-b200_sxm-vllm-0.24.0-tp8-pp1-adp1-mtp1-ep8/silicon/generation/bs128-isl1024-prefix0,deepseek-v3.2-b200_sxm-vllm-0.24.0-tp8-pp1-adp1-mtp1-ep8,SILICON,generation,warm,IMPROVEMENT,0,4,17.25,17.167,-0.08299999999999841,0.9951884057971015,

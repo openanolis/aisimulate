@@ -1,0 +1,4776 @@
+{
+  "baseline_revision": "7836ce9a9b1a56cfe6f3244ae12870060022d286",
+  "candidate_revision": "9062f4d89036e33bee8e999e4f8d33598c80a498",
+  "host": "macOS-15.8-arm64-arm-64bit-Mach-O",
+  "python": "3.13.16 (main, Oct  9 2026, 15:11:24) [Clang 22.1.3 ]",
+  "toolchain": "rustc 1.99.0 (b940084d7 2026-09-28)\nbinary: rustc\ncommit-hash: b940084d7eb6a299eb4bfeb8e34901bc051e7ac4\ncommit-date: 2026-09-28\nhost: aarch64-apple-darwin\nrelease: 1.99.0\nLLVM version: 23.1.1\n",
+  "scope": "compile + zero-request native preparation, including model construction and memory preflight",
+  "semantic_scope": "synthetic 1000-request AFD role matrix and ordinary fixed-timing control; not a long-corpus qualification",
+  "excluded_metrics": [
+    "processed_output_tokens_per_s",
+    "processed_tokens_per_s",
+    "wall_time_ms"
+  ],
+  "pairs": 7,
+  "warmups_per_arm": 2,
+  "cpu_affinity": "not available on macOS; paired alternating order",
+  "rows": [
+    {
+      "case": "afd:both:large",
+      "semantic_repetitions": {
+        "baseline": [
+          {
+            "semantic_sha256": "6e797ad319f736d6eff1b93de640ea0e840b76fc85e6b9ce5845f5abf8d414a4",
+            "completed_requests": 1000,
+            "total_input_tokens": 1024000.0,
+            "total_output_tokens": 128000.0,
+            "binary_sha256": "f4cb5ac13edac12e65327ebee3995b87c4bcae8c7643db616e43cb83d930918b",
+            "config": {
+              "engine": {
+                "model": "Qwen/Qwen3-30B-A3B",
+                "hardware": "h200_sxm",
+                "backend": "sglang",
+                "backend_version": "0.5.14",
+                "context_length": 2048,
+                "mode": "aggregated",
+                "workers": {
+                  "aggregated": {
+                    "type": "afd",
+                    "afd": {
+                      "n_a_nodes": 1,
+                      "n_f_nodes": 1,
+                      "tp_a": 1,
+                      "a_batch_size": 18,
+                      "num_microbatches": 3
+                    }
+                  }
+                }
+              },
+              "traffic": {
+                "source": {
+                  "type": "synthetic",
+                  "input_tokens": 1024,
+                  "output_tokens": 128
+                },
+                "load": {
+                  "type": "concurrency",
+                  "concurrency": 32
+                },
+                "stop": {
+                  "requests": 1000
+                }
+              }
+            }
+          },
+          {
+            "semantic_sha256": "6e797ad319f736d6eff1b93de640ea0e840b76fc85e6b9ce5845f5abf8d414a4",
+            "completed_requests": 1000,
+            "total_input_tokens": 1024000.0,
+            "total_output_tokens": 128000.0,
+            "binary_sha256": "f4cb5ac13edac12e65327ebee3995b87c4bcae8c7643db616e43cb83d930918b",
+            "config": {
+              "engine": {
+                "model": "Qwen/Qwen3-30B-A3B",
+                "hardware": "h200_sxm",
+                "backend": "sglang",
+                "backend_version": "0.5.14",
+                "context_length": 2048,
+                "mode": "aggregated",
+                "workers": {
+                  "aggregated": {
+                    "type": "afd",
+                    "afd": {
+                      "n_a_nodes": 1,
+                      "n_f_nodes": 1,
+                      "tp_a": 1,
+                      "a_batch_size": 18,
+                      "num_microbatches": 3
+                    }
+                  }
+                }
+              },
+              "traffic": {
+                "source": {
+                  "type": "synthetic",
+                  "input_tokens": 1024,
+                  "output_tokens": 128
+                },
+                "load": {
+                  "type": "concurrency",
+                  "concurrency": 32
+                },
+                "stop": {
+                  "requests": 1000
+                }
+              }
+            }
+          }
+        ],
+        "candidate": [
+          {
+            "semantic_sha256": "6e797ad319f736d6eff1b93de640ea0e840b76fc85e6b9ce5845f5abf8d414a4",
+            "completed_requests": 1000,
+            "total_input_tokens": 1024000.0,
+            "total_output_tokens": 128000.0,
+            "binary_sha256": "f183880fe410ab90ea0122075b6f897ef64b2841cfc8998005e03dcb3a53f7cd",
+            "config": {
+              "engine": {
+                "model": "Qwen/Qwen3-30B-A3B",
+                "hardware": "h200_sxm",
+                "backend": "sglang",
+                "backend_version": "0.5.14",
+                "context_length": 2048,
+                "mode": "aggregated",
+                "workers": {
+                  "aggregated": {
+                    "type": "afd",
+                    "afd": {
+                      "n_a_nodes": 1,
+                      "n_f_nodes": 1,
+                      "tp_a": 1,
+                      "a_batch_size": 18,
+                      "num_microbatches": 3
+                    }
+                  }
+                }
+              },
+              "traffic": {
+                "source": {
+                  "type": "synthetic",
+                  "input_tokens": 1024,
+                  "output_tokens": 128
+                },
+                "load": {
+                  "type": "concurrency",
+                  "concurrency": 32
+                },
+                "stop": {
+                  "requests": 1000
+                }
+              }
+            }
+          },
+          {
+            "semantic_sha256": "6e797ad319f736d6eff1b93de640ea0e840b76fc85e6b9ce5845f5abf8d414a4",
+            "completed_requests": 1000,
+            "total_input_tokens": 1024000.0,
+            "total_output_tokens": 128000.0,
+            "binary_sha256": "f183880fe410ab90ea0122075b6f897ef64b2841cfc8998005e03dcb3a53f7cd",
+            "config": {
+              "engine": {
+                "model": "Qwen/Qwen3-30B-A3B",
+                "hardware": "h200_sxm",
+                "backend": "sglang",
+                "backend_version": "0.5.14",
+                "context_length": 2048,
+                "mode": "aggregated",
+                "workers": {
+                  "aggregated": {
+                    "type": "afd",
+                    "afd": {
+                      "n_a_nodes": 1,
+                      "n_f_nodes": 1,
+                      "tp_a": 1,
+                      "a_batch_size": 18,
+                      "num_microbatches": 3
+                    }
+                  }
+                }
+              },
+              "traffic": {
+                "source": {
+                  "type": "synthetic",
+                  "input_tokens": 1024,
+                  "output_tokens": 128
+                },
+                "load": {
+                  "type": "concurrency",
+                  "concurrency": 32
+                },
+                "stop": {
+                  "requests": 1000
+                }
+              }
+            }
+          }
+        ]
+      },
+      "samples": [
+        {
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "baseline": {
+            "compile_ms": 1.604458986548707,
+            "zero_request_preparation_ms": 1387.609124998562,
+            "native_wall_ms": 0.08129199999999999,
+            "prepared_role_counts": 1,
+            "binary_sha256": "f4cb5ac13edac12e65327ebee3995b87c4bcae8c7643db616e43cb83d930918b",
+            "config": {
+              "engine": {
+                "model": "Qwen/Qwen3-30B-A3B",
+                "hardware": "h200_sxm",
+                "backend": "sglang",
+                "backend_version": "0.5.14",
+                "context_length": 2048,
+                "mode": "aggregated",
+                "workers": {
+                  "aggregated": {
+                    "type": "afd",
+                    "afd": {
+                      "n_a_nodes": 1,
+                      "n_f_nodes": 1,
+                      "tp_a": 1,
+                      "a_batch_size": 18,
+                      "num_microbatches": 3
+                    }
+                  }
+                }
+              },
+              "traffic": {
+                "source": {
+                  "type": "synthetic",
+                  "input_tokens": 1024,
+                  "output_tokens": 128
+                },
+                "load": {
+                  "type": "concurrency",
+                  "concurrency": 32
+                },
+                "stop": {
+                  "requests": 1000
+                }
+              }
+            }
+          },
+          "candidate": {
+            "compile_ms": 1.7416670161765069,
+            "zero_request_preparation_ms": 1321.9596250273753,
+            "native_wall_ms": 0.08612500000000001,
+            "prepared_role_counts": 1,
+            "binary_sha256": "f183880fe410ab90ea0122075b6f897ef64b2841cfc8998005e03dcb3a53f7cd",
+            "config": {
+              "engine": {
+                "model": "Qwen/Qwen3-30B-A3B",
+                "hardware": "h200_sxm",
+                "backend": "sglang",
+                "backend_version": "0.5.14",
+                "context_length": 2048,
+                "mode": "aggregated",
+                "workers": {
+                  "aggregated": {
+                    "type": "afd",
+                    "afd": {
+                      "n_a_nodes": 1,
+                      "n_f_nodes": 1,
+                      "tp_a": 1,
+                      "a_batch_size": 18,
+                      "num_microbatches": 3
+                    }
+                  }
+                }
+              },
+              "traffic": {
+                "source": {
+                  "type": "synthetic",
+                  "input_tokens": 1024,
+                  "output_tokens": 128
+                },
+                "load": {
+                  "type": "concurrency",
+                  "concurrency": 32
+                },
+                "stop": {
+                  "requests": 1000
+                }
+              }
+            }
+          }
+        },
+        {
+          "order": [
+            "candidate",
+            "baseline"
+          ],
+          "candidate": {
+            "compile_ms": 1.5867500042077154,
+            "zero_request_preparation_ms": 1325.16583398683,
+            "native_wall_ms": 0.07279200000000001,
+            "prepared_role_counts": 1,
+            "binary_sha256": "f183880fe410ab90ea0122075b6f897ef64b2841cfc8998005e03dcb3a53f7cd",
+            "config": {
+              "engine": {
+                "model": "Qwen/Qwen3-30B-A3B",
+                "hardware": "h200_sxm",
+                "backend": "sglang",
+                "backend_version": "0.5.14",
+                "context_length": 2048,
+                "mode": "aggregated",
+                "workers": {
+                  "aggregated": {
+                    "type": "afd",
+                    "afd": {
+                      "n_a_nodes": 1,
+                      "n_f_nodes": 1,
+                      "tp_a": 1,
+                      "a_batch_size": 18,
+                      "num_microbatches": 3
+                    }
+                  }
+                }
+              },
+              "traffic": {
+                "source": {
+                  "type": "synthetic",
+                  "input_tokens": 1024,
+                  "output_tokens": 128
+                },
+                "load": {
+                  "type": "concurrency",
+                  "concurrency": 32
+                },
+                "stop": {
+                  "requests": 1000
+                }
+              }
+            }
+          },
+          "baseline": {
+            "compile_ms": 1.6989159921649843,
+            "zero_request_preparation_ms": 1401.0545409983024,
+            "native_wall_ms": 0.089958,
+            "prepared_role_counts": 1,
+            "binary_sha256": "f4cb5ac13edac12e65327ebee3995b87c4bcae8c7643db616e43cb83d930918b",
+            "config": {
+              "engine": {
+                "model": "Qwen/Qwen3-30B-A3B",
+                "hardware": "h200_sxm",
+                "backend": "sglang",
+                "backend_version": "0.5.14",
+                "context_length": 2048,
+                "mode": "aggregated",
+                "workers": {
+                  "aggregated": {
+                    "type": "afd",
+                    "afd": {
+                      "n_a_nodes": 1,
+                      "n_f_nodes": 1,
+                      "tp_a": 1,
+                      "a_batch_size": 18,
+                      "num_microbatches": 3
+                    }
+                  }
+                }
+              },
+              "traffic": {
+                "source": {
+                  "type": "synthetic",
+                  "input_tokens": 1024,
+                  "output_tokens": 128
+                },
+                "load": {
+                  "type": "concurrency",
+                  "concurrency": 32
+                },
+                "stop": {
+                  "requests": 1000
+                }
+              }
+            }
+          }
+        },
+        {
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "baseline": {
+            "compile_ms": 1.5802920097485185,
+            "zero_request_preparation_ms": 1376.5099169977475,
+            "native_wall_ms": 0.091375,
+            "prepared_role_counts": 1,
+            "binary_sha256": "f4cb5ac13edac12e65327ebee3995b87c4bcae8c7643db616e43cb83d930918b",
+            "config": {
+              "engine": {
+                "model": "Qwen/Qwen3-30B-A3B",
+                "hardware": "h200_sxm",
+                "backend": "sglang",
+                "backend_version": "0.5.14",
+                "context_length": 2048,
+                "mode": "aggregated",
+                "workers": {
+                  "aggregated": {
+                    "type": "afd",
+                    "afd": {
+                      "n_a_nodes": 1,
+                      "n_f_nodes": 1,
+                      "tp_a": 1,
+                      "a_batch_size": 18,
+                      "num_microbatches": 3
+                    }
+                  }
+                }
+              },
+              "traffic": {
+                "source": {
+                  "type": "synthetic",
+                  "input_tokens": 1024,
+                  "output_tokens": 128
+                },
+                "load": {
+                  "type": "concurrency",
+                  "concurrency": 32
+                },
+                "stop": {
+                  "requests": 1000
+                }
+              }
+            }
+          },
+          "candidate": {
+            "compile_ms": 1.5827080060262233,
+            "zero_request_preparation_ms": 1336.6787080012728,
+            "native_wall_ms": 0.08925,
+            "prepared_role_counts": 1,
+            "binary_sha256": "f183880fe410ab90ea0122075b6f897ef64b2841cfc8998005e03dcb3a53f7cd",
+            "config": {
+              "engine": {
+                "model": "Qwen/Qwen3-30B-A3B",
+                "hardware": "h200_sxm",
+                "backend": "sglang",
+                "backend_version": "0.5.14",
+                "context_length": 2048,
+                "mode": "aggregated",
+                "workers": {
+                  "aggregated": {
+                    "type": "afd",
+                    "afd": {
+                      "n_a_nodes": 1,
+                      "n_f_nodes": 1,
+                      "tp_a": 1,
+                      "a_batch_size": 18,
+                      "num_microbatches": 3
+                    }
+                  }
+                }
+              },
+              "traffic": {
+                "source": {
+                  "type": "synthetic",
+                  "input_tokens": 1024,
+                  "output_tokens": 128
+                },
+                "load": {
+                  "type": "concurrency",
+                  "concurrency": 32
+                },
+                "stop": {
+                  "requests": 1000
+                }
+              }
+            }
+          }
+        },
+        {
+          "order": [
+            "candidate",
+            "baseline"
+          ],
+          "candidate": {
+            "compile_ms": 1.7823330126702785,
+            "zero_request_preparation_ms": 1329.9711250001565,
+            "native_wall_ms": 0.090375,
+            "prepared_role_counts": 1,
+            "binary_sha256": "f183880fe410ab90ea0122075b6f897ef64b2841cfc8998005e03dcb3a53f7cd",
+            "config": {
+              "engine": {
+                "model": "Qwen/Qwen3-30B-A3B",
+                "hardware": "h200_sxm",
+                "backend": "sglang",
+                "backend_version": "0.5.14",
+                "context_length": 2048,
+                "mode": "aggregated",
+                "workers": {
+                  "aggregated": {
+                    "type": "afd",
+                    "afd": {
+                      "n_a_nodes": 1,
+                      "n_f_nodes": 1,
+                      "tp_a": 1,
+                      "a_batch_size": 18,
+                      "num_microbatches": 3
+                    }
+                  }
+                }
+              },
+              "traffic": {
+                "source": {
+                  "type": "synthetic",
+                  "input_tokens": 1024,
+                  "output_tokens": 128
+                },
+                "load": {
+                  "type": "concurrency",
+                  "concurrency": 32
+                },
+                "stop": {
+                  "requests": 1000
+                }
+              }
+            }
+          },
+          "baseline": {
+            "compile_ms": 1.5817089879419655,
+            "zero_request_preparation_ms": 1391.9270419864915,
+            "native_wall_ms": 0.092042,
+            "prepared_role_counts": 1,
+            "binary_sha256": "f4cb5ac13edac12e65327ebee3995b87c4bcae8c7643db616e43cb83d930918b",
+            "config": {
+              "engine": {
+                "model": "Qwen/Qwen3-30B-A3B",
+                "hardware": "h200_sxm",
+                "backend": "sglang",
+                "backend_version": "0.5.14",
+                "context_length": 2048,
+                "mode": "aggregated",
+                "workers": {
+                  "aggregated": {
+                    "type": "afd",
+                    "afd": {
+                      "n_a_nodes": 1,
+                      "n_f_nodes": 1,
+                      "tp_a": 1,
+                      "a_batch_size": 18,
+                      "num_microbatches": 3
+                    }
+                  }
+                }
+              },
+              "traffic": {
+                "source": {
+                  "type": "synthetic",
+                  "input_tokens": 1024,
+                  "output_tokens": 128
+                },
+                "load": {
+                  "type": "concurrency",
+                  "concurrency": 32
+                },
+                "stop": {
+                  "requests": 1000
+                }
+              }
+            }
+          }
+        },
+        {
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "baseline": {
+            "compile_ms": 1.6457500169053674,
+            "zero_request_preparation_ms": 1392.6547919982113,
+            "native_wall_ms": 0.083292,
+            "prepared_role_counts": 1,
+            "binary_sha256": "f4cb5ac13edac12e65327ebee3995b87c4bcae8c7643db616e43cb83d930918b",
+            "config": {
+              "engine": {
+                "model": "Qwen/Qwen3-30B-A3B",
+                "hardware": "h200_sxm",
+                "backend": "sglang",
+                "backend_version": "0.5.14",
+                "context_length": 2048,
+                "mode": "aggregated",
+                "workers": {
+                  "aggregated": {
+                    "type": "afd",
+                    "afd": {
+                      "n_a_nodes": 1,
+                      "n_f_nodes": 1,
+                      "tp_a": 1,
+                      "a_batch_size": 18,
+                      "num_microbatches": 3
+                    }
+                  }
+                }
+              },
+              "traffic": {
+                "source": {
+                  "type": "synthetic",
+                  "input_tokens": 1024,
+                  "output_tokens": 128
+                },
+                "load": {
+                  "type": "concurrency",
+                  "concurrency": 32
+                },
+                "stop": {
+                  "requests": 1000
+                }
+              }
+            }
+          },
+          "candidate": {
+            "compile_ms": 1.6647079901304096,
+            "zero_request_preparation_ms": 1319.2944579932373,
+            "native_wall_ms": 0.08475,
+            "prepared_role_counts": 1,
+            "binary_sha256": "f183880fe410ab90ea0122075b6f897ef64b2841cfc8998005e03dcb3a53f7cd",
+            "config": {
+              "engine": {
+                "model": "Qwen/Qwen3-30B-A3B",
+                "hardware": "h200_sxm",
+                "backend": "sglang",
+                "backend_version": "0.5.14",
+                "context_length": 2048,
+                "mode": "aggregated",
+                "workers": {
+                  "aggregated": {
+                    "type": "afd",
+                    "afd": {
+                      "n_a_nodes": 1,
+                      "n_f_nodes": 1,
+                      "tp_a": 1,
+                      "a_batch_size": 18,
+                      "num_microbatches": 3
+                    }
+                  }
+                }
+              },
+              "traffic": {
+                "source": {
+                  "type": "synthetic",
+                  "input_tokens": 1024,
+                  "output_tokens": 128
+                },
+                "load": {
+                  "type": "concurrency",
+                  "concurrency": 32
+                },
+                "stop": {
+                  "requests": 1000
+                }
+              }
+            }
+          }
+        },
+        {
+          "order": [
+            "candidate",
+            "baseline"
+          ],
+          "candidate": {
+            "compile_ms": 1.6867500089574605,
+            "zero_request_preparation_ms": 1338.9837499998976,
+            "native_wall_ms": 0.081167,
+            "prepared_role_counts": 1,
+            "binary_sha256": "f183880fe410ab90ea0122075b6f897ef64b2841cfc8998005e03dcb3a53f7cd",
+            "config": {
+              "engine": {
+                "model": "Qwen/Qwen3-30B-A3B",
+                "hardware": "h200_sxm",
+                "backend": "sglang",
+                "backend_version": "0.5.14",
+                "context_length": 2048,
+                "mode": "aggregated",
+                "workers": {
+                  "aggregated": {
+                    "type": "afd",
+                    "afd": {
+                      "n_a_nodes": 1,
+                      "n_f_nodes": 1,
+                      "tp_a": 1,
+                      "a_batch_size": 18,
+                      "num_microbatches": 3
+                    }
+                  }
+                }
+              },
+              "traffic": {
+                "source": {
+                  "type": "synthetic",
+                  "input_tokens": 1024,
+                  "output_tokens": 128
+                },
+                "load": {
+                  "type": "concurrency",
+                  "concurrency": 32
+                },
+                "stop": {
+                  "requests": 1000
+                }
+              }
+            }
+          },
+          "baseline": {
+            "compile_ms": 1.6164160042535514,
+            "zero_request_preparation_ms": 1373.3108330052346,
+            "native_wall_ms": 0.092542,
+            "prepared_role_counts": 1,
+            "binary_sha256": "f4cb5ac13edac12e65327ebee3995b87c4bcae8c7643db616e43cb83d930918b",
+            "config": {
+              "engine": {
+                "model": "Qwen/Qwen3-30B-A3B",
+                "hardware": "h200_sxm",
+                "backend": "sglang",
+                "backend_version": "0.5.14",
+                "context_length": 2048,
+                "mode": "aggregated",
+                "workers": {
+                  "aggregated": {
+                    "type": "afd",
+                    "afd": {
+                      "n_a_nodes": 1,
+                      "n_f_nodes": 1,
+                      "tp_a": 1,
+                      "a_batch_size": 18,
+                      "num_microbatches": 3
+                    }
+                  }
+                }
+              },
+              "traffic": {
+                "source": {
+                  "type": "synthetic",
+                  "input_tokens": 1024,
+                  "output_tokens": 128
+                },
+                "load": {
+                  "type": "concurrency",
+                  "concurrency": 32
+                },
+                "stop": {
+                  "requests": 1000
+                }
+              }
+            }
+          }
+        },
+        {
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "baseline": {
+            "compile_ms": 1.5543749905191362,
+            "zero_request_preparation_ms": 1380.4287090024445,
+            "native_wall_ms": 0.083875,
+            "prepared_role_counts": 1,
+            "binary_sha256": "f4cb5ac13edac12e65327ebee3995b87c4bcae8c7643db616e43cb83d930918b",
+            "config": {
+              "engine": {
+                "model": "Qwen/Qwen3-30B-A3B",
+                "hardware": "h200_sxm",
+                "backend": "sglang",
+                "backend_version": "0.5.14",
+                "context_length": 2048,
+                "mode": "aggregated",
+                "workers": {
+                  "aggregated": {
+                    "type": "afd",
+                    "afd": {
+                      "n_a_nodes": 1,
+                      "n_f_nodes": 1,
+                      "tp_a": 1,
+                      "a_batch_size": 18,
+                      "num_microbatches": 3
+                    }
+                  }
+                }
+              },
+              "traffic": {
+                "source": {
+                  "type": "synthetic",
+                  "input_tokens": 1024,
+                  "output_tokens": 128
+                },
+                "load": {
+                  "type": "concurrency",
+                  "concurrency": 32
+                },
+                "stop": {
+                  "requests": 1000
+                }
+              }
+            }
+          },
+          "candidate": {
+            "compile_ms": 1.7646249907556921,
+            "zero_request_preparation_ms": 1336.565416015219,
+            "native_wall_ms": 0.07725,
+            "prepared_role_counts": 1,
+            "binary_sha256": "f183880fe410ab90ea0122075b6f897ef64b2841cfc8998005e03dcb3a53f7cd",
+            "config": {
+              "engine": {
+                "model": "Qwen/Qwen3-30B-A3B",
+                "hardware": "h200_sxm",
+                "backend": "sglang",
+                "backend_version": "0.5.14",
+                "context_length": 2048,
+                "mode": "aggregated",
+                "workers": {
+                  "aggregated": {
+                    "type": "afd",
+                    "afd": {
+                      "n_a_nodes": 1,
+                      "n_f_nodes": 1,
+                      "tp_a": 1,
+                      "a_batch_size": 18,
+                      "num_microbatches": 3
+                    }
+                  }
+                }
+              },
+              "traffic": {
+                "source": {
+                  "type": "synthetic",
+                  "input_tokens": 1024,
+                  "output_tokens": 128
+                },
+                "load": {
+                  "type": "concurrency",
+                  "concurrency": 32
+                },
+                "stop": {
+                  "requests": 1000
+                }
+              }
+            }
+          }
+        }
+      ],
+      "timings": {
+        "compile_ms": {
+          "baseline_median_ms": 1.604458986548707,
+          "candidate_median_ms": 1.6867500089574605,
+          "paired_ratio_median": 1.043512316457414,
+          "paired_ratio_range": [
+            0.9339779079868851,
+            1.1352633704987338
+          ]
+        },
+        "zero_request_preparation_ms": {
+          "baseline_median_ms": 1387.609124998562,
+          "candidate_median_ms": 1329.9711250001565,
+          "paired_ratio_median": 0.9554891060253312,
+          "paired_ratio_range": [
+            0.9458345804600876,
+            0.975004141684211
+          ]
+        }
+      }
+    },
+    {
+      "case": "afd:prefill:large",
+      "semantic_repetitions": {
+        "baseline": [
+          {
+            "semantic_sha256": "7f9b80c3c4741c3addcd2da7b9712be6ba4072966e44bc8253c66e25e5b4e50a",
+            "completed_requests": 1000,
+            "total_input_tokens": 1024000.0,
+            "total_output_tokens": 128000.0,
+            "binary_sha256": "f4cb5ac13edac12e65327ebee3995b87c4bcae8c7643db616e43cb83d930918b",
+            "config": {
+              "engine": {
+                "model": "Qwen/Qwen3-30B-A3B",
+                "hardware": "h200_sxm",
+                "backend": "sglang",
+                "backend_version": "0.5.14",
+                "context_length": 2048,
+                "mode": "disaggregated",
+                "workers": {
+                  "prefill": {
+                    "type": "afd",
+                    "afd": {
+                      "n_a_nodes": 1,
+                      "n_f_nodes": 1,
+                      "tp_a": 1,
+                      "a_batch_size": 18,
+                      "num_microbatches": 3
+                    }
+                  },
+                  "decode": {
+                    "kv_cache": {
+                      "capacity": {
+                        "type": "fixed",
+                        "blocks": 65536
+                      }
+                    }
+                  }
+                }
+              },
+              "traffic": {
+                "source": {
+                  "type": "synthetic",
+                  "input_tokens": 1024,
+                  "output_tokens": 128
+                },
+                "load": {
+                  "type": "concurrency",
+                  "concurrency": 32
+                },
+                "stop": {
+                  "requests": 1000
+                }
+              }
+            }
+          },
+          {
+            "semantic_sha256": "7f9b80c3c4741c3addcd2da7b9712be6ba4072966e44bc8253c66e25e5b4e50a",
+            "completed_requests": 1000,
+            "total_input_tokens": 1024000.0,
+            "total_output_tokens": 128000.0,
+            "binary_sha256": "f4cb5ac13edac12e65327ebee3995b87c4bcae8c7643db616e43cb83d930918b",
+            "config": {
+              "engine": {
+                "model": "Qwen/Qwen3-30B-A3B",
+                "hardware": "h200_sxm",
+                "backend": "sglang",
+                "backend_version": "0.5.14",
+                "context_length": 2048,
+                "mode": "disaggregated",
+                "workers": {
+                  "prefill": {
+                    "type": "afd",
+                    "afd": {
+                      "n_a_nodes": 1,
+                      "n_f_nodes": 1,
+                      "tp_a": 1,
+                      "a_batch_size": 18,
+                      "num_microbatches": 3
+                    }
+                  },
+                  "decode": {
+                    "kv_cache": {
+                      "capacity": {
+                        "type": "fixed",
+                        "blocks": 65536
+                      }
+                    }
+                  }
+                }
+              },
+              "traffic": {
+                "source": {
+                  "type": "synthetic",
+                  "input_tokens": 1024,
+                  "output_tokens": 128
+                },
+                "load": {
+                  "type": "concurrency",
+                  "concurrency": 32
+                },
+                "stop": {
+                  "requests": 1000
+                }
+              }
+            }
+          }
+        ],
+        "candidate": [
+          {
+            "semantic_sha256": "7f9b80c3c4741c3addcd2da7b9712be6ba4072966e44bc8253c66e25e5b4e50a",
+            "completed_requests": 1000,
+            "total_input_tokens": 1024000.0,
+            "total_output_tokens": 128000.0,
+            "binary_sha256": "f183880fe410ab90ea0122075b6f897ef64b2841cfc8998005e03dcb3a53f7cd",
+            "config": {
+              "engine": {
+                "model": "Qwen/Qwen3-30B-A3B",
+                "hardware": "h200_sxm",
+                "backend": "sglang",
+                "backend_version": "0.5.14",
+                "context_length": 2048,
+                "mode": "disaggregated",
+                "workers": {
+                  "prefill": {
+                    "type": "afd",
+                    "afd": {
+                      "n_a_nodes": 1,
+                      "n_f_nodes": 1,
+                      "tp_a": 1,
+                      "a_batch_size": 18,
+                      "num_microbatches": 3
+                    }
+                  },
+                  "decode": {
+                    "kv_cache": {
+                      "capacity": {
+                        "type": "fixed",
+                        "blocks": 65536
+                      }
+                    }
+                  }
+                }
+              },
+              "traffic": {
+                "source": {
+                  "type": "synthetic",
+                  "input_tokens": 1024,
+                  "output_tokens": 128
+                },
+                "load": {
+                  "type": "concurrency",
+                  "concurrency": 32
+                },
+                "stop": {
+                  "requests": 1000
+                }
+              }
+            }
+          },
+          {
+            "semantic_sha256": "7f9b80c3c4741c3addcd2da7b9712be6ba4072966e44bc8253c66e25e5b4e50a",
+            "completed_requests": 1000,
+            "total_input_tokens": 1024000.0,
+            "total_output_tokens": 128000.0,
+            "binary_sha256": "f183880fe410ab90ea0122075b6f897ef64b2841cfc8998005e03dcb3a53f7cd",
+            "config": {
+              "engine": {
+                "model": "Qwen/Qwen3-30B-A3B",
+                "hardware": "h200_sxm",
+                "backend": "sglang",
+                "backend_version": "0.5.14",
+                "context_length": 2048,
+                "mode": "disaggregated",
+                "workers": {
+                  "prefill": {
+                    "type": "afd",
+                    "afd": {
+                      "n_a_nodes": 1,
+                      "n_f_nodes": 1,
+                      "tp_a": 1,
+                      "a_batch_size": 18,
+                      "num_microbatches": 3
+                    }
+                  },
+                  "decode": {
+                    "kv_cache": {
+                      "capacity": {
+                        "type": "fixed",
+                        "blocks": 65536
+                      }
+                    }
+                  }
+                }
+              },
+              "traffic": {
+                "source": {
+                  "type": "synthetic",
+                  "input_tokens": 1024,
+                  "output_tokens": 128
+                },
+                "load": {
+                  "type": "concurrency",
+                  "concurrency": 32
+                },
+                "stop": {
+                  "requests": 1000
+                }
+              }
+            }
+          }
+        ]
+      },
+      "samples": [
+        {
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "baseline": {
+            "compile_ms": 1.793542003724724,
+            "zero_request_preparation_ms": 1413.5384169931058,
+            "native_wall_ms": 0.13799999999999998,
+            "prepared_role_counts": 2,
+            "binary_sha256": "f4cb5ac13edac12e65327ebee3995b87c4bcae8c7643db616e43cb83d930918b",
+            "config": {
+              "engine": {
+                "model": "Qwen/Qwen3-30B-A3B",
+                "hardware": "h200_sxm",
+                "backend": "sglang",
+                "backend_version": "0.5.14",
+                "context_length": 2048,
+                "mode": "disaggregated",
+                "workers": {
+                  "prefill": {
+                    "type": "afd",
+                    "afd": {
+                      "n_a_nodes": 1,
+                      "n_f_nodes": 1,
+                      "tp_a": 1,
+                      "a_batch_size": 18,
+                      "num_microbatches": 3
+                    }
+                  },
+                  "decode": {
+                    "kv_cache": {
+                      "capacity": {
+                        "type": "fixed",
+                        "blocks": 65536
+                      }
+                    }
+                  }
+                }
+              },
+              "traffic": {
+                "source": {
+                  "type": "synthetic",
+                  "input_tokens": 1024,
+                  "output_tokens": 128
+                },
+                "load": {
+                  "type": "concurrency",
+                  "concurrency": 32
+                },
+                "stop": {
+                  "requests": 1000
+                }
+              }
+            }
+          },
+          "candidate": {
+            "compile_ms": 1.6929999983403832,
+            "zero_request_preparation_ms": 1394.1468330158386,
+            "native_wall_ms": 0.13004100000000002,
+            "prepared_role_counts": 2,
+            "binary_sha256": "f183880fe410ab90ea0122075b6f897ef64b2841cfc8998005e03dcb3a53f7cd",
+            "config": {
+              "engine": {
+                "model": "Qwen/Qwen3-30B-A3B",
+                "hardware": "h200_sxm",
+                "backend": "sglang",
+                "backend_version": "0.5.14",
+                "context_length": 2048,
+                "mode": "disaggregated",
+                "workers": {
+                  "prefill": {
+                    "type": "afd",
+                    "afd": {
+                      "n_a_nodes": 1,
+                      "n_f_nodes": 1,
+                      "tp_a": 1,
+                      "a_batch_size": 18,
+                      "num_microbatches": 3
+                    }
+                  },
+                  "decode": {
+                    "kv_cache": {
+                      "capacity": {
+                        "type": "fixed",
+                        "blocks": 65536
+                      }
+                    }
+                  }
+                }
+              },
+              "traffic": {
+                "source": {
+                  "type": "synthetic",
+                  "input_tokens": 1024,
+                  "output_tokens": 128
+                },
+                "load": {
+                  "type": "concurrency",
+                  "concurrency": 32
+                },
+                "stop": {
+                  "requests": 1000
+                }
+              }
+            }
+          }
+        },
+        {
+          "order": [
+            "candidate",
+            "baseline"
+          ],
+          "candidate": {
+            "compile_ms": 1.7252910183742642,
+            "zero_request_preparation_ms": 1365.5877920100465,
+            "native_wall_ms": 0.142417,
+            "prepared_role_counts": 2,
+            "binary_sha256": "f183880fe410ab90ea0122075b6f897ef64b2841cfc8998005e03dcb3a53f7cd",
+            "config": {
+              "engine": {
+                "model": "Qwen/Qwen3-30B-A3B",
+                "hardware": "h200_sxm",
+                "backend": "sglang",
+                "backend_version": "0.5.14",
+                "context_length": 2048,
+                "mode": "disaggregated",
+                "workers": {
+                  "prefill": {
+                    "type": "afd",
+                    "afd": {
+                      "n_a_nodes": 1,
+                      "n_f_nodes": 1,
+                      "tp_a": 1,
+                      "a_batch_size": 18,
+                      "num_microbatches": 3
+                    }
+                  },
+                  "decode": {
+                    "kv_cache": {
+                      "capacity": {
+                        "type": "fixed",
+                        "blocks": 65536
+                      }
+                    }
+                  }
+                }
+              },
+              "traffic": {
+                "source": {
+                  "type": "synthetic",
+                  "input_tokens": 1024,
+                  "output_tokens": 128
+                },
+                "load": {
+                  "type": "concurrency",
+                  "concurrency": 32
+                },
+                "stop": {
+                  "requests": 1000
+                }
+              }
+            }
+          },
+          "baseline": {
+            "compile_ms": 1.759083999786526,
+            "zero_request_preparation_ms": 1414.3776670098305,
+            "native_wall_ms": 0.14283300000000002,
+            "prepared_role_counts": 2,
+            "binary_sha256": "f4cb5ac13edac12e65327ebee3995b87c4bcae8c7643db616e43cb83d930918b",
+            "config": {
+              "engine": {
+                "model": "Qwen/Qwen3-30B-A3B",
+                "hardware": "h200_sxm",
+                "backend": "sglang",
+                "backend_version": "0.5.14",
+                "context_length": 2048,
+                "mode": "disaggregated",
+                "workers": {
+                  "prefill": {
+                    "type": "afd",
+                    "afd": {
+                      "n_a_nodes": 1,
+                      "n_f_nodes": 1,
+                      "tp_a": 1,
+                      "a_batch_size": 18,
+                      "num_microbatches": 3
+                    }
+                  },
+                  "decode": {
+                    "kv_cache": {
+                      "capacity": {
+                        "type": "fixed",
+                        "blocks": 65536
+                      }
+                    }
+                  }
+                }
+              },
+              "traffic": {
+                "source": {
+                  "type": "synthetic",
+                  "input_tokens": 1024,
+                  "output_tokens": 128
+                },
+                "load": {
+                  "type": "concurrency",
+                  "concurrency": 32
+                },
+                "stop": {
+                  "requests": 1000
+                }
+              }
+            }
+          }
+        },
+        {
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "baseline": {
+            "compile_ms": 1.709917007246986,
+            "zero_request_preparation_ms": 1487.7638749894686,
+            "native_wall_ms": 0.140875,
+            "prepared_role_counts": 2,
+            "binary_sha256": "f4cb5ac13edac12e65327ebee3995b87c4bcae8c7643db616e43cb83d930918b",
+            "config": {
+              "engine": {
+                "model": "Qwen/Qwen3-30B-A3B",
+                "hardware": "h200_sxm",
+                "backend": "sglang",
+                "backend_version": "0.5.14",
+                "context_length": 2048,
+                "mode": "disaggregated",
+                "workers": {
+                  "prefill": {
+                    "type": "afd",
+                    "afd": {
+                      "n_a_nodes": 1,
+                      "n_f_nodes": 1,
+                      "tp_a": 1,
+                      "a_batch_size": 18,
+                      "num_microbatches": 3
+                    }
+                  },
+                  "decode": {
+                    "kv_cache": {
+                      "capacity": {
+                        "type": "fixed",
+                        "blocks": 65536
+                      }
+                    }
+                  }
+                }
+              },
+              "traffic": {
+                "source": {
+                  "type": "synthetic",
+                  "input_tokens": 1024,
+                  "output_tokens": 128
+                },
+                "load": {
+                  "type": "concurrency",
+                  "concurrency": 32
+                },
+                "stop": {
+                  "requests": 1000
+                }
+              }
+            }
+          },
+          "candidate": {
+            "compile_ms": 1.7488340090494603,
+            "zero_request_preparation_ms": 1388.2688330195379,
+            "native_wall_ms": 0.1255,
+            "prepared_role_counts": 2,
+            "binary_sha256": "f183880fe410ab90ea0122075b6f897ef64b2841cfc8998005e03dcb3a53f7cd",
+            "config": {
+              "engine": {
+                "model": "Qwen/Qwen3-30B-A3B",
+                "hardware": "h200_sxm",
+                "backend": "sglang",
+                "backend_version": "0.5.14",
+                "context_length": 2048,
+                "mode": "disaggregated",
+                "workers": {
+                  "prefill": {
+                    "type": "afd",
+                    "afd": {
+                      "n_a_nodes": 1,
+                      "n_f_nodes": 1,
+                      "tp_a": 1,
+                      "a_batch_size": 18,
+                      "num_microbatches": 3
+                    }
+                  },
+                  "decode": {
+                    "kv_cache": {
+                      "capacity": {
+                        "type": "fixed",
+                        "blocks": 65536
+                      }
+                    }
+                  }
+                }
+              },
+              "traffic": {
+                "source": {
+                  "type": "synthetic",
+                  "input_tokens": 1024,
+                  "output_tokens": 128
+                },
+                "load": {
+                  "type": "concurrency",
+                  "concurrency": 32
+                },
+                "stop": {
+                  "requests": 1000
+                }
+              }
+            }
+          }
+        },
+        {
+          "order": [
+            "candidate",
+            "baseline"
+          ],
+          "candidate": {
+            "compile_ms": 2.1059580030851066,
+            "zero_request_preparation_ms": 1400.917083985405,
+            "native_wall_ms": 0.146708,
+            "prepared_role_counts": 2,
+            "binary_sha256": "f183880fe410ab90ea0122075b6f897ef64b2841cfc8998005e03dcb3a53f7cd",
+            "config": {
+              "engine": {
+                "model": "Qwen/Qwen3-30B-A3B",
+                "hardware": "h200_sxm",
+                "backend": "sglang",
+                "backend_version": "0.5.14",
+                "context_length": 2048,
+                "mode": "disaggregated",
+                "workers": {
+                  "prefill": {
+                    "type": "afd",
+                    "afd": {
+                      "n_a_nodes": 1,
+                      "n_f_nodes": 1,
+                      "tp_a": 1,
+                      "a_batch_size": 18,
+                      "num_microbatches": 3
+                    }
+                  },
+                  "decode": {
+                    "kv_cache": {
+                      "capacity": {
+                        "type": "fixed",
+                        "blocks": 65536
+                      }
+                    }
+                  }
+                }
+              },
+              "traffic": {
+                "source": {
+                  "type": "synthetic",
+                  "input_tokens": 1024,
+                  "output_tokens": 128
+                },
+                "load": {
+                  "type": "concurrency",
+                  "concurrency": 32
+                },
+                "stop": {
+                  "requests": 1000
+                }
+              }
+            }
+          },
+          "baseline": {
+            "compile_ms": 1.7085419967770576,
+            "zero_request_preparation_ms": 1420.006583997747,
+            "native_wall_ms": 0.14375,
+            "prepared_role_counts": 2,
+            "binary_sha256": "f4cb5ac13edac12e65327ebee3995b87c4bcae8c7643db616e43cb83d930918b",
+            "config": {
+              "engine": {
+                "model": "Qwen/Qwen3-30B-A3B",
+                "hardware": "h200_sxm",
+                "backend": "sglang",
+                "backend_version": "0.5.14",
+                "context_length": 2048,
+                "mode": "disaggregated",
+                "workers": {
+                  "prefill": {
+                    "type": "afd",
+                    "afd": {
+                      "n_a_nodes": 1,
+                      "n_f_nodes": 1,
+                      "tp_a": 1,
+                      "a_batch_size": 18,
+                      "num_microbatches": 3
+                    }
+                  },
+                  "decode": {
+                    "kv_cache": {
+                      "capacity": {
+                        "type": "fixed",
+                        "blocks": 65536
+                      }
+                    }
+                  }
+                }
+              },
+              "traffic": {
+                "source": {
+                  "type": "synthetic",
+                  "input_tokens": 1024,
+                  "output_tokens": 128
+                },
+                "load": {
+                  "type": "concurrency",
+                  "concurrency": 32
+                },
+                "stop": {
+                  "requests": 1000
+                }
+              }
+            }
+          }
+        },
+        {
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "baseline": {
+            "compile_ms": 1.7249579832423478,
+            "zero_request_preparation_ms": 1426.1931660003029,
+            "native_wall_ms": 0.145583,
+            "prepared_role_counts": 2,
+            "binary_sha256": "f4cb5ac13edac12e65327ebee3995b87c4bcae8c7643db616e43cb83d930918b",
+            "config": {
+              "engine": {
+                "model": "Qwen/Qwen3-30B-A3B",
+                "hardware": "h200_sxm",
+                "backend": "sglang",
+                "backend_version": "0.5.14",
+                "context_length": 2048,
+                "mode": "disaggregated",
+                "workers": {
+                  "prefill": {
+                    "type": "afd",
+                    "afd": {
+                      "n_a_nodes": 1,
+                      "n_f_nodes": 1,
+                      "tp_a": 1,
+                      "a_batch_size": 18,
+                      "num_microbatches": 3
+                    }
+                  },
+                  "decode": {
+                    "kv_cache": {
+                      "capacity": {
+                        "type": "fixed",
+                        "blocks": 65536
+                      }
+                    }
+                  }
+                }
+              },
+              "traffic": {
+                "source": {
+                  "type": "synthetic",
+                  "input_tokens": 1024,
+                  "output_tokens": 128
+                },
+                "load": {
+                  "type": "concurrency",
+                  "concurrency": 32
+                },
+                "stop": {
+                  "requests": 1000
+                }
+              }
+            }
+          },
+          "candidate": {
+            "compile_ms": 1.7501669935882092,
+            "zero_request_preparation_ms": 1370.5176250077784,
+            "native_wall_ms": 0.14179199999999997,
+            "prepared_role_counts": 2,
+            "binary_sha256": "f183880fe410ab90ea0122075b6f897ef64b2841cfc8998005e03dcb3a53f7cd",
+            "config": {
+              "engine": {
+                "model": "Qwen/Qwen3-30B-A3B",
+                "hardware": "h200_sxm",
+                "backend": "sglang",
+                "backend_version": "0.5.14",
+                "context_length": 2048,
+                "mode": "disaggregated",
+                "workers": {
+                  "prefill": {
+                    "type": "afd",
+                    "afd": {
+                      "n_a_nodes": 1,
+                      "n_f_nodes": 1,
+                      "tp_a": 1,
+                      "a_batch_size": 18,
+                      "num_microbatches": 3
+                    }
+                  },
+                  "decode": {
+                    "kv_cache": {
+                      "capacity": {
+                        "type": "fixed",
+                        "blocks": 65536
+                      }
+                    }
+                  }
+                }
+              },
+              "traffic": {
+                "source": {
+                  "type": "synthetic",
+                  "input_tokens": 1024,
+                  "output_tokens": 128
+                },
+                "load": {
+                  "type": "concurrency",
+                  "concurrency": 32
+                },
+                "stop": {
+                  "requests": 1000
+                }
+              }
+            }
+          }
+        },
+        {
+          "order": [
+            "candidate",
+            "baseline"
+          ],
+          "candidate": {
+            "compile_ms": 1.6757499834056944,
+            "zero_request_preparation_ms": 1394.1934170143213,
+            "native_wall_ms": 0.14650000000000002,
+            "prepared_role_counts": 2,
+            "binary_sha256": "f183880fe410ab90ea0122075b6f897ef64b2841cfc8998005e03dcb3a53f7cd",
+            "config": {
+              "engine": {
+                "model": "Qwen/Qwen3-30B-A3B",
+                "hardware": "h200_sxm",
+                "backend": "sglang",
+                "backend_version": "0.5.14",
+                "context_length": 2048,
+                "mode": "disaggregated",
+                "workers": {
+                  "prefill": {
+                    "type": "afd",
+                    "afd": {
+                      "n_a_nodes": 1,
+                      "n_f_nodes": 1,
+                      "tp_a": 1,
+                      "a_batch_size": 18,
+                      "num_microbatches": 3
+                    }
+                  },
+                  "decode": {
+                    "kv_cache": {
+                      "capacity": {
+                        "type": "fixed",
+                        "blocks": 65536
+                      }
+                    }
+                  }
+                }
+              },
+              "traffic": {
+                "source": {
+                  "type": "synthetic",
+                  "input_tokens": 1024,
+                  "output_tokens": 128
+                },
+                "load": {
+                  "type": "concurrency",
+                  "concurrency": 32
+                },
+                "stop": {
+                  "requests": 1000
+                }
+              }
+            }
+          },
+          "baseline": {
+            "compile_ms": 1.7484999843873084,
+            "zero_request_preparation_ms": 1429.1786660032813,
+            "native_wall_ms": 0.14925,
+            "prepared_role_counts": 2,
+            "binary_sha256": "f4cb5ac13edac12e65327ebee3995b87c4bcae8c7643db616e43cb83d930918b",
+            "config": {
+              "engine": {
+                "model": "Qwen/Qwen3-30B-A3B",
+                "hardware": "h200_sxm",
+                "backend": "sglang",
+                "backend_version": "0.5.14",
+                "context_length": 2048,
+                "mode": "disaggregated",
+                "workers": {
+                  "prefill": {
+                    "type": "afd",
+                    "afd": {
+                      "n_a_nodes": 1,
+                      "n_f_nodes": 1,
+                      "tp_a": 1,
+                      "a_batch_size": 18,
+                      "num_microbatches": 3
+                    }
+                  },
+                  "decode": {
+                    "kv_cache": {
+                      "capacity": {
+                        "type": "fixed",
+                        "blocks": 65536
+                      }
+                    }
+                  }
+                }
+              },
+              "traffic": {
+                "source": {
+                  "type": "synthetic",
+                  "input_tokens": 1024,
+                  "output_tokens": 128
+                },
+                "load": {
+                  "type": "concurrency",
+                  "concurrency": 32
+                },
+                "stop": {
+                  "requests": 1000
+                }
+              }
+            }
+          }
+        },
+        {
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "baseline": {
+            "compile_ms": 1.745416986523196,
+            "zero_request_preparation_ms": 1441.991958010476,
+            "native_wall_ms": 0.12441700000000001,
+            "prepared_role_counts": 2,
+            "binary_sha256": "f4cb5ac13edac12e65327ebee3995b87c4bcae8c7643db616e43cb83d930918b",
+            "config": {
+              "engine": {
+                "model": "Qwen/Qwen3-30B-A3B",
+                "hardware": "h200_sxm",
+                "backend": "sglang",
+                "backend_version": "0.5.14",
+                "context_length": 2048,
+                "mode": "disaggregated",
+                "workers": {
+                  "prefill": {
+                    "type": "afd",
+                    "afd": {
+                      "n_a_nodes": 1,
+                      "n_f_nodes": 1,
+                      "tp_a": 1,
+                      "a_batch_size": 18,
+                      "num_microbatches": 3
+                    }
+                  },
+                  "decode": {
+                    "kv_cache": {
+                      "capacity": {
+                        "type": "fixed",
+                        "blocks": 65536
+                      }
+                    }
+                  }
+                }
+              },
+              "traffic": {
+                "source": {
+                  "type": "synthetic",
+                  "input_tokens": 1024,
+                  "output_tokens": 128
+                },
+                "load": {
+                  "type": "concurrency",
+                  "concurrency": 32
+                },
+                "stop": {
+                  "requests": 1000
+                }
+              }
+            }
+          },
+          "candidate": {
+            "compile_ms": 1.7243749753106385,
+            "zero_request_preparation_ms": 1358.006042020861,
+            "native_wall_ms": 0.139708,
+            "prepared_role_counts": 2,
+            "binary_sha256": "f183880fe410ab90ea0122075b6f897ef64b2841cfc8998005e03dcb3a53f7cd",
+            "config": {
+              "engine": {
+                "model": "Qwen/Qwen3-30B-A3B",
+                "hardware": "h200_sxm",
+                "backend": "sglang",
+                "backend_version": "0.5.14",
+                "context_length": 2048,
+                "mode": "disaggregated",
+                "workers": {
+                  "prefill": {
+                    "type": "afd",
+                    "afd": {
+                      "n_a_nodes": 1,
+                      "n_f_nodes": 1,
+                      "tp_a": 1,
+                      "a_batch_size": 18,
+                      "num_microbatches": 3
+                    }
+                  },
+                  "decode": {
+                    "kv_cache": {
+                      "capacity": {
+                        "type": "fixed",
+                        "blocks": 65536
+                      }
+                    }
+                  }
+                }
+              },
+              "traffic": {
+                "source": {
+                  "type": "synthetic",
+                  "input_tokens": 1024,
+                  "output_tokens": 128
+                },
+                "load": {
+                  "type": "concurrency",
+                  "concurrency": 32
+                },
+                "stop": {
+                  "requests": 1000
+                }
+              }
+            }
+          }
+        }
+      ],
+      "timings": {
+        "compile_ms": {
+          "baseline_median_ms": 1.745416986523196,
+          "candidate_median_ms": 1.7252910183742642,
+          "paired_ratio_median": 0.9879444216625436,
+          "paired_ratio_range": [
+            0.943942207556031,
+            1.2326053483366066
+          ]
+        },
+        "zero_request_preparation_ms": {
+          "baseline_median_ms": 1426.1931660003029,
+          "candidate_median_ms": 1388.2688330195379,
+          "paired_ratio_median": 0.9655043513922758,
+          "paired_ratio_range": [
+            0.9331244402135822,
+            0.9865567524633588
+          ]
+        }
+      }
+    },
+    {
+      "case": "afd:decode:large",
+      "semantic_repetitions": {
+        "baseline": [
+          {
+            "semantic_sha256": "e62ce896eb7131396d80060243d62f898e1f6a2134395ef4e25c9824500dd6ee",
+            "completed_requests": 1000,
+            "total_input_tokens": 1024000.0,
+            "total_output_tokens": 128000.0,
+            "binary_sha256": "f4cb5ac13edac12e65327ebee3995b87c4bcae8c7643db616e43cb83d930918b",
+            "config": {
+              "engine": {
+                "model": "Qwen/Qwen3-30B-A3B",
+                "hardware": "h200_sxm",
+                "backend": "sglang",
+                "backend_version": "0.5.14",
+                "context_length": 2048,
+                "mode": "disaggregated",
+                "workers": {
+                  "prefill": {
+                    "kv_cache": {
+                      "capacity": {
+                        "type": "fixed",
+                        "blocks": 65536
+                      }
+                    }
+                  },
+                  "decode": {
+                    "type": "afd",
+                    "afd": {
+                      "n_a_nodes": 1,
+                      "n_f_nodes": 1,
+                      "tp_a": 1,
+                      "a_batch_size": 18,
+                      "num_microbatches": 3
+                    }
+                  }
+                }
+              },
+              "traffic": {
+                "source": {
+                  "type": "synthetic",
+                  "input_tokens": 1024,
+                  "output_tokens": 128
+                },
+                "load": {
+                  "type": "concurrency",
+                  "concurrency": 32
+                },
+                "stop": {
+                  "requests": 1000
+                }
+              }
+            }
+          },
+          {
+            "semantic_sha256": "e62ce896eb7131396d80060243d62f898e1f6a2134395ef4e25c9824500dd6ee",
+            "completed_requests": 1000,
+            "total_input_tokens": 1024000.0,
+            "total_output_tokens": 128000.0,
+            "binary_sha256": "f4cb5ac13edac12e65327ebee3995b87c4bcae8c7643db616e43cb83d930918b",
+            "config": {
+              "engine": {
+                "model": "Qwen/Qwen3-30B-A3B",
+                "hardware": "h200_sxm",
+                "backend": "sglang",
+                "backend_version": "0.5.14",
+                "context_length": 2048,
+                "mode": "disaggregated",
+                "workers": {
+                  "prefill": {
+                    "kv_cache": {
+                      "capacity": {
+                        "type": "fixed",
+                        "blocks": 65536
+                      }
+                    }
+                  },
+                  "decode": {
+                    "type": "afd",
+                    "afd": {
+                      "n_a_nodes": 1,
+                      "n_f_nodes": 1,
+                      "tp_a": 1,
+                      "a_batch_size": 18,
+                      "num_microbatches": 3
+                    }
+                  }
+                }
+              },
+              "traffic": {
+                "source": {
+                  "type": "synthetic",
+                  "input_tokens": 1024,
+                  "output_tokens": 128
+                },
+                "load": {
+                  "type": "concurrency",
+                  "concurrency": 32
+                },
+                "stop": {
+                  "requests": 1000
+                }
+              }
+            }
+          }
+        ],
+        "candidate": [
+          {
+            "semantic_sha256": "e62ce896eb7131396d80060243d62f898e1f6a2134395ef4e25c9824500dd6ee",
+            "completed_requests": 1000,
+            "total_input_tokens": 1024000.0,
+            "total_output_tokens": 128000.0,
+            "binary_sha256": "f183880fe410ab90ea0122075b6f897ef64b2841cfc8998005e03dcb3a53f7cd",
+            "config": {
+              "engine": {
+                "model": "Qwen/Qwen3-30B-A3B",
+                "hardware": "h200_sxm",
+                "backend": "sglang",
+                "backend_version": "0.5.14",
+                "context_length": 2048,
+                "mode": "disaggregated",
+                "workers": {
+                  "prefill": {
+                    "kv_cache": {
+                      "capacity": {
+                        "type": "fixed",
+                        "blocks": 65536
+                      }
+                    }
+                  },
+                  "decode": {
+                    "type": "afd",
+                    "afd": {
+                      "n_a_nodes": 1,
+                      "n_f_nodes": 1,
+                      "tp_a": 1,
+                      "a_batch_size": 18,
+                      "num_microbatches": 3
+                    }
+                  }
+                }
+              },
+              "traffic": {
+                "source": {
+                  "type": "synthetic",
+                  "input_tokens": 1024,
+                  "output_tokens": 128
+                },
+                "load": {
+                  "type": "concurrency",
+                  "concurrency": 32
+                },
+                "stop": {
+                  "requests": 1000
+                }
+              }
+            }
+          },
+          {
+            "semantic_sha256": "e62ce896eb7131396d80060243d62f898e1f6a2134395ef4e25c9824500dd6ee",
+            "completed_requests": 1000,
+            "total_input_tokens": 1024000.0,
+            "total_output_tokens": 128000.0,
+            "binary_sha256": "f183880fe410ab90ea0122075b6f897ef64b2841cfc8998005e03dcb3a53f7cd",
+            "config": {
+              "engine": {
+                "model": "Qwen/Qwen3-30B-A3B",
+                "hardware": "h200_sxm",
+                "backend": "sglang",
+                "backend_version": "0.5.14",
+                "context_length": 2048,
+                "mode": "disaggregated",
+                "workers": {
+                  "prefill": {
+                    "kv_cache": {
+                      "capacity": {
+                        "type": "fixed",
+                        "blocks": 65536
+                      }
+                    }
+                  },
+                  "decode": {
+                    "type": "afd",
+                    "afd": {
+                      "n_a_nodes": 1,
+                      "n_f_nodes": 1,
+                      "tp_a": 1,
+                      "a_batch_size": 18,
+                      "num_microbatches": 3
+                    }
+                  }
+                }
+              },
+              "traffic": {
+                "source": {
+                  "type": "synthetic",
+                  "input_tokens": 1024,
+                  "output_tokens": 128
+                },
+                "load": {
+                  "type": "concurrency",
+                  "concurrency": 32
+                },
+                "stop": {
+                  "requests": 1000
+                }
+              }
+            }
+          }
+        ]
+      },
+      "samples": [
+        {
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "baseline": {
+            "compile_ms": 1.6836670110933483,
+            "zero_request_preparation_ms": 1202.6788329822011,
+            "native_wall_ms": 0.134041,
+            "prepared_role_counts": 2,
+            "binary_sha256": "f4cb5ac13edac12e65327ebee3995b87c4bcae8c7643db616e43cb83d930918b",
+            "config": {
+              "engine": {
+                "model": "Qwen/Qwen3-30B-A3B",
+                "hardware": "h200_sxm",
+                "backend": "sglang",
+                "backend_version": "0.5.14",
+                "context_length": 2048,
+                "mode": "disaggregated",
+                "workers": {
+                  "prefill": {
+                    "kv_cache": {
+                      "capacity": {
+                        "type": "fixed",
+                        "blocks": 65536
+                      }
+                    }
+                  },
+                  "decode": {
+                    "type": "afd",
+                    "afd": {
+                      "n_a_nodes": 1,
+                      "n_f_nodes": 1,
+                      "tp_a": 1,
+                      "a_batch_size": 18,
+                      "num_microbatches": 3
+                    }
+                  }
+                }
+              },
+              "traffic": {
+                "source": {
+                  "type": "synthetic",
+                  "input_tokens": 1024,
+                  "output_tokens": 128
+                },
+                "load": {
+                  "type": "concurrency",
+                  "concurrency": 32
+                },
+                "stop": {
+                  "requests": 1000
+                }
+              }
+            }
+          },
+          "candidate": {
+            "compile_ms": 1.827208005124703,
+            "zero_request_preparation_ms": 1168.6653750075493,
+            "native_wall_ms": 0.128083,
+            "prepared_role_counts": 2,
+            "binary_sha256": "f183880fe410ab90ea0122075b6f897ef64b2841cfc8998005e03dcb3a53f7cd",
+            "config": {
+              "engine": {
+                "model": "Qwen/Qwen3-30B-A3B",
+                "hardware": "h200_sxm",
+                "backend": "sglang",
+                "backend_version": "0.5.14",
+                "context_length": 2048,
+                "mode": "disaggregated",
+                "workers": {
+                  "prefill": {
+                    "kv_cache": {
+                      "capacity": {
+                        "type": "fixed",
+                        "blocks": 65536
+                      }
+                    }
+                  },
+                  "decode": {
+                    "type": "afd",
+                    "afd": {
+                      "n_a_nodes": 1,
+                      "n_f_nodes": 1,
+                      "tp_a": 1,
+                      "a_batch_size": 18,
+                      "num_microbatches": 3
+                    }
+                  }
+                }
+              },
+              "traffic": {
+                "source": {
+                  "type": "synthetic",
+                  "input_tokens": 1024,
+                  "output_tokens": 128
+                },
+                "load": {
+                  "type": "concurrency",
+                  "concurrency": 32
+                },
+                "stop": {
+                  "requests": 1000
+                }
+              }
+            }
+          }
+        },
+        {
+          "order": [
+            "candidate",
+            "baseline"
+          ],
+          "candidate": {
+            "compile_ms": 1.7156670219264925,
+            "zero_request_preparation_ms": 1170.3946249908768,
+            "native_wall_ms": 0.146541,
+            "prepared_role_counts": 2,
+            "binary_sha256": "f183880fe410ab90ea0122075b6f897ef64b2841cfc8998005e03dcb3a53f7cd",
+            "config": {
+              "engine": {
+                "model": "Qwen/Qwen3-30B-A3B",
+                "hardware": "h200_sxm",
+                "backend": "sglang",
+                "backend_version": "0.5.14",
+                "context_length": 2048,
+                "mode": "disaggregated",
+                "workers": {
+                  "prefill": {
+                    "kv_cache": {
+                      "capacity": {
+                        "type": "fixed",
+                        "blocks": 65536
+                      }
+                    }
+                  },
+                  "decode": {
+                    "type": "afd",
+                    "afd": {
+                      "n_a_nodes": 1,
+                      "n_f_nodes": 1,
+                      "tp_a": 1,
+                      "a_batch_size": 18,
+                      "num_microbatches": 3
+                    }
+                  }
+                }
+              },
+              "traffic": {
+                "source": {
+                  "type": "synthetic",
+                  "input_tokens": 1024,
+                  "output_tokens": 128
+                },
+                "load": {
+                  "type": "concurrency",
+                  "concurrency": 32
+                },
+                "stop": {
+                  "requests": 1000
+                }
+              }
+            }
+          },
+          "baseline": {
+            "compile_ms": 1.7150829953607172,
+            "zero_request_preparation_ms": 1197.4639169930015,
+            "native_wall_ms": 0.152583,
+            "prepared_role_counts": 2,
+            "binary_sha256": "f4cb5ac13edac12e65327ebee3995b87c4bcae8c7643db616e43cb83d930918b",
+            "config": {
+              "engine": {
+                "model": "Qwen/Qwen3-30B-A3B",
+                "hardware": "h200_sxm",
+                "backend": "sglang",
+                "backend_version": "0.5.14",
+                "context_length": 2048,
+                "mode": "disaggregated",
+                "workers": {
+                  "prefill": {
+                    "kv_cache": {
+                      "capacity": {
+                        "type": "fixed",
+                        "blocks": 65536
+                      }
+                    }
+                  },
+                  "decode": {
+                    "type": "afd",
+                    "afd": {
+                      "n_a_nodes": 1,
+                      "n_f_nodes": 1,
+                      "tp_a": 1,
+                      "a_batch_size": 18,
+                      "num_microbatches": 3
+                    }
+                  }
+                }
+              },
+              "traffic": {
+                "source": {
+                  "type": "synthetic",
+                  "input_tokens": 1024,
+                  "output_tokens": 128
+                },
+                "load": {
+                  "type": "concurrency",
+                  "concurrency": 32
+                },
+                "stop": {
+                  "requests": 1000
+                }
+              }
+            }
+          }
+        },
+        {
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "baseline": {
+            "compile_ms": 1.922666997415945,
+            "zero_request_preparation_ms": 1189.5572500070557,
+            "native_wall_ms": 0.1235,
+            "prepared_role_counts": 2,
+            "binary_sha256": "f4cb5ac13edac12e65327ebee3995b87c4bcae8c7643db616e43cb83d930918b",
+            "config": {
+              "engine": {
+                "model": "Qwen/Qwen3-30B-A3B",
+                "hardware": "h200_sxm",
+                "backend": "sglang",
+                "backend_version": "0.5.14",
+                "context_length": 2048,
+                "mode": "disaggregated",
+                "workers": {
+                  "prefill": {
+                    "kv_cache": {
+                      "capacity": {
+                        "type": "fixed",
+                        "blocks": 65536
+                      }
+                    }
+                  },
+                  "decode": {
+                    "type": "afd",
+                    "afd": {
+                      "n_a_nodes": 1,
+                      "n_f_nodes": 1,
+                      "tp_a": 1,
+                      "a_batch_size": 18,
+                      "num_microbatches": 3
+                    }
+                  }
+                }
+              },
+              "traffic": {
+                "source": {
+                  "type": "synthetic",
+                  "input_tokens": 1024,
+                  "output_tokens": 128
+                },
+                "load": {
+                  "type": "concurrency",
+                  "concurrency": 32
+                },
+                "stop": {
+                  "requests": 1000
+                }
+              }
+            }
+          },
+          "candidate": {
+            "compile_ms": 1.7837079940363765,
+            "zero_request_preparation_ms": 1178.4705410245806,
+            "native_wall_ms": 0.155708,
+            "prepared_role_counts": 2,
+            "binary_sha256": "f183880fe410ab90ea0122075b6f897ef64b2841cfc8998005e03dcb3a53f7cd",
+            "config": {
+              "engine": {
+                "model": "Qwen/Qwen3-30B-A3B",
+                "hardware": "h200_sxm",
+                "backend": "sglang",
+                "backend_version": "0.5.14",
+                "context_length": 2048,
+                "mode": "disaggregated",
+                "workers": {
+                  "prefill": {
+                    "kv_cache": {
+                      "capacity": {
+                        "type": "fixed",
+                        "blocks": 65536
+                      }
+                    }
+                  },
+                  "decode": {
+                    "type": "afd",
+                    "afd": {
+                      "n_a_nodes": 1,
+                      "n_f_nodes": 1,
+                      "tp_a": 1,
+                      "a_batch_size": 18,
+                      "num_microbatches": 3
+                    }
+                  }
+                }
+              },
+              "traffic": {
+                "source": {
+                  "type": "synthetic",
+                  "input_tokens": 1024,
+                  "output_tokens": 128
+                },
+                "load": {
+                  "type": "concurrency",
+                  "concurrency": 32
+                },
+                "stop": {
+                  "requests": 1000
+                }
+              }
+            }
+          }
+        },
+        {
+          "order": [
+            "candidate",
+            "baseline"
+          ],
+          "candidate": {
+            "compile_ms": 1.7007910064421594,
+            "zero_request_preparation_ms": 1208.1046660023276,
+            "native_wall_ms": 0.135292,
+            "prepared_role_counts": 2,
+            "binary_sha256": "f183880fe410ab90ea0122075b6f897ef64b2841cfc8998005e03dcb3a53f7cd",
+            "config": {
+              "engine": {
+                "model": "Qwen/Qwen3-30B-A3B",
+                "hardware": "h200_sxm",
+                "backend": "sglang",
+                "backend_version": "0.5.14",
+                "context_length": 2048,
+                "mode": "disaggregated",
+                "workers": {
+                  "prefill": {
+                    "kv_cache": {
+                      "capacity": {
+                        "type": "fixed",
+                        "blocks": 65536
+                      }
+                    }
+                  },
+                  "decode": {
+                    "type": "afd",
+                    "afd": {
+                      "n_a_nodes": 1,
+                      "n_f_nodes": 1,
+                      "tp_a": 1,
+                      "a_batch_size": 18,
+                      "num_microbatches": 3
+                    }
+                  }
+                }
+              },
+              "traffic": {
+                "source": {
+                  "type": "synthetic",
+                  "input_tokens": 1024,
+                  "output_tokens": 128
+                },
+                "load": {
+                  "type": "concurrency",
+                  "concurrency": 32
+                },
+                "stop": {
+                  "requests": 1000
+                }
+              }
+            }
+          },
+          "baseline": {
+            "compile_ms": 1.759457984007895,
+            "zero_request_preparation_ms": 1217.0147500000894,
+            "native_wall_ms": 0.142792,
+            "prepared_role_counts": 2,
+            "binary_sha256": "f4cb5ac13edac12e65327ebee3995b87c4bcae8c7643db616e43cb83d930918b",
+            "config": {
+              "engine": {
+                "model": "Qwen/Qwen3-30B-A3B",
+                "hardware": "h200_sxm",
+                "backend": "sglang",
+                "backend_version": "0.5.14",
+                "context_length": 2048,
+                "mode": "disaggregated",
+                "workers": {
+                  "prefill": {
+                    "kv_cache": {
+                      "capacity": {
+                        "type": "fixed",
+                        "blocks": 65536
+                      }
+                    }
+                  },
+                  "decode": {
+                    "type": "afd",
+                    "afd": {
+                      "n_a_nodes": 1,
+                      "n_f_nodes": 1,
+                      "tp_a": 1,
+                      "a_batch_size": 18,
+                      "num_microbatches": 3
+                    }
+                  }
+                }
+              },
+              "traffic": {
+                "source": {
+                  "type": "synthetic",
+                  "input_tokens": 1024,
+                  "output_tokens": 128
+                },
+                "load": {
+                  "type": "concurrency",
+                  "concurrency": 32
+                },
+                "stop": {
+                  "requests": 1000
+                }
+              }
+            }
+          }
+        },
+        {
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "baseline": {
+            "compile_ms": 1.8422080029267818,
+            "zero_request_preparation_ms": 1223.7869999953546,
+            "native_wall_ms": 0.173958,
+            "prepared_role_counts": 2,
+            "binary_sha256": "f4cb5ac13edac12e65327ebee3995b87c4bcae8c7643db616e43cb83d930918b",
+            "config": {
+              "engine": {
+                "model": "Qwen/Qwen3-30B-A3B",
+                "hardware": "h200_sxm",
+                "backend": "sglang",
+                "backend_version": "0.5.14",
+                "context_length": 2048,
+                "mode": "disaggregated",
+                "workers": {
+                  "prefill": {
+                    "kv_cache": {
+                      "capacity": {
+                        "type": "fixed",
+                        "blocks": 65536
+                      }
+                    }
+                  },
+                  "decode": {
+                    "type": "afd",
+                    "afd": {
+                      "n_a_nodes": 1,
+                      "n_f_nodes": 1,
+                      "tp_a": 1,
+                      "a_batch_size": 18,
+                      "num_microbatches": 3
+                    }
+                  }
+                }
+              },
+              "traffic": {
+                "source": {
+                  "type": "synthetic",
+                  "input_tokens": 1024,
+                  "output_tokens": 128
+                },
+                "load": {
+                  "type": "concurrency",
+                  "concurrency": 32
+                },
+                "stop": {
+                  "requests": 1000
+                }
+              }
+            }
+          },
+          "candidate": {
+            "compile_ms": 1.672582991886884,
+            "zero_request_preparation_ms": 1184.3264999915846,
+            "native_wall_ms": 0.12695800000000002,
+            "prepared_role_counts": 2,
+            "binary_sha256": "f183880fe410ab90ea0122075b6f897ef64b2841cfc8998005e03dcb3a53f7cd",
+            "config": {
+              "engine": {
+                "model": "Qwen/Qwen3-30B-A3B",
+                "hardware": "h200_sxm",
+                "backend": "sglang",
+                "backend_version": "0.5.14",
+                "context_length": 2048,
+                "mode": "disaggregated",
+                "workers": {
+                  "prefill": {
+                    "kv_cache": {
+                      "capacity": {
+                        "type": "fixed",
+                        "blocks": 65536
+                      }
+                    }
+                  },
+                  "decode": {
+                    "type": "afd",
+                    "afd": {
+                      "n_a_nodes": 1,
+                      "n_f_nodes": 1,
+                      "tp_a": 1,
+                      "a_batch_size": 18,
+                      "num_microbatches": 3
+                    }
+                  }
+                }
+              },
+              "traffic": {
+                "source": {
+                  "type": "synthetic",
+                  "input_tokens": 1024,
+                  "output_tokens": 128
+                },
+                "load": {
+                  "type": "concurrency",
+                  "concurrency": 32
+                },
+                "stop": {
+                  "requests": 1000
+                }
+              }
+            }
+          }
+        },
+        {
+          "order": [
+            "candidate",
+            "baseline"
+          ],
+          "candidate": {
+            "compile_ms": 1.8532079993747175,
+            "zero_request_preparation_ms": 1215.6542919983622,
+            "native_wall_ms": 0.142583,
+            "prepared_role_counts": 2,
+            "binary_sha256": "f183880fe410ab90ea0122075b6f897ef64b2841cfc8998005e03dcb3a53f7cd",
+            "config": {
+              "engine": {
+                "model": "Qwen/Qwen3-30B-A3B",
+                "hardware": "h200_sxm",
+                "backend": "sglang",
+                "backend_version": "0.5.14",
+                "context_length": 2048,
+                "mode": "disaggregated",
+                "workers": {
+                  "prefill": {
+                    "kv_cache": {
+                      "capacity": {
+                        "type": "fixed",
+                        "blocks": 65536
+                      }
+                    }
+                  },
+                  "decode": {
+                    "type": "afd",
+                    "afd": {
+                      "n_a_nodes": 1,
+                      "n_f_nodes": 1,
+                      "tp_a": 1,
+                      "a_batch_size": 18,
+                      "num_microbatches": 3
+                    }
+                  }
+                }
+              },
+              "traffic": {
+                "source": {
+                  "type": "synthetic",
+                  "input_tokens": 1024,
+                  "output_tokens": 128
+                },
+                "load": {
+                  "type": "concurrency",
+                  "concurrency": 32
+                },
+                "stop": {
+                  "requests": 1000
+                }
+              }
+            }
+          },
+          "baseline": {
+            "compile_ms": 1.7347089888062328,
+            "zero_request_preparation_ms": 1225.3829169785604,
+            "native_wall_ms": 0.136417,
+            "prepared_role_counts": 2,
+            "binary_sha256": "f4cb5ac13edac12e65327ebee3995b87c4bcae8c7643db616e43cb83d930918b",
+            "config": {
+              "engine": {
+                "model": "Qwen/Qwen3-30B-A3B",
+                "hardware": "h200_sxm",
+                "backend": "sglang",
+                "backend_version": "0.5.14",
+                "context_length": 2048,
+                "mode": "disaggregated",
+                "workers": {
+                  "prefill": {
+                    "kv_cache": {
+                      "capacity": {
+                        "type": "fixed",
+                        "blocks": 65536
+                      }
+                    }
+                  },
+                  "decode": {
+                    "type": "afd",
+                    "afd": {
+                      "n_a_nodes": 1,
+                      "n_f_nodes": 1,
+                      "tp_a": 1,
+                      "a_batch_size": 18,
+                      "num_microbatches": 3
+                    }
+                  }
+                }
+              },
+              "traffic": {
+                "source": {
+                  "type": "synthetic",
+                  "input_tokens": 1024,
+                  "output_tokens": 128
+                },
+                "load": {
+                  "type": "concurrency",
+                  "concurrency": 32
+                },
+                "stop": {
+                  "requests": 1000
+                }
+              }
+            }
+          }
+        },
+        {
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "baseline": {
+            "compile_ms": 1.7803329974412918,
+            "zero_request_preparation_ms": 1193.308582995087,
+            "native_wall_ms": 0.149375,
+            "prepared_role_counts": 2,
+            "binary_sha256": "f4cb5ac13edac12e65327ebee3995b87c4bcae8c7643db616e43cb83d930918b",
+            "config": {
+              "engine": {
+                "model": "Qwen/Qwen3-30B-A3B",
+                "hardware": "h200_sxm",
+                "backend": "sglang",
+                "backend_version": "0.5.14",
+                "context_length": 2048,
+                "mode": "disaggregated",
+                "workers": {
+                  "prefill": {
+                    "kv_cache": {
+                      "capacity": {
+                        "type": "fixed",
+                        "blocks": 65536
+                      }
+                    }
+                  },
+                  "decode": {
+                    "type": "afd",
+                    "afd": {
+                      "n_a_nodes": 1,
+                      "n_f_nodes": 1,
+                      "tp_a": 1,
+                      "a_batch_size": 18,
+                      "num_microbatches": 3
+                    }
+                  }
+                }
+              },
+              "traffic": {
+                "source": {
+                  "type": "synthetic",
+                  "input_tokens": 1024,
+                  "output_tokens": 128
+                },
+                "load": {
+                  "type": "concurrency",
+                  "concurrency": 32
+                },
+                "stop": {
+                  "requests": 1000
+                }
+              }
+            }
+          },
+          "candidate": {
+            "compile_ms": 1.7300000181421638,
+            "zero_request_preparation_ms": 1176.5027910005301,
+            "native_wall_ms": 0.151083,
+            "prepared_role_counts": 2,
+            "binary_sha256": "f183880fe410ab90ea0122075b6f897ef64b2841cfc8998005e03dcb3a53f7cd",
+            "config": {
+              "engine": {
+                "model": "Qwen/Qwen3-30B-A3B",
+                "hardware": "h200_sxm",
+                "backend": "sglang",
+                "backend_version": "0.5.14",
+                "context_length": 2048,
+                "mode": "disaggregated",
+                "workers": {
+                  "prefill": {
+                    "kv_cache": {
+                      "capacity": {
+                        "type": "fixed",
+                        "blocks": 65536
+                      }
+                    }
+                  },
+                  "decode": {
+                    "type": "afd",
+                    "afd": {
+                      "n_a_nodes": 1,
+                      "n_f_nodes": 1,
+                      "tp_a": 1,
+                      "a_batch_size": 18,
+                      "num_microbatches": 3
+                    }
+                  }
+                }
+              },
+              "traffic": {
+                "source": {
+                  "type": "synthetic",
+                  "input_tokens": 1024,
+                  "output_tokens": 128
+                },
+                "load": {
+                  "type": "concurrency",
+                  "concurrency": 32
+                },
+                "stop": {
+                  "requests": 1000
+                }
+              }
+            }
+          }
+        }
+      ],
+      "timings": {
+        "compile_ms": {
+          "baseline_median_ms": 1.759457984007895,
+          "candidate_median_ms": 1.7300000181421638,
+          "paired_ratio_median": 0.9717283343220245,
+          "paired_ratio_range": [
+            0.9079229865626419,
+            1.0852549780245093
+          ]
+        },
+        "zero_request_preparation_ms": {
+          "baseline_median_ms": 1202.6788329822011,
+          "candidate_median_ms": 1178.4705410245806,
+          "paired_ratio_median": 0.9859166419867894,
+          "paired_ratio_range": [
+            0.9677554182190857,
+            0.9926787378725187
+          ]
+        }
+      }
+    },
+    {
+      "case": "afd:dual:large",
+      "semantic_repetitions": {
+        "baseline": [
+          {
+            "semantic_sha256": "7de8248fbc5b50b8f6911eb77762faa7818d3bea6fec28446c0ff31d6d334182",
+            "completed_requests": 1000,
+            "total_input_tokens": 1024000.0,
+            "total_output_tokens": 128000.0,
+            "binary_sha256": "f4cb5ac13edac12e65327ebee3995b87c4bcae8c7643db616e43cb83d930918b",
+            "config": {
+              "engine": {
+                "model": "Qwen/Qwen3-30B-A3B",
+                "hardware": "h200_sxm",
+                "backend": "sglang",
+                "backend_version": "0.5.14",
+                "context_length": 2048,
+                "mode": "disaggregated",
+                "workers": {
+                  "prefill": {
+                    "type": "afd",
+                    "afd": {
+                      "n_a_nodes": 1,
+                      "n_f_nodes": 1,
+                      "tp_a": 1,
+                      "a_batch_size": 18,
+                      "num_microbatches": 3
+                    }
+                  },
+                  "decode": {
+                    "type": "afd",
+                    "afd": {
+                      "n_a_nodes": 1,
+                      "n_f_nodes": 1,
+                      "tp_a": 1,
+                      "a_batch_size": 18,
+                      "num_microbatches": 3
+                    }
+                  }
+                }
+              },
+              "traffic": {
+                "source": {
+                  "type": "synthetic",
+                  "input_tokens": 1024,
+                  "output_tokens": 128
+                },
+                "load": {
+                  "type": "concurrency",
+                  "concurrency": 32
+                },
+                "stop": {
+                  "requests": 1000
+                }
+              }
+            }
+          },
+          {
+            "semantic_sha256": "7de8248fbc5b50b8f6911eb77762faa7818d3bea6fec28446c0ff31d6d334182",
+            "completed_requests": 1000,
+            "total_input_tokens": 1024000.0,
+            "total_output_tokens": 128000.0,
+            "binary_sha256": "f4cb5ac13edac12e65327ebee3995b87c4bcae8c7643db616e43cb83d930918b",
+            "config": {
+              "engine": {
+                "model": "Qwen/Qwen3-30B-A3B",
+                "hardware": "h200_sxm",
+                "backend": "sglang",
+                "backend_version": "0.5.14",
+                "context_length": 2048,
+                "mode": "disaggregated",
+                "workers": {
+                  "prefill": {
+                    "type": "afd",
+                    "afd": {
+                      "n_a_nodes": 1,
+                      "n_f_nodes": 1,
+                      "tp_a": 1,
+                      "a_batch_size": 18,
+                      "num_microbatches": 3
+                    }
+                  },
+                  "decode": {
+                    "type": "afd",
+                    "afd": {
+                      "n_a_nodes": 1,
+                      "n_f_nodes": 1,
+                      "tp_a": 1,
+                      "a_batch_size": 18,
+                      "num_microbatches": 3
+                    }
+                  }
+                }
+              },
+              "traffic": {
+                "source": {
+                  "type": "synthetic",
+                  "input_tokens": 1024,
+                  "output_tokens": 128
+                },
+                "load": {
+                  "type": "concurrency",
+                  "concurrency": 32
+                },
+                "stop": {
+                  "requests": 1000
+                }
+              }
+            }
+          }
+        ],
+        "candidate": [
+          {
+            "semantic_sha256": "7de8248fbc5b50b8f6911eb77762faa7818d3bea6fec28446c0ff31d6d334182",
+            "completed_requests": 1000,
+            "total_input_tokens": 1024000.0,
+            "total_output_tokens": 128000.0,
+            "binary_sha256": "f183880fe410ab90ea0122075b6f897ef64b2841cfc8998005e03dcb3a53f7cd",
+            "config": {
+              "engine": {
+                "model": "Qwen/Qwen3-30B-A3B",
+                "hardware": "h200_sxm",
+                "backend": "sglang",
+                "backend_version": "0.5.14",
+                "context_length": 2048,
+                "mode": "disaggregated",
+                "workers": {
+                  "prefill": {
+                    "type": "afd",
+                    "afd": {
+                      "n_a_nodes": 1,
+                      "n_f_nodes": 1,
+                      "tp_a": 1,
+                      "a_batch_size": 18,
+                      "num_microbatches": 3
+                    }
+                  },
+                  "decode": {
+                    "type": "afd",
+                    "afd": {
+                      "n_a_nodes": 1,
+                      "n_f_nodes": 1,
+                      "tp_a": 1,
+                      "a_batch_size": 18,
+                      "num_microbatches": 3
+                    }
+                  }
+                }
+              },
+              "traffic": {
+                "source": {
+                  "type": "synthetic",
+                  "input_tokens": 1024,
+                  "output_tokens": 128
+                },
+                "load": {
+                  "type": "concurrency",
+                  "concurrency": 32
+                },
+                "stop": {
+                  "requests": 1000
+                }
+              }
+            }
+          },
+          {
+            "semantic_sha256": "7de8248fbc5b50b8f6911eb77762faa7818d3bea6fec28446c0ff31d6d334182",
+            "completed_requests": 1000,
+            "total_input_tokens": 1024000.0,
+            "total_output_tokens": 128000.0,
+            "binary_sha256": "f183880fe410ab90ea0122075b6f897ef64b2841cfc8998005e03dcb3a53f7cd",
+            "config": {
+              "engine": {
+                "model": "Qwen/Qwen3-30B-A3B",
+                "hardware": "h200_sxm",
+                "backend": "sglang",
+                "backend_version": "0.5.14",
+                "context_length": 2048,
+                "mode": "disaggregated",
+                "workers": {
+                  "prefill": {
+                    "type": "afd",
+                    "afd": {
+                      "n_a_nodes": 1,
+                      "n_f_nodes": 1,
+                      "tp_a": 1,
+                      "a_batch_size": 18,
+                      "num_microbatches": 3
+                    }
+                  },
+                  "decode": {
+                    "type": "afd",
+                    "afd": {
+                      "n_a_nodes": 1,
+                      "n_f_nodes": 1,
+                      "tp_a": 1,
+                      "a_batch_size": 18,
+                      "num_microbatches": 3
+                    }
+                  }
+                }
+              },
+              "traffic": {
+                "source": {
+                  "type": "synthetic",
+                  "input_tokens": 1024,
+                  "output_tokens": 128
+                },
+                "load": {
+                  "type": "concurrency",
+                  "concurrency": 32
+                },
+                "stop": {
+                  "requests": 1000
+                }
+              }
+            }
+          }
+        ]
+      },
+      "samples": [
+        {
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "baseline": {
+            "compile_ms": 1.6825420025270432,
+            "zero_request_preparation_ms": 1424.8089590109885,
+            "native_wall_ms": 0.114083,
+            "prepared_role_counts": 2,
+            "binary_sha256": "f4cb5ac13edac12e65327ebee3995b87c4bcae8c7643db616e43cb83d930918b",
+            "config": {
+              "engine": {
+                "model": "Qwen/Qwen3-30B-A3B",
+                "hardware": "h200_sxm",
+                "backend": "sglang",
+                "backend_version": "0.5.14",
+                "context_length": 2048,
+                "mode": "disaggregated",
+                "workers": {
+                  "prefill": {
+                    "type": "afd",
+                    "afd": {
+                      "n_a_nodes": 1,
+                      "n_f_nodes": 1,
+                      "tp_a": 1,
+                      "a_batch_size": 18,
+                      "num_microbatches": 3
+                    }
+                  },
+                  "decode": {
+                    "type": "afd",
+                    "afd": {
+                      "n_a_nodes": 1,
+                      "n_f_nodes": 1,
+                      "tp_a": 1,
+                      "a_batch_size": 18,
+                      "num_microbatches": 3
+                    }
+                  }
+                }
+              },
+              "traffic": {
+                "source": {
+                  "type": "synthetic",
+                  "input_tokens": 1024,
+                  "output_tokens": 128
+                },
+                "load": {
+                  "type": "concurrency",
+                  "concurrency": 32
+                },
+                "stop": {
+                  "requests": 1000
+                }
+              }
+            }
+          },
+          "candidate": {
+            "compile_ms": 1.6829580126795918,
+            "zero_request_preparation_ms": 1352.2510420007166,
+            "native_wall_ms": 0.11925,
+            "prepared_role_counts": 2,
+            "binary_sha256": "f183880fe410ab90ea0122075b6f897ef64b2841cfc8998005e03dcb3a53f7cd",
+            "config": {
+              "engine": {
+                "model": "Qwen/Qwen3-30B-A3B",
+                "hardware": "h200_sxm",
+                "backend": "sglang",
+                "backend_version": "0.5.14",
+                "context_length": 2048,
+                "mode": "disaggregated",
+                "workers": {
+                  "prefill": {
+                    "type": "afd",
+                    "afd": {
+                      "n_a_nodes": 1,
+                      "n_f_nodes": 1,
+                      "tp_a": 1,
+                      "a_batch_size": 18,
+                      "num_microbatches": 3
+                    }
+                  },
+                  "decode": {
+                    "type": "afd",
+                    "afd": {
+                      "n_a_nodes": 1,
+                      "n_f_nodes": 1,
+                      "tp_a": 1,
+                      "a_batch_size": 18,
+                      "num_microbatches": 3
+                    }
+                  }
+                }
+              },
+              "traffic": {
+                "source": {
+                  "type": "synthetic",
+                  "input_tokens": 1024,
+                  "output_tokens": 128
+                },
+                "load": {
+                  "type": "concurrency",
+                  "concurrency": 32
+                },
+                "stop": {
+                  "requests": 1000
+                }
+              }
+            }
+          }
+        },
+        {
+          "order": [
+            "candidate",
+            "baseline"
+          ],
+          "candidate": {
+            "compile_ms": 1.7044590204022825,
+            "zero_request_preparation_ms": 1350.9843750216532,
+            "native_wall_ms": 0.108375,
+            "prepared_role_counts": 2,
+            "binary_sha256": "f183880fe410ab90ea0122075b6f897ef64b2841cfc8998005e03dcb3a53f7cd",
+            "config": {
+              "engine": {
+                "model": "Qwen/Qwen3-30B-A3B",
+                "hardware": "h200_sxm",
+                "backend": "sglang",
+                "backend_version": "0.5.14",
+                "context_length": 2048,
+                "mode": "disaggregated",
+                "workers": {
+                  "prefill": {
+                    "type": "afd",
+                    "afd": {
+                      "n_a_nodes": 1,
+                      "n_f_nodes": 1,
+                      "tp_a": 1,
+                      "a_batch_size": 18,
+                      "num_microbatches": 3
+                    }
+                  },
+                  "decode": {
+                    "type": "afd",
+                    "afd": {
+                      "n_a_nodes": 1,
+                      "n_f_nodes": 1,
+                      "tp_a": 1,
+                      "a_batch_size": 18,
+                      "num_microbatches": 3
+                    }
+                  }
+                }
+              },
+              "traffic": {
+                "source": {
+                  "type": "synthetic",
+                  "input_tokens": 1024,
+                  "output_tokens": 128
+                },
+                "load": {
+                  "type": "concurrency",
+                  "concurrency": 32
+                },
+                "stop": {
+                  "requests": 1000
+                }
+              }
+            }
+          },
+          "baseline": {
+            "compile_ms": 1.8280420044902712,
+            "zero_request_preparation_ms": 1401.2634999817237,
+            "native_wall_ms": 0.122333,
+            "prepared_role_counts": 2,
+            "binary_sha256": "f4cb5ac13edac12e65327ebee3995b87c4bcae8c7643db616e43cb83d930918b",
+            "config": {
+              "engine": {
+                "model": "Qwen/Qwen3-30B-A3B",
+                "hardware": "h200_sxm",
+                "backend": "sglang",
+                "backend_version": "0.5.14",
+                "context_length": 2048,
+                "mode": "disaggregated",
+                "workers": {
+                  "prefill": {
+                    "type": "afd",
+                    "afd": {
+                      "n_a_nodes": 1,
+                      "n_f_nodes": 1,
+                      "tp_a": 1,
+                      "a_batch_size": 18,
+                      "num_microbatches": 3
+                    }
+                  },
+                  "decode": {
+                    "type": "afd",
+                    "afd": {
+                      "n_a_nodes": 1,
+                      "n_f_nodes": 1,
+                      "tp_a": 1,
+                      "a_batch_size": 18,
+                      "num_microbatches": 3
+                    }
+                  }
+                }
+              },
+              "traffic": {
+                "source": {
+                  "type": "synthetic",
+                  "input_tokens": 1024,
+                  "output_tokens": 128
+                },
+                "load": {
+                  "type": "concurrency",
+                  "concurrency": 32
+                },
+                "stop": {
+                  "requests": 1000
+                }
+              }
+            }
+          }
+        },
+        {
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "baseline": {
+            "compile_ms": 1.7008750000968575,
+            "zero_request_preparation_ms": 1408.4542499913368,
+            "native_wall_ms": 0.120584,
+            "prepared_role_counts": 2,
+            "binary_sha256": "f4cb5ac13edac12e65327ebee3995b87c4bcae8c7643db616e43cb83d930918b",
+            "config": {
+              "engine": {
+                "model": "Qwen/Qwen3-30B-A3B",
+                "hardware": "h200_sxm",
+                "backend": "sglang",
+                "backend_version": "0.5.14",
+                "context_length": 2048,
+                "mode": "disaggregated",
+                "workers": {
+                  "prefill": {
+                    "type": "afd",
+                    "afd": {
+                      "n_a_nodes": 1,
+                      "n_f_nodes": 1,
+                      "tp_a": 1,
+                      "a_batch_size": 18,
+                      "num_microbatches": 3
+                    }
+                  },
+                  "decode": {
+                    "type": "afd",
+                    "afd": {
+                      "n_a_nodes": 1,
+                      "n_f_nodes": 1,
+                      "tp_a": 1,
+                      "a_batch_size": 18,
+                      "num_microbatches": 3
+                    }
+                  }
+                }
+              },
+              "traffic": {
+                "source": {
+                  "type": "synthetic",
+                  "input_tokens": 1024,
+                  "output_tokens": 128
+                },
+                "load": {
+                  "type": "concurrency",
+                  "concurrency": 32
+                },
+                "stop": {
+                  "requests": 1000
+                }
+              }
+            }
+          },
+          "candidate": {
+            "compile_ms": 1.7313749995082617,
+            "zero_request_preparation_ms": 1364.0051660186145,
+            "native_wall_ms": 0.110708,
+            "prepared_role_counts": 2,
+            "binary_sha256": "f183880fe410ab90ea0122075b6f897ef64b2841cfc8998005e03dcb3a53f7cd",
+            "config": {
+              "engine": {
+                "model": "Qwen/Qwen3-30B-A3B",
+                "hardware": "h200_sxm",
+                "backend": "sglang",
+                "backend_version": "0.5.14",
+                "context_length": 2048,
+                "mode": "disaggregated",
+                "workers": {
+                  "prefill": {
+                    "type": "afd",
+                    "afd": {
+                      "n_a_nodes": 1,
+                      "n_f_nodes": 1,
+                      "tp_a": 1,
+                      "a_batch_size": 18,
+                      "num_microbatches": 3
+                    }
+                  },
+                  "decode": {
+                    "type": "afd",
+                    "afd": {
+                      "n_a_nodes": 1,
+                      "n_f_nodes": 1,
+                      "tp_a": 1,
+                      "a_batch_size": 18,
+                      "num_microbatches": 3
+                    }
+                  }
+                }
+              },
+              "traffic": {
+                "source": {
+                  "type": "synthetic",
+                  "input_tokens": 1024,
+                  "output_tokens": 128
+                },
+                "load": {
+                  "type": "concurrency",
+                  "concurrency": 32
+                },
+                "stop": {
+                  "requests": 1000
+                }
+              }
+            }
+          }
+        },
+        {
+          "order": [
+            "candidate",
+            "baseline"
+          ],
+          "candidate": {
+            "compile_ms": 1.7137090035248548,
+            "zero_request_preparation_ms": 1358.5027079971042,
+            "native_wall_ms": 0.110667,
+            "prepared_role_counts": 2,
+            "binary_sha256": "f183880fe410ab90ea0122075b6f897ef64b2841cfc8998005e03dcb3a53f7cd",
+            "config": {
+              "engine": {
+                "model": "Qwen/Qwen3-30B-A3B",
+                "hardware": "h200_sxm",
+                "backend": "sglang",
+                "backend_version": "0.5.14",
+                "context_length": 2048,
+                "mode": "disaggregated",
+                "workers": {
+                  "prefill": {
+                    "type": "afd",
+                    "afd": {
+                      "n_a_nodes": 1,
+                      "n_f_nodes": 1,
+                      "tp_a": 1,
+                      "a_batch_size": 18,
+                      "num_microbatches": 3
+                    }
+                  },
+                  "decode": {
+                    "type": "afd",
+                    "afd": {
+                      "n_a_nodes": 1,
+                      "n_f_nodes": 1,
+                      "tp_a": 1,
+                      "a_batch_size": 18,
+                      "num_microbatches": 3
+                    }
+                  }
+                }
+              },
+              "traffic": {
+                "source": {
+                  "type": "synthetic",
+                  "input_tokens": 1024,
+                  "output_tokens": 128
+                },
+                "load": {
+                  "type": "concurrency",
+                  "concurrency": 32
+                },
+                "stop": {
+                  "requests": 1000
+                }
+              }
+            }
+          },
+          "baseline": {
+            "compile_ms": 1.6761250153649598,
+            "zero_request_preparation_ms": 1427.6683749922086,
+            "native_wall_ms": 0.11779099999999999,
+            "prepared_role_counts": 2,
+            "binary_sha256": "f4cb5ac13edac12e65327ebee3995b87c4bcae8c7643db616e43cb83d930918b",
+            "config": {
+              "engine": {
+                "model": "Qwen/Qwen3-30B-A3B",
+                "hardware": "h200_sxm",
+                "backend": "sglang",
+                "backend_version": "0.5.14",
+                "context_length": 2048,
+                "mode": "disaggregated",
+                "workers": {
+                  "prefill": {
+                    "type": "afd",
+                    "afd": {
+                      "n_a_nodes": 1,
+                      "n_f_nodes": 1,
+                      "tp_a": 1,
+                      "a_batch_size": 18,
+                      "num_microbatches": 3
+                    }
+                  },
+                  "decode": {
+                    "type": "afd",
+                    "afd": {
+                      "n_a_nodes": 1,
+                      "n_f_nodes": 1,
+                      "tp_a": 1,
+                      "a_batch_size": 18,
+                      "num_microbatches": 3
+                    }
+                  }
+                }
+              },
+              "traffic": {
+                "source": {
+                  "type": "synthetic",
+                  "input_tokens": 1024,
+                  "output_tokens": 128
+                },
+                "load": {
+                  "type": "concurrency",
+                  "concurrency": 32
+                },
+                "stop": {
+                  "requests": 1000
+                }
+              }
+            }
+          }
+        },
+        {
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "baseline": {
+            "compile_ms": 1.6929169942159206,
+            "zero_request_preparation_ms": 1418.575209012488,
+            "native_wall_ms": 0.12912500000000002,
+            "prepared_role_counts": 2,
+            "binary_sha256": "f4cb5ac13edac12e65327ebee3995b87c4bcae8c7643db616e43cb83d930918b",
+            "config": {
+              "engine": {
+                "model": "Qwen/Qwen3-30B-A3B",
+                "hardware": "h200_sxm",
+                "backend": "sglang",
+                "backend_version": "0.5.14",
+                "context_length": 2048,
+                "mode": "disaggregated",
+                "workers": {
+                  "prefill": {
+                    "type": "afd",
+                    "afd": {
+                      "n_a_nodes": 1,
+                      "n_f_nodes": 1,
+                      "tp_a": 1,
+                      "a_batch_size": 18,
+                      "num_microbatches": 3
+                    }
+                  },
+                  "decode": {
+                    "type": "afd",
+                    "afd": {
+                      "n_a_nodes": 1,
+                      "n_f_nodes": 1,
+                      "tp_a": 1,
+                      "a_batch_size": 18,
+                      "num_microbatches": 3
+                    }
+                  }
+                }
+              },
+              "traffic": {
+                "source": {
+                  "type": "synthetic",
+                  "input_tokens": 1024,
+                  "output_tokens": 128
+                },
+                "load": {
+                  "type": "concurrency",
+                  "concurrency": 32
+                },
+                "stop": {
+                  "requests": 1000
+                }
+              }
+            }
+          },
+          "candidate": {
+            "compile_ms": 1.6177920042537153,
+            "zero_request_preparation_ms": 1371.6003339795861,
+            "native_wall_ms": 0.154208,
+            "prepared_role_counts": 2,
+            "binary_sha256": "f183880fe410ab90ea0122075b6f897ef64b2841cfc8998005e03dcb3a53f7cd",
+            "config": {
+              "engine": {
+                "model": "Qwen/Qwen3-30B-A3B",
+                "hardware": "h200_sxm",
+                "backend": "sglang",
+                "backend_version": "0.5.14",
+                "context_length": 2048,
+                "mode": "disaggregated",
+                "workers": {
+                  "prefill": {
+                    "type": "afd",
+                    "afd": {
+                      "n_a_nodes": 1,
+                      "n_f_nodes": 1,
+                      "tp_a": 1,
+                      "a_batch_size": 18,
+                      "num_microbatches": 3
+                    }
+                  },
+                  "decode": {
+                    "type": "afd",
+                    "afd": {
+                      "n_a_nodes": 1,
+                      "n_f_nodes": 1,
+                      "tp_a": 1,
+                      "a_batch_size": 18,
+                      "num_microbatches": 3
+                    }
+                  }
+                }
+              },
+              "traffic": {
+                "source": {
+                  "type": "synthetic",
+                  "input_tokens": 1024,
+                  "output_tokens": 128
+                },
+                "load": {
+                  "type": "concurrency",
+                  "concurrency": 32
+                },
+                "stop": {
+                  "requests": 1000
+                }
+              }
+            }
+          }
+        },
+        {
+          "order": [
+            "candidate",
+            "baseline"
+          ],
+          "candidate": {
+            "compile_ms": 1.6610409948043525,
+            "zero_request_preparation_ms": 1372.0099159982055,
+            "native_wall_ms": 0.108291,
+            "prepared_role_counts": 2,
+            "binary_sha256": "f183880fe410ab90ea0122075b6f897ef64b2841cfc8998005e03dcb3a53f7cd",
+            "config": {
+              "engine": {
+                "model": "Qwen/Qwen3-30B-A3B",
+                "hardware": "h200_sxm",
+                "backend": "sglang",
+                "backend_version": "0.5.14",
+                "context_length": 2048,
+                "mode": "disaggregated",
+                "workers": {
+                  "prefill": {
+                    "type": "afd",
+                    "afd": {
+                      "n_a_nodes": 1,
+                      "n_f_nodes": 1,
+                      "tp_a": 1,
+                      "a_batch_size": 18,
+                      "num_microbatches": 3
+                    }
+                  },
+                  "decode": {
+                    "type": "afd",
+                    "afd": {
+                      "n_a_nodes": 1,
+                      "n_f_nodes": 1,
+                      "tp_a": 1,
+                      "a_batch_size": 18,
+                      "num_microbatches": 3
+                    }
+                  }
+                }
+              },
+              "traffic": {
+                "source": {
+                  "type": "synthetic",
+                  "input_tokens": 1024,
+                  "output_tokens": 128
+                },
+                "load": {
+                  "type": "concurrency",
+                  "concurrency": 32
+                },
+                "stop": {
+                  "requests": 1000
+                }
+              }
+            }
+          },
+          "baseline": {
+            "compile_ms": 2.0308330131229013,
+            "zero_request_preparation_ms": 1405.759457993554,
+            "native_wall_ms": 0.123208,
+            "prepared_role_counts": 2,
+            "binary_sha256": "f4cb5ac13edac12e65327ebee3995b87c4bcae8c7643db616e43cb83d930918b",
+            "config": {
+              "engine": {
+                "model": "Qwen/Qwen3-30B-A3B",
+                "hardware": "h200_sxm",
+                "backend": "sglang",
+                "backend_version": "0.5.14",
+                "context_length": 2048,
+                "mode": "disaggregated",
+                "workers": {
+                  "prefill": {
+                    "type": "afd",
+                    "afd": {
+                      "n_a_nodes": 1,
+                      "n_f_nodes": 1,
+                      "tp_a": 1,
+                      "a_batch_size": 18,
+                      "num_microbatches": 3
+                    }
+                  },
+                  "decode": {
+                    "type": "afd",
+                    "afd": {
+                      "n_a_nodes": 1,
+                      "n_f_nodes": 1,
+                      "tp_a": 1,
+                      "a_batch_size": 18,
+                      "num_microbatches": 3
+                    }
+                  }
+                }
+              },
+              "traffic": {
+                "source": {
+                  "type": "synthetic",
+                  "input_tokens": 1024,
+                  "output_tokens": 128
+                },
+                "load": {
+                  "type": "concurrency",
+                  "concurrency": 32
+                },
+                "stop": {
+                  "requests": 1000
+                }
+              }
+            }
+          }
+        },
+        {
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "baseline": {
+            "compile_ms": 1.6753749805502594,
+            "zero_request_preparation_ms": 1430.3868749993853,
+            "native_wall_ms": 0.10012499999999999,
+            "prepared_role_counts": 2,
+            "binary_sha256": "f4cb5ac13edac12e65327ebee3995b87c4bcae8c7643db616e43cb83d930918b",
+            "config": {
+              "engine": {
+                "model": "Qwen/Qwen3-30B-A3B",
+                "hardware": "h200_sxm",
+                "backend": "sglang",
+                "backend_version": "0.5.14",
+                "context_length": 2048,
+                "mode": "disaggregated",
+                "workers": {
+                  "prefill": {
+                    "type": "afd",
+                    "afd": {
+                      "n_a_nodes": 1,
+                      "n_f_nodes": 1,
+                      "tp_a": 1,
+                      "a_batch_size": 18,
+                      "num_microbatches": 3
+                    }
+                  },
+                  "decode": {
+                    "type": "afd",
+                    "afd": {
+                      "n_a_nodes": 1,
+                      "n_f_nodes": 1,
+                      "tp_a": 1,
+                      "a_batch_size": 18,
+                      "num_microbatches": 3
+                    }
+                  }
+                }
+              },
+              "traffic": {
+                "source": {
+                  "type": "synthetic",
+                  "input_tokens": 1024,
+                  "output_tokens": 128
+                },
+                "load": {
+                  "type": "concurrency",
+                  "concurrency": 32
+                },
+                "stop": {
+                  "requests": 1000
+                }
+              }
+            }
+          },
+          "candidate": {
+            "compile_ms": 1.6977920022327453,
+            "zero_request_preparation_ms": 1360.2513750083745,
+            "native_wall_ms": 0.11429099999999999,
+            "prepared_role_counts": 2,
+            "binary_sha256": "f183880fe410ab90ea0122075b6f897ef64b2841cfc8998005e03dcb3a53f7cd",
+            "config": {
+              "engine": {
+                "model": "Qwen/Qwen3-30B-A3B",
+                "hardware": "h200_sxm",
+                "backend": "sglang",
+                "backend_version": "0.5.14",
+                "context_length": 2048,
+                "mode": "disaggregated",
+                "workers": {
+                  "prefill": {
+                    "type": "afd",
+                    "afd": {
+                      "n_a_nodes": 1,
+                      "n_f_nodes": 1,
+                      "tp_a": 1,
+                      "a_batch_size": 18,
+                      "num_microbatches": 3
+                    }
+                  },
+                  "decode": {
+                    "type": "afd",
+                    "afd": {
+                      "n_a_nodes": 1,
+                      "n_f_nodes": 1,
+                      "tp_a": 1,
+                      "a_batch_size": 18,
+                      "num_microbatches": 3
+                    }
+                  }
+                }
+              },
+              "traffic": {
+                "source": {
+                  "type": "synthetic",
+                  "input_tokens": 1024,
+                  "output_tokens": 128
+                },
+                "load": {
+                  "type": "concurrency",
+                  "concurrency": 32
+                },
+                "stop": {
+                  "requests": 1000
+                }
+              }
+            }
+          }
+        }
+      ],
+      "timings": {
+        "compile_ms": {
+          "baseline_median_ms": 1.6929169942159206,
+          "candidate_median_ms": 1.6977920022327453,
+          "paired_ratio_median": 1.0002472509761562,
+          "paired_ratio_range": [
+            0.8179111645669462,
+            1.0224231413619893
+          ]
+        },
+        "zero_request_preparation_ms": {
+          "baseline_median_ms": 1418.575209012488,
+          "candidate_median_ms": 1360.2513750083745,
+          "paired_ratio_median": 0.9641187221670112,
+          "paired_ratio_range": [
+            0.9490753363449953,
+            0.9759919509675438
+          ]
+        }
+      }
+    },
+    {
+      "case": "ordinary:fixed:large",
+      "semantic_repetitions": {
+        "baseline": [
+          {
+            "semantic_sha256": "5378984a3d37c20de6a83de3bf813c425b7532850d21797abd309c22c7ad2687",
+            "completed_requests": 1000,
+            "total_input_tokens": 1024000.0,
+            "total_output_tokens": 128000.0,
+            "binary_sha256": "f4cb5ac13edac12e65327ebee3995b87c4bcae8c7643db616e43cb83d930918b",
+            "config": {
+              "engine": {
+                "model": "Qwen/Qwen3-30B-A3B",
+                "hardware": "h200_sxm",
+                "backend": "sglang",
+                "backend_version": "0.5.14",
+                "context_length": 2048,
+                "mode": "aggregated",
+                "workers": {
+                  "aggregated": {
+                    "kv_cache": {
+                      "capacity": {
+                        "type": "fixed",
+                        "blocks": 65536
+                      }
+                    },
+                    "timing": {
+                      "type": "fixed",
+                      "prefill_ms": 1,
+                      "decode_ms": 1
+                    }
+                  }
+                }
+              },
+              "traffic": {
+                "source": {
+                  "type": "synthetic",
+                  "input_tokens": 1024,
+                  "output_tokens": 128
+                },
+                "load": {
+                  "type": "concurrency",
+                  "concurrency": 32
+                },
+                "stop": {
+                  "requests": 1000
+                }
+              }
+            }
+          },
+          {
+            "semantic_sha256": "5378984a3d37c20de6a83de3bf813c425b7532850d21797abd309c22c7ad2687",
+            "completed_requests": 1000,
+            "total_input_tokens": 1024000.0,
+            "total_output_tokens": 128000.0,
+            "binary_sha256": "f4cb5ac13edac12e65327ebee3995b87c4bcae8c7643db616e43cb83d930918b",
+            "config": {
+              "engine": {
+                "model": "Qwen/Qwen3-30B-A3B",
+                "hardware": "h200_sxm",
+                "backend": "sglang",
+                "backend_version": "0.5.14",
+                "context_length": 2048,
+                "mode": "aggregated",
+                "workers": {
+                  "aggregated": {
+                    "kv_cache": {
+                      "capacity": {
+                        "type": "fixed",
+                        "blocks": 65536
+                      }
+                    },
+                    "timing": {
+                      "type": "fixed",
+                      "prefill_ms": 1,
+                      "decode_ms": 1
+                    }
+                  }
+                }
+              },
+              "traffic": {
+                "source": {
+                  "type": "synthetic",
+                  "input_tokens": 1024,
+                  "output_tokens": 128
+                },
+                "load": {
+                  "type": "concurrency",
+                  "concurrency": 32
+                },
+                "stop": {
+                  "requests": 1000
+                }
+              }
+            }
+          }
+        ],
+        "candidate": [
+          {
+            "semantic_sha256": "5378984a3d37c20de6a83de3bf813c425b7532850d21797abd309c22c7ad2687",
+            "completed_requests": 1000,
+            "total_input_tokens": 1024000.0,
+            "total_output_tokens": 128000.0,
+            "binary_sha256": "f183880fe410ab90ea0122075b6f897ef64b2841cfc8998005e03dcb3a53f7cd",
+            "config": {
+              "engine": {
+                "model": "Qwen/Qwen3-30B-A3B",
+                "hardware": "h200_sxm",
+                "backend": "sglang",
+                "backend_version": "0.5.14",
+                "context_length": 2048,
+                "mode": "aggregated",
+                "workers": {
+                  "aggregated": {
+                    "kv_cache": {
+                      "capacity": {
+                        "type": "fixed",
+                        "blocks": 65536
+                      }
+                    },
+                    "timing": {
+                      "type": "fixed",
+                      "prefill_ms": 1,
+                      "decode_ms": 1
+                    }
+                  }
+                }
+              },
+              "traffic": {
+                "source": {
+                  "type": "synthetic",
+                  "input_tokens": 1024,
+                  "output_tokens": 128
+                },
+                "load": {
+                  "type": "concurrency",
+                  "concurrency": 32
+                },
+                "stop": {
+                  "requests": 1000
+                }
+              }
+            }
+          },
+          {
+            "semantic_sha256": "5378984a3d37c20de6a83de3bf813c425b7532850d21797abd309c22c7ad2687",
+            "completed_requests": 1000,
+            "total_input_tokens": 1024000.0,
+            "total_output_tokens": 128000.0,
+            "binary_sha256": "f183880fe410ab90ea0122075b6f897ef64b2841cfc8998005e03dcb3a53f7cd",
+            "config": {
+              "engine": {
+                "model": "Qwen/Qwen3-30B-A3B",
+                "hardware": "h200_sxm",
+                "backend": "sglang",
+                "backend_version": "0.5.14",
+                "context_length": 2048,
+                "mode": "aggregated",
+                "workers": {
+                  "aggregated": {
+                    "kv_cache": {
+                      "capacity": {
+                        "type": "fixed",
+                        "blocks": 65536
+                      }
+                    },
+                    "timing": {
+                      "type": "fixed",
+                      "prefill_ms": 1,
+                      "decode_ms": 1
+                    }
+                  }
+                }
+              },
+              "traffic": {
+                "source": {
+                  "type": "synthetic",
+                  "input_tokens": 1024,
+                  "output_tokens": 128
+                },
+                "load": {
+                  "type": "concurrency",
+                  "concurrency": 32
+                },
+                "stop": {
+                  "requests": 1000
+                }
+              }
+            }
+          }
+        ]
+      },
+      "samples": [
+        {
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "baseline": {
+            "compile_ms": 0.04766599158756435,
+            "zero_request_preparation_ms": 0.4667920002248138,
+            "native_wall_ms": 0.082667,
+            "prepared_role_counts": 1,
+            "binary_sha256": "f4cb5ac13edac12e65327ebee3995b87c4bcae8c7643db616e43cb83d930918b",
+            "config": {
+              "engine": {
+                "model": "Qwen/Qwen3-30B-A3B",
+                "hardware": "h200_sxm",
+                "backend": "sglang",
+                "backend_version": "0.5.14",
+                "context_length": 2048,
+                "mode": "aggregated",
+                "workers": {
+                  "aggregated": {
+                    "kv_cache": {
+                      "capacity": {
+                        "type": "fixed",
+                        "blocks": 65536
+                      }
+                    },
+                    "timing": {
+                      "type": "fixed",
+                      "prefill_ms": 1,
+                      "decode_ms": 1
+                    }
+                  }
+                }
+              },
+              "traffic": {
+                "source": {
+                  "type": "synthetic",
+                  "input_tokens": 1024,
+                  "output_tokens": 128
+                },
+                "load": {
+                  "type": "concurrency",
+                  "concurrency": 32
+                },
+                "stop": {
+                  "requests": 1000
+                }
+              }
+            }
+          },
+          "candidate": {
+            "compile_ms": 0.050665985327214,
+            "zero_request_preparation_ms": 0.45879199751652777,
+            "native_wall_ms": 0.08620799999999999,
+            "prepared_role_counts": 1,
+            "binary_sha256": "f183880fe410ab90ea0122075b6f897ef64b2841cfc8998005e03dcb3a53f7cd",
+            "config": {
+              "engine": {
+                "model": "Qwen/Qwen3-30B-A3B",
+                "hardware": "h200_sxm",
+                "backend": "sglang",
+                "backend_version": "0.5.14",
+                "context_length": 2048,
+                "mode": "aggregated",
+                "workers": {
+                  "aggregated": {
+                    "kv_cache": {
+                      "capacity": {
+                        "type": "fixed",
+                        "blocks": 65536
+                      }
+                    },
+                    "timing": {
+                      "type": "fixed",
+                      "prefill_ms": 1,
+                      "decode_ms": 1
+                    }
+                  }
+                }
+              },
+              "traffic": {
+                "source": {
+                  "type": "synthetic",
+                  "input_tokens": 1024,
+                  "output_tokens": 128
+                },
+                "load": {
+                  "type": "concurrency",
+                  "concurrency": 32
+                },
+                "stop": {
+                  "requests": 1000
+                }
+              }
+            }
+          }
+        },
+        {
+          "order": [
+            "candidate",
+            "baseline"
+          ],
+          "candidate": {
+            "compile_ms": 0.056083983508870006,
+            "zero_request_preparation_ms": 0.48579199938103557,
+            "native_wall_ms": 0.085042,
+            "prepared_role_counts": 1,
+            "binary_sha256": "f183880fe410ab90ea0122075b6f897ef64b2841cfc8998005e03dcb3a53f7cd",
+            "config": {
+              "engine": {
+                "model": "Qwen/Qwen3-30B-A3B",
+                "hardware": "h200_sxm",
+                "backend": "sglang",
+                "backend_version": "0.5.14",
+                "context_length": 2048,
+                "mode": "aggregated",
+                "workers": {
+                  "aggregated": {
+                    "kv_cache": {
+                      "capacity": {
+                        "type": "fixed",
+                        "blocks": 65536
+                      }
+                    },
+                    "timing": {
+                      "type": "fixed",
+                      "prefill_ms": 1,
+                      "decode_ms": 1
+                    }
+                  }
+                }
+              },
+              "traffic": {
+                "source": {
+                  "type": "synthetic",
+                  "input_tokens": 1024,
+                  "output_tokens": 128
+                },
+                "load": {
+                  "type": "concurrency",
+                  "concurrency": 32
+                },
+                "stop": {
+                  "requests": 1000
+                }
+              }
+            }
+          },
+          "baseline": {
+            "compile_ms": 0.05137501284480095,
+            "zero_request_preparation_ms": 0.4735830007120967,
+            "native_wall_ms": 0.097792,
+            "prepared_role_counts": 1,
+            "binary_sha256": "f4cb5ac13edac12e65327ebee3995b87c4bcae8c7643db616e43cb83d930918b",
+            "config": {
+              "engine": {
+                "model": "Qwen/Qwen3-30B-A3B",
+                "hardware": "h200_sxm",
+                "backend": "sglang",
+                "backend_version": "0.5.14",
+                "context_length": 2048,
+                "mode": "aggregated",
+                "workers": {
+                  "aggregated": {
+                    "kv_cache": {
+                      "capacity": {
+                        "type": "fixed",
+                        "blocks": 65536
+                      }
+                    },
+                    "timing": {
+                      "type": "fixed",
+                      "prefill_ms": 1,
+                      "decode_ms": 1
+                    }
+                  }
+                }
+              },
+              "traffic": {
+                "source": {
+                  "type": "synthetic",
+                  "input_tokens": 1024,
+                  "output_tokens": 128
+                },
+                "load": {
+                  "type": "concurrency",
+                  "concurrency": 32
+                },
+                "stop": {
+                  "requests": 1000
+                }
+              }
+            }
+          }
+        },
+        {
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "baseline": {
+            "compile_ms": 0.05425000563263893,
+            "zero_request_preparation_ms": 0.45191700337454677,
+            "native_wall_ms": 0.083708,
+            "prepared_role_counts": 1,
+            "binary_sha256": "f4cb5ac13edac12e65327ebee3995b87c4bcae8c7643db616e43cb83d930918b",
+            "config": {
+              "engine": {
+                "model": "Qwen/Qwen3-30B-A3B",
+                "hardware": "h200_sxm",
+                "backend": "sglang",
+                "backend_version": "0.5.14",
+                "context_length": 2048,
+                "mode": "aggregated",
+                "workers": {
+                  "aggregated": {
+                    "kv_cache": {
+                      "capacity": {
+                        "type": "fixed",
+                        "blocks": 65536
+                      }
+                    },
+                    "timing": {
+                      "type": "fixed",
+                      "prefill_ms": 1,
+                      "decode_ms": 1
+                    }
+                  }
+                }
+              },
+              "traffic": {
+                "source": {
+                  "type": "synthetic",
+                  "input_tokens": 1024,
+                  "output_tokens": 128
+                },
+                "load": {
+                  "type": "concurrency",
+                  "concurrency": 32
+                },
+                "stop": {
+                  "requests": 1000
+                }
+              }
+            }
+          },
+          "candidate": {
+            "compile_ms": 0.05649999366141856,
+            "zero_request_preparation_ms": 0.5234999989625067,
+            "native_wall_ms": 0.090292,
+            "prepared_role_counts": 1,
+            "binary_sha256": "f183880fe410ab90ea0122075b6f897ef64b2841cfc8998005e03dcb3a53f7cd",
+            "config": {
+              "engine": {
+                "model": "Qwen/Qwen3-30B-A3B",
+                "hardware": "h200_sxm",
+                "backend": "sglang",
+                "backend_version": "0.5.14",
+                "context_length": 2048,
+                "mode": "aggregated",
+                "workers": {
+                  "aggregated": {
+                    "kv_cache": {
+                      "capacity": {
+                        "type": "fixed",
+                        "blocks": 65536
+                      }
+                    },
+                    "timing": {
+                      "type": "fixed",
+                      "prefill_ms": 1,
+                      "decode_ms": 1
+                    }
+                  }
+                }
+              },
+              "traffic": {
+                "source": {
+                  "type": "synthetic",
+                  "input_tokens": 1024,
+                  "output_tokens": 128
+                },
+                "load": {
+                  "type": "concurrency",
+                  "concurrency": 32
+                },
+                "stop": {
+                  "requests": 1000
+                }
+              }
+            }
+          }
+        },
+        {
+          "order": [
+            "candidate",
+            "baseline"
+          ],
+          "candidate": {
+            "compile_ms": 0.051000009989365935,
+            "zero_request_preparation_ms": 0.4674170049838722,
+            "native_wall_ms": 0.10195800000000001,
+            "prepared_role_counts": 1,
+            "binary_sha256": "f183880fe410ab90ea0122075b6f897ef64b2841cfc8998005e03dcb3a53f7cd",
+            "config": {
+              "engine": {
+                "model": "Qwen/Qwen3-30B-A3B",
+                "hardware": "h200_sxm",
+                "backend": "sglang",
+                "backend_version": "0.5.14",
+                "context_length": 2048,
+                "mode": "aggregated",
+                "workers": {
+                  "aggregated": {
+                    "kv_cache": {
+                      "capacity": {
+                        "type": "fixed",
+                        "blocks": 65536
+                      }
+                    },
+                    "timing": {
+                      "type": "fixed",
+                      "prefill_ms": 1,
+                      "decode_ms": 1
+                    }
+                  }
+                }
+              },
+              "traffic": {
+                "source": {
+                  "type": "synthetic",
+                  "input_tokens": 1024,
+                  "output_tokens": 128
+                },
+                "load": {
+                  "type": "concurrency",
+                  "concurrency": 32
+                },
+                "stop": {
+                  "requests": 1000
+                }
+              }
+            }
+          },
+          "baseline": {
+            "compile_ms": 0.048165995394811034,
+            "zero_request_preparation_ms": 0.4503339878283441,
+            "native_wall_ms": 0.08666599999999999,
+            "prepared_role_counts": 1,
+            "binary_sha256": "f4cb5ac13edac12e65327ebee3995b87c4bcae8c7643db616e43cb83d930918b",
+            "config": {
+              "engine": {
+                "model": "Qwen/Qwen3-30B-A3B",
+                "hardware": "h200_sxm",
+                "backend": "sglang",
+                "backend_version": "0.5.14",
+                "context_length": 2048,
+                "mode": "aggregated",
+                "workers": {
+                  "aggregated": {
+                    "kv_cache": {
+                      "capacity": {
+                        "type": "fixed",
+                        "blocks": 65536
+                      }
+                    },
+                    "timing": {
+                      "type": "fixed",
+                      "prefill_ms": 1,
+                      "decode_ms": 1
+                    }
+                  }
+                }
+              },
+              "traffic": {
+                "source": {
+                  "type": "synthetic",
+                  "input_tokens": 1024,
+                  "output_tokens": 128
+                },
+                "load": {
+                  "type": "concurrency",
+                  "concurrency": 32
+                },
+                "stop": {
+                  "requests": 1000
+                }
+              }
+            }
+          }
+        },
+        {
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "baseline": {
+            "compile_ms": 0.05704100476577878,
+            "zero_request_preparation_ms": 0.49066601786762476,
+            "native_wall_ms": 0.09720799999999999,
+            "prepared_role_counts": 1,
+            "binary_sha256": "f4cb5ac13edac12e65327ebee3995b87c4bcae8c7643db616e43cb83d930918b",
+            "config": {
+              "engine": {
+                "model": "Qwen/Qwen3-30B-A3B",
+                "hardware": "h200_sxm",
+                "backend": "sglang",
+                "backend_version": "0.5.14",
+                "context_length": 2048,
+                "mode": "aggregated",
+                "workers": {
+                  "aggregated": {
+                    "kv_cache": {
+                      "capacity": {
+                        "type": "fixed",
+                        "blocks": 65536
+                      }
+                    },
+                    "timing": {
+                      "type": "fixed",
+                      "prefill_ms": 1,
+                      "decode_ms": 1
+                    }
+                  }
+                }
+              },
+              "traffic": {
+                "source": {
+                  "type": "synthetic",
+                  "input_tokens": 1024,
+                  "output_tokens": 128
+                },
+                "load": {
+                  "type": "concurrency",
+                  "concurrency": 32
+                },
+                "stop": {
+                  "requests": 1000
+                }
+              }
+            }
+          },
+          "candidate": {
+            "compile_ms": 0.04774998524226248,
+            "zero_request_preparation_ms": 0.4678750119637698,
+            "native_wall_ms": 0.08745900000000001,
+            "prepared_role_counts": 1,
+            "binary_sha256": "f183880fe410ab90ea0122075b6f897ef64b2841cfc8998005e03dcb3a53f7cd",
+            "config": {
+              "engine": {
+                "model": "Qwen/Qwen3-30B-A3B",
+                "hardware": "h200_sxm",
+                "backend": "sglang",
+                "backend_version": "0.5.14",
+                "context_length": 2048,
+                "mode": "aggregated",
+                "workers": {
+                  "aggregated": {
+                    "kv_cache": {
+                      "capacity": {
+                        "type": "fixed",
+                        "blocks": 65536
+                      }
+                    },
+                    "timing": {
+                      "type": "fixed",
+                      "prefill_ms": 1,
+                      "decode_ms": 1
+                    }
+                  }
+                }
+              },
+              "traffic": {
+                "source": {
+                  "type": "synthetic",
+                  "input_tokens": 1024,
+                  "output_tokens": 128
+                },
+                "load": {
+                  "type": "concurrency",
+                  "concurrency": 32
+                },
+                "stop": {
+                  "requests": 1000
+                }
+              }
+            }
+          }
+        },
+        {
+          "order": [
+            "candidate",
+            "baseline"
+          ],
+          "candidate": {
+            "compile_ms": 0.04904199158772826,
+            "zero_request_preparation_ms": 0.4829159879591316,
+            "native_wall_ms": 0.095167,
+            "prepared_role_counts": 1,
+            "binary_sha256": "f183880fe410ab90ea0122075b6f897ef64b2841cfc8998005e03dcb3a53f7cd",
+            "config": {
+              "engine": {
+                "model": "Qwen/Qwen3-30B-A3B",
+                "hardware": "h200_sxm",
+                "backend": "sglang",
+                "backend_version": "0.5.14",
+                "context_length": 2048,
+                "mode": "aggregated",
+                "workers": {
+                  "aggregated": {
+                    "kv_cache": {
+                      "capacity": {
+                        "type": "fixed",
+                        "blocks": 65536
+                      }
+                    },
+                    "timing": {
+                      "type": "fixed",
+                      "prefill_ms": 1,
+                      "decode_ms": 1
+                    }
+                  }
+                }
+              },
+              "traffic": {
+                "source": {
+                  "type": "synthetic",
+                  "input_tokens": 1024,
+                  "output_tokens": 128
+                },
+                "load": {
+                  "type": "concurrency",
+                  "concurrency": 32
+                },
+                "stop": {
+                  "requests": 1000
+                }
+              }
+            }
+          },
+          "baseline": {
+            "compile_ms": 0.058416975662112236,
+            "zero_request_preparation_ms": 0.4827080119866878,
+            "native_wall_ms": 0.094541,
+            "prepared_role_counts": 1,
+            "binary_sha256": "f4cb5ac13edac12e65327ebee3995b87c4bcae8c7643db616e43cb83d930918b",
+            "config": {
+              "engine": {
+                "model": "Qwen/Qwen3-30B-A3B",
+                "hardware": "h200_sxm",
+                "backend": "sglang",
+                "backend_version": "0.5.14",
+                "context_length": 2048,
+                "mode": "aggregated",
+                "workers": {
+                  "aggregated": {
+                    "kv_cache": {
+                      "capacity": {
+                        "type": "fixed",
+                        "blocks": 65536
+                      }
+                    },
+                    "timing": {
+                      "type": "fixed",
+                      "prefill_ms": 1,
+                      "decode_ms": 1
+                    }
+                  }
+                }
+              },
+              "traffic": {
+                "source": {
+                  "type": "synthetic",
+                  "input_tokens": 1024,
+                  "output_tokens": 128
+                },
+                "load": {
+                  "type": "concurrency",
+                  "concurrency": 32
+                },
+                "stop": {
+                  "requests": 1000
+                }
+              }
+            }
+          }
+        },
+        {
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "baseline": {
+            "compile_ms": 0.06212500738911331,
+            "zero_request_preparation_ms": 0.5051670013926923,
+            "native_wall_ms": 0.100833,
+            "prepared_role_counts": 1,
+            "binary_sha256": "f4cb5ac13edac12e65327ebee3995b87c4bcae8c7643db616e43cb83d930918b",
+            "config": {
+              "engine": {
+                "model": "Qwen/Qwen3-30B-A3B",
+                "hardware": "h200_sxm",
+                "backend": "sglang",
+                "backend_version": "0.5.14",
+                "context_length": 2048,
+                "mode": "aggregated",
+                "workers": {
+                  "aggregated": {
+                    "kv_cache": {
+                      "capacity": {
+                        "type": "fixed",
+                        "blocks": 65536
+                      }
+                    },
+                    "timing": {
+                      "type": "fixed",
+                      "prefill_ms": 1,
+                      "decode_ms": 1
+                    }
+                  }
+                }
+              },
+              "traffic": {
+                "source": {
+                  "type": "synthetic",
+                  "input_tokens": 1024,
+                  "output_tokens": 128
+                },
+                "load": {
+                  "type": "concurrency",
+                  "concurrency": 32
+                },
+                "stop": {
+                  "requests": 1000
+                }
+              }
+            }
+          },
+          "candidate": {
+            "compile_ms": 0.05154201062396169,
+            "zero_request_preparation_ms": 0.49579201731830835,
+            "native_wall_ms": 0.10387500000000001,
+            "prepared_role_counts": 1,
+            "binary_sha256": "f183880fe410ab90ea0122075b6f897ef64b2841cfc8998005e03dcb3a53f7cd",
+            "config": {
+              "engine": {
+                "model": "Qwen/Qwen3-30B-A3B",
+                "hardware": "h200_sxm",
+                "backend": "sglang",
+                "backend_version": "0.5.14",
+                "context_length": 2048,
+                "mode": "aggregated",
+                "workers": {
+                  "aggregated": {
+                    "kv_cache": {
+                      "capacity": {
+                        "type": "fixed",
+                        "blocks": 65536
+                      }
+                    },
+                    "timing": {
+                      "type": "fixed",
+                      "prefill_ms": 1,
+                      "decode_ms": 1
+                    }
+                  }
+                }
+              },
+              "traffic": {
+                "source": {
+                  "type": "synthetic",
+                  "input_tokens": 1024,
+                  "output_tokens": 128
+                },
+                "load": {
+                  "type": "concurrency",
+                  "concurrency": 32
+                },
+                "stop": {
+                  "requests": 1000
+                }
+              }
+            }
+          }
+        }
+      ],
+      "timings": {
+        "compile_ms": {
+          "baseline_median_ms": 0.05425000563263893,
+          "candidate_median_ms": 0.051000009989365935,
+          "paired_ratio_median": 1.0414744294040394,
+          "paired_ratio_range": [
+            0.8296499717277109,
+            1.091658773464338
+          ]
+        },
+        "zero_request_preparation_ms": {
+          "baseline_median_ms": 0.4735830007120967,
+          "candidate_median_ms": 0.4829159879591316,
+          "paired_ratio_median": 1.000430852538759,
+          "paired_ratio_range": [
+            0.9535508776358674,
+            1.1583985445412246
+          ]
+        }
+      }
+    }
+  ]
+}

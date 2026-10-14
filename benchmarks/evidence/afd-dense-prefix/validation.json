@@ -1,0 +1,41 @@
+{
+  "baseline_revision": "5b668b9873664db042e20711ea31a348d607b625",
+  "candidate_binary_sha256": "99a22ecc694bf630ca856413c72f2bcab71ca65834e9f3b76195c5577a14ac2a",
+  "results": [
+    {
+      "command": "cargo test --offline -p aisimulate-core --lib perfmodel::afd::",
+      "passed": 39
+    },
+    {
+      "command": "pytest -c python/aisimulate/pytest.ini -p no:timeout python/aisimulate/tests/unit/sdk/test_afd_{composition,memory,kv_budget,engine_materialize,routing}.py",
+      "passed": 107
+    },
+    {
+      "command": "pytest -c python/aisimulate/pytest.ini -p no:timeout crates/core/parity_tests/perfmodel/test_engine_step_parity.py crates/core/parity_tests/perfmodel/test_compile_engine_parity.py",
+      "passed": 385
+    },
+    {
+      "command": "pytest -c python/aisimulate/pytest.ini -p no:timeout crates/core/parity_tests/perfmodel/test_afd_execution_plan_parity.py crates/core/parity_tests/perfmodel/test_afd_parity.py",
+      "passed": 36
+    }
+  ],
+  "total_passed": 567,
+  "checks": [
+    "ruff check and format for changed Python files",
+    "rustfmt --check for changed Rust files",
+    "git diff --check"
+  ],
+  "cli_execution": "CLI tests and benchmarks ran with normal host process-statistics access; sandboxed CLI supervision failed before simulation.",
+  "semantic_changes": [
+    "Only contiguous dense prefixes are supported; any dense layer after a routed layer rejects with NotImplementedError.",
+    "Full-batch prefix and embedding run once; no-prefix models retain their previous execution.",
+    "Prefix latency, energy, verification token count, activation peak and KV preflight use full A-replica batch.",
+    "Five affected replay goldens refreshed; unchanged request/input/output totals; nine pure-routed golden cases unchanged."
+  ],
+  "cost_assessment": {
+    "preparation": "O(layers) validation and one usize of prepared state; no retained cache added.",
+    "queries": "Full prefix uses the existing op cache at full shape, clears it once, then reuses it for routed microbatches. No additional query-sized cache allocation.",
+    "pipeline": "O(microbatches * routed_layers) instead of walking dense layers per microbatch.",
+    "measurement_limit": "Six adjacent alternating pairs per row, no CPU pinning; a bounded local comparison, not a formal statistical gate or serving-accuracy qualification."
+  }
+}

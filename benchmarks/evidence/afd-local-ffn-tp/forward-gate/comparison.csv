@@ -1,0 +1,11 @@
+case_id,model_id,database_mode,phase,metric,classification,exceed_count,consensus_required,base_median_us,head_median_us,median_delta_us,median_ratio,invalid_reasons
+qwen3-32b/silicon/context/bs1-isl1024,qwen3-32b,SILICON,context,cold,OK,0,4,30.458,31.584,1.1260000000000012,1.0369689408365619,
+qwen3-32b/silicon/context/bs1-isl1024,qwen3-32b,SILICON,context,warm,OK,0,4,9.25,9.291,0.04100000000000037,1.0044324324324325,
+qwen3-32b/silicon/generation/bs1-isl1024,qwen3-32b,SILICON,generation,cold,IMPROVEMENT,0,4,40.917,40.541,-0.3760000000000048,0.99081066549356,
+qwen3-32b/silicon/generation/bs1-isl1024,qwen3-32b,SILICON,generation,warm,IMPROVEMENT,0,4,22.521,22.5,-0.021000000000000796,0.9990675369654989,
+deepseek-v3.2-b200_sxm-vllm-0.24.0-tp8-pp1-adp1-mtp1-ep8/silicon/context/bs1-isl1024-prefix0,deepseek-v3.2-b200_sxm-vllm-0.24.0-tp8-pp1-adp1-mtp1-ep8,SILICON,context,cold,IMPROVEMENT,0,4,47.083,45.0,-2.0829999999999984,0.9557589788246289,
+deepseek-v3.2-b200_sxm-vllm-0.24.0-tp8-pp1-adp1-mtp1-ep8/silicon/context/bs1-isl1024-prefix0,deepseek-v3.2-b200_sxm-vllm-0.24.0-tp8-pp1-adp1-mtp1-ep8,SILICON,context,warm,IMPROVEMENT,0,4,9.375,9.292,-0.08300000000000018,0.9911466666666666,
+deepseek-v3.2-b200_sxm-vllm-0.24.0-tp8-pp1-adp1-mtp1-ep8/silicon/generation/bs1-isl1024-prefix0,deepseek-v3.2-b200_sxm-vllm-0.24.0-tp8-pp1-adp1-mtp1-ep8,SILICON,generation,cold,UNSTABLE,1,4,25.416,24.542,-0.8739999999999988,0.9656122127793516,
+deepseek-v3.2-b200_sxm-vllm-0.24.0-tp8-pp1-adp1-mtp1-ep8/silicon/generation/bs1-isl1024-prefix0,deepseek-v3.2-b200_sxm-vllm-0.24.0-tp8-pp1-adp1-mtp1-ep8,SILICON,generation,warm,OK,0,4,17.583,17.792,0.20900000000000318,1.0118864812603083,
+deepseek-v3.2-b200_sxm-vllm-0.24.0-tp8-pp1-adp1-mtp1-ep8/silicon/generation/bs128-isl1024-prefix0,deepseek-v3.2-b200_sxm-vllm-0.24.0-tp8-pp1-adp1-mtp1-ep8,SILICON,generation,cold,IMPROVEMENT,0,4,32.708,27.875,-4.832999999999998,0.8522379845909258,
+deepseek-v3.2-b200_sxm-vllm-0.24.0-tp8-pp1-adp1-mtp1-ep8/silicon/generation/bs128-isl1024-prefix0,deepseek-v3.2-b200_sxm-vllm-0.24.0-tp8-pp1-adp1-mtp1-ep8,SILICON,generation,warm,IMPROVEMENT,0,4,17.708,17.6455,-0.0625,0.9964705217980574,

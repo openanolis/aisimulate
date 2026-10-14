@@ -1,0 +1,43 @@
+{
+  "baseline": {
+    "sha": "4a934b0756c28b53b42027b955c23148ee1f738c",
+    "runtime_sha256": "441d41a8b3336d8547e7ef6b4af7fa72eb426ff6d33ea22b43f28eea920870f3",
+    "profile": "release",
+    "features": [
+      "extension-module"
+    ],
+    "rustflags": [
+      "-C link-arg=-undefined",
+      "-C link-arg=dynamic_lookup"
+    ]
+  },
+  "candidate": {
+    "base_sha": "4a934b0756c28b53b42027b955c23148ee1f738c",
+    "status": "uncommitted working tree; no commit created",
+    "source_manifest_sha256": "b7a8cbf4f3e9aa1dfc30a97da75222f934806011b043a44af676c10530c8e4ec",
+    "runtime_sha256": "ce25a2563d5a7aa7d8303edc534887c25159a37b76ffcca75bd42b7259575055",
+    "build_profile": "release",
+    "cargo_features": [
+      "extension-module"
+    ],
+    "link_flags": [
+      "-C link-arg=-undefined",
+      "-C link-arg=dynamic_lookup"
+    ],
+    "post_build_edits": "Rust cfg(test) assertions and Python AFD pool composition now preserve actual routed op precision/distribution. Native binary unchanged. New golden, prepared-pool and scaling campaigns were rerun. Legacy timing/forward-gate workloads do not use selective pool composition."
+  },
+  "rustc": "rustc 1.99.0 (b940084d7 2026-09-28)",
+  "cargo": "cargo 1.99.0 (5f94df478 2026-08-27)",
+  "python": "3.13.16 (main, Oct  9 2026, 15:11:24) [Clang 22.1.3 ]",
+  "host": "macOS-15.8-arm64-arm-64bit-Mach-O",
+  "uv_lock_sha256": "27912793e92d99436659ee30751e6f255dd43edd12f33f6703a5d48ee99e4b0d",
+  "data": {
+    "policy": "checked-in parquet + existing declared reuse, no perf data edits",
+    "baseline_repository_sha": "4a934b0756c28b53b42027b955c23148ee1f738c"
+  },
+  "limitations": [
+    "macOS CPU affinity unavailable",
+    "silicon and existing analytical/fallback sources are not real AFD serving measurements",
+    "existing HF metadata tests for Kimi-K2-Instruct and Mixtral require unavailable network metadata; the baseline has the same failures"
+  ]
+}

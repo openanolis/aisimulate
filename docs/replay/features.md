@@ -30,7 +30,7 @@ is a separate [performance-model question](../perf-model/support-matrix.md).
 | Native telemetry observer | Rust Replayer | Settled virtual-time samples | Engine Python JSON runner rejects telemetry capture; consumer stacks have separate adapters |
 | Detailed native artifacts | RoundRobin Replayer | Fixed single aggregated worker with attention DP1 | No multiworker/scaling/P/D or shared G2 artifact claim; normal reports have broader scope |
 | Router and Planner | Optional Dynamo stack | Consumer-supported topologies/workloads | Separate installation, configuration ABI and downstream qualification |
-| Analytical AFD | vLLM, SGLang, TensorRT-LLM model paths | `afd` or `afd+pd`; fixed-length synthetic requests | No traces, random lengths, KV-relative load or native deployment renderer |
+| AFD pipeline timing with continuous replay | SGLang | Aggregated AFD or P/D with AFD on either or both roles; synthetic, trace and prefix-cached traffic | No KV-relative load, encoder composition or native deployment renderer |
 | Analytical EPD | Offline engine analytical overlay | Encoder + aggregate or P/D language workers | Fixed synthetic lengths/images/concurrency; default op-level timing; aggregate means only, no adapters/per-request capture |
 
 ## Validation and evidence

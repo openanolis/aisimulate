@@ -1,0 +1,42 @@
+engine:
+  backend: sglang
+  backend_version: 0.5.14
+  context_length: 2048
+  hardware: h200_sxm
+  mode: aggregated
+  model: deepseek-ai/DeepSeek-V3.2
+  workers:
+    aggregated:
+      afd:
+        a_batch_size: 4
+        num_microbatches: 2
+        pipeline_layout: two_stage
+        tp_a:
+          choices:
+          - 1
+          - 2
+          - 4
+      type: afd
+evaluation:
+  sla:
+    itl_ms: 30
+    ttft_ms: 800
+optimization:
+  constraints:
+    max_candidate_gpus: 16
+optimizer:
+  algorithm: random
+  candidate_timeout_seconds: 60.0
+  max_trials: 3
+  parallelism: 1
+  seed: 17
+traffic:
+  load:
+    concurrency: 4
+    type: concurrency
+  source:
+    input_tokens: 128
+    output_tokens: 8
+    type: synthetic
+  stop:
+    requests: 4

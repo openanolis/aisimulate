@@ -1,0 +1,849 @@
+{
+  "binary_sha256": {
+    "baseline": "b024f60ccdda0c1a1fc2943edc41051903bbc05b74831ec41c54eddfbd602b43",
+    "candidate": "859de4317fc4bd98da82085c0ceebfa08d625d3c87a71545969d18c9e2c8b2de"
+  },
+  "cases": {
+    "deepseek_v32_tp2": {
+      "baseline": [
+        {
+          "binary_sha256": "b024f60ccdda0c1a1fc2943edc41051903bbc05b74831ec41c54eddfbd602b43",
+          "counts": {
+            "completed_requests": 4.0,
+            "total_input_tokens": 512.0,
+            "total_output_tokens": 32.0
+          },
+          "report_sha256": "8ba4f85361d6d61ff486095af2e3e83195abefb4ef9767748cc73abf44e9c74c"
+        },
+        {
+          "binary_sha256": "b024f60ccdda0c1a1fc2943edc41051903bbc05b74831ec41c54eddfbd602b43",
+          "counts": {
+            "completed_requests": 4.0,
+            "total_input_tokens": 512.0,
+            "total_output_tokens": 32.0
+          },
+          "report_sha256": "8ba4f85361d6d61ff486095af2e3e83195abefb4ef9767748cc73abf44e9c74c"
+        }
+      ],
+      "candidate": [
+        {
+          "binary_sha256": "859de4317fc4bd98da82085c0ceebfa08d625d3c87a71545969d18c9e2c8b2de",
+          "counts": {
+            "completed_requests": 4.0,
+            "total_input_tokens": 512.0,
+            "total_output_tokens": 32.0
+          },
+          "report_sha256": "bd2d2d0ae4e3c545df9dd7963e407c500c58d4dc3f63e31625887d2e3d387b94"
+        },
+        {
+          "binary_sha256": "859de4317fc4bd98da82085c0ceebfa08d625d3c87a71545969d18c9e2c8b2de",
+          "counts": {
+            "completed_requests": 4.0,
+            "total_input_tokens": 512.0,
+            "total_output_tokens": 32.0
+          },
+          "report_sha256": "bd2d2d0ae4e3c545df9dd7963e407c500c58d4dc3f63e31625887d2e3d387b94"
+        }
+      ]
+    },
+    "deepseek_v32_tp4_trace": {
+      "baseline": [
+        {
+          "binary_sha256": "b024f60ccdda0c1a1fc2943edc41051903bbc05b74831ec41c54eddfbd602b43",
+          "counts": {
+            "completed_requests": 4.0,
+            "total_input_tokens": 576.0,
+            "total_output_tokens": 34.0
+          },
+          "report_sha256": "a34394e97d34075fc491fe49931623c80725fa07f7665b85788b806969a88646"
+        },
+        {
+          "binary_sha256": "b024f60ccdda0c1a1fc2943edc41051903bbc05b74831ec41c54eddfbd602b43",
+          "counts": {
+            "completed_requests": 4.0,
+            "total_input_tokens": 576.0,
+            "total_output_tokens": 34.0
+          },
+          "report_sha256": "a34394e97d34075fc491fe49931623c80725fa07f7665b85788b806969a88646"
+        }
+      ],
+      "candidate": [
+        {
+          "binary_sha256": "859de4317fc4bd98da82085c0ceebfa08d625d3c87a71545969d18c9e2c8b2de",
+          "counts": {
+            "completed_requests": 4.0,
+            "total_input_tokens": 576.0,
+            "total_output_tokens": 34.0
+          },
+          "report_sha256": "a34394e97d34075fc491fe49931623c80725fa07f7665b85788b806969a88646"
+        },
+        {
+          "binary_sha256": "859de4317fc4bd98da82085c0ceebfa08d625d3c87a71545969d18c9e2c8b2de",
+          "counts": {
+            "completed_requests": 4.0,
+            "total_input_tokens": 576.0,
+            "total_output_tokens": 34.0
+          },
+          "report_sha256": "a34394e97d34075fc491fe49931623c80725fa07f7665b85788b806969a88646"
+        }
+      ]
+    },
+    "deepseek_v3_tp1": {
+      "baseline": [
+        {
+          "binary_sha256": "b024f60ccdda0c1a1fc2943edc41051903bbc05b74831ec41c54eddfbd602b43",
+          "counts": {
+            "completed_requests": 4.0,
+            "total_input_tokens": 512.0,
+            "total_output_tokens": 32.0
+          },
+          "report_sha256": "dfe80dd4d210566579db7c6cfa2a7b07d5ba34935761d9dad71f30f2fc5ce2c7"
+        },
+        {
+          "binary_sha256": "b024f60ccdda0c1a1fc2943edc41051903bbc05b74831ec41c54eddfbd602b43",
+          "counts": {
+            "completed_requests": 4.0,
+            "total_input_tokens": 512.0,
+            "total_output_tokens": 32.0
+          },
+          "report_sha256": "dfe80dd4d210566579db7c6cfa2a7b07d5ba34935761d9dad71f30f2fc5ce2c7"
+        }
+      ],
+      "candidate": [
+        {
+          "binary_sha256": "859de4317fc4bd98da82085c0ceebfa08d625d3c87a71545969d18c9e2c8b2de",
+          "counts": {
+            "completed_requests": 4.0,
+            "total_input_tokens": 512.0,
+            "total_output_tokens": 32.0
+          },
+          "report_sha256": "ab33a247bfddece58d4f6a8bbabd6ac6711b4d153a5b01d5bd00c4ef0202daa5"
+        },
+        {
+          "binary_sha256": "859de4317fc4bd98da82085c0ceebfa08d625d3c87a71545969d18c9e2c8b2de",
+          "counts": {
+            "completed_requests": 4.0,
+            "total_input_tokens": 512.0,
+            "total_output_tokens": 32.0
+          },
+          "report_sha256": "ab33a247bfddece58d4f6a8bbabd6ac6711b4d153a5b01d5bd00c4ef0202daa5"
+        }
+      ]
+    },
+    "mimo_tp2": {
+      "baseline": [
+        {
+          "binary_sha256": "b024f60ccdda0c1a1fc2943edc41051903bbc05b74831ec41c54eddfbd602b43",
+          "counts": {
+            "completed_requests": 4.0,
+            "total_input_tokens": 512.0,
+            "total_output_tokens": 32.0
+          },
+          "report_sha256": "ad08eab2eff9527479536cfe512fdf46c5a4e3c70f68e11ea3ce19a7a3c473ec"
+        },
+        {
+          "binary_sha256": "b024f60ccdda0c1a1fc2943edc41051903bbc05b74831ec41c54eddfbd602b43",
+          "counts": {
+            "completed_requests": 4.0,
+            "total_input_tokens": 512.0,
+            "total_output_tokens": 32.0
+          },
+          "report_sha256": "ad08eab2eff9527479536cfe512fdf46c5a4e3c70f68e11ea3ce19a7a3c473ec"
+        }
+      ],
+      "candidate": [
+        {
+          "binary_sha256": "859de4317fc4bd98da82085c0ceebfa08d625d3c87a71545969d18c9e2c8b2de",
+          "counts": {
+            "completed_requests": 4.0,
+            "total_input_tokens": 512.0,
+            "total_output_tokens": 32.0
+          },
+          "report_sha256": "f23a4e125cf2089fbb41bb3f334596833e2d51548353ff9459b3d995832d9827"
+        },
+        {
+          "binary_sha256": "859de4317fc4bd98da82085c0ceebfa08d625d3c87a71545969d18c9e2c8b2de",
+          "counts": {
+            "completed_requests": 4.0,
+            "total_input_tokens": 512.0,
+            "total_output_tokens": 32.0
+          },
+          "report_sha256": "f23a4e125cf2089fbb41bb3f334596833e2d51548353ff9459b3d995832d9827"
+        }
+      ]
+    },
+    "mimo_tp4_trace": {
+      "baseline": [
+        {
+          "binary_sha256": "b024f60ccdda0c1a1fc2943edc41051903bbc05b74831ec41c54eddfbd602b43",
+          "counts": {
+            "completed_requests": 4.0,
+            "total_input_tokens": 576.0,
+            "total_output_tokens": 34.0
+          },
+          "report_sha256": "24827b688e9b1723746a72687051e4646334c8728d9018c1c5bc9ab0212494e5"
+        },
+        {
+          "binary_sha256": "b024f60ccdda0c1a1fc2943edc41051903bbc05b74831ec41c54eddfbd602b43",
+          "counts": {
+            "completed_requests": 4.0,
+            "total_input_tokens": 576.0,
+            "total_output_tokens": 34.0
+          },
+          "report_sha256": "24827b688e9b1723746a72687051e4646334c8728d9018c1c5bc9ab0212494e5"
+        }
+      ],
+      "candidate": [
+        {
+          "binary_sha256": "859de4317fc4bd98da82085c0ceebfa08d625d3c87a71545969d18c9e2c8b2de",
+          "counts": {
+            "completed_requests": 4.0,
+            "total_input_tokens": 576.0,
+            "total_output_tokens": 34.0
+          },
+          "report_sha256": "24827b688e9b1723746a72687051e4646334c8728d9018c1c5bc9ab0212494e5"
+        },
+        {
+          "binary_sha256": "859de4317fc4bd98da82085c0ceebfa08d625d3c87a71545969d18c9e2c8b2de",
+          "counts": {
+            "completed_requests": 4.0,
+            "total_input_tokens": 576.0,
+            "total_output_tokens": 34.0
+          },
+          "report_sha256": "24827b688e9b1723746a72687051e4646334c8728d9018c1c5bc9ab0212494e5"
+        }
+      ]
+    },
+    "qwen3-30b-a3b-h200-sglang-chunked-prefill": {
+      "baseline": [
+        {
+          "binary_sha256": "b024f60ccdda0c1a1fc2943edc41051903bbc05b74831ec41c54eddfbd602b43",
+          "counts": {
+            "completed_requests": 32.0,
+            "total_input_tokens": 32768.0,
+            "total_output_tokens": 4096.0
+          },
+          "report_sha256": "b21f0cf72a848ca06ced2b1758401bc7864e557ca6788302541f07fbabc2d2c2"
+        },
+        {
+          "binary_sha256": "b024f60ccdda0c1a1fc2943edc41051903bbc05b74831ec41c54eddfbd602b43",
+          "counts": {
+            "completed_requests": 32.0,
+            "total_input_tokens": 32768.0,
+            "total_output_tokens": 4096.0
+          },
+          "report_sha256": "b21f0cf72a848ca06ced2b1758401bc7864e557ca6788302541f07fbabc2d2c2"
+        }
+      ],
+      "candidate": [
+        {
+          "binary_sha256": "859de4317fc4bd98da82085c0ceebfa08d625d3c87a71545969d18c9e2c8b2de",
+          "counts": {
+            "completed_requests": 32.0,
+            "total_input_tokens": 32768.0,
+            "total_output_tokens": 4096.0
+          },
+          "report_sha256": "175a5fe7afbba3396c66335b23bcd9d93de576230cc24dc92c6df8ae9cb74305"
+        },
+        {
+          "binary_sha256": "859de4317fc4bd98da82085c0ceebfa08d625d3c87a71545969d18c9e2c8b2de",
+          "counts": {
+            "completed_requests": 32.0,
+            "total_input_tokens": 32768.0,
+            "total_output_tokens": 4096.0
+          },
+          "report_sha256": "175a5fe7afbba3396c66335b23bcd9d93de576230cc24dc92c6df8ae9cb74305"
+        }
+      ]
+    },
+    "qwen3-30b-a3b-h200-sglang-pd-decode": {
+      "baseline": [
+        {
+          "binary_sha256": "b024f60ccdda0c1a1fc2943edc41051903bbc05b74831ec41c54eddfbd602b43",
+          "counts": {
+            "completed_requests": 32.0,
+            "total_input_tokens": 32768.0,
+            "total_output_tokens": 4096.0
+          },
+          "report_sha256": "17743abfe49c0b0416376776e1e8a4d8b1c198b1effef1bd0ed7c926b5971fce"
+        },
+        {
+          "binary_sha256": "b024f60ccdda0c1a1fc2943edc41051903bbc05b74831ec41c54eddfbd602b43",
+          "counts": {
+            "completed_requests": 32.0,
+            "total_input_tokens": 32768.0,
+            "total_output_tokens": 4096.0
+          },
+          "report_sha256": "17743abfe49c0b0416376776e1e8a4d8b1c198b1effef1bd0ed7c926b5971fce"
+        }
+      ],
+      "candidate": [
+        {
+          "binary_sha256": "859de4317fc4bd98da82085c0ceebfa08d625d3c87a71545969d18c9e2c8b2de",
+          "counts": {
+            "completed_requests": 32.0,
+            "total_input_tokens": 32768.0,
+            "total_output_tokens": 4096.0
+          },
+          "report_sha256": "87c1857c0d0c2055f8d6d1c486001bd43a7bf5c61132ae6bba05b1deff52e265"
+        },
+        {
+          "binary_sha256": "859de4317fc4bd98da82085c0ceebfa08d625d3c87a71545969d18c9e2c8b2de",
+          "counts": {
+            "completed_requests": 32.0,
+            "total_input_tokens": 32768.0,
+            "total_output_tokens": 4096.0
+          },
+          "report_sha256": "87c1857c0d0c2055f8d6d1c486001bd43a7bf5c61132ae6bba05b1deff52e265"
+        }
+      ]
+    },
+    "qwen3-30b-a3b-h200-sglang-pd-prefill": {
+      "baseline": [
+        {
+          "binary_sha256": "b024f60ccdda0c1a1fc2943edc41051903bbc05b74831ec41c54eddfbd602b43",
+          "counts": {
+            "completed_requests": 32.0,
+            "total_input_tokens": 32768.0,
+            "total_output_tokens": 4096.0
+          },
+          "report_sha256": "1499a730b7c0b693972348631587b1d571168e707f02a0811462e01f21be7cc9"
+        },
+        {
+          "binary_sha256": "b024f60ccdda0c1a1fc2943edc41051903bbc05b74831ec41c54eddfbd602b43",
+          "counts": {
+            "completed_requests": 32.0,
+            "total_input_tokens": 32768.0,
+            "total_output_tokens": 4096.0
+          },
+          "report_sha256": "1499a730b7c0b693972348631587b1d571168e707f02a0811462e01f21be7cc9"
+        }
+      ],
+      "candidate": [
+        {
+          "binary_sha256": "859de4317fc4bd98da82085c0ceebfa08d625d3c87a71545969d18c9e2c8b2de",
+          "counts": {
+            "completed_requests": 32.0,
+            "total_input_tokens": 32768.0,
+            "total_output_tokens": 4096.0
+          },
+          "report_sha256": "cbb80bc07fe285d9a69037f449d4c80d58acb6632389b91f507900188e83f858"
+        },
+        {
+          "binary_sha256": "859de4317fc4bd98da82085c0ceebfa08d625d3c87a71545969d18c9e2c8b2de",
+          "counts": {
+            "completed_requests": 32.0,
+            "total_input_tokens": 32768.0,
+            "total_output_tokens": 4096.0
+          },
+          "report_sha256": "cbb80bc07fe285d9a69037f449d4c80d58acb6632389b91f507900188e83f858"
+        }
+      ]
+    },
+    "qwen3-30b-a3b-h200-sglang-pure-both": {
+      "baseline": [
+        {
+          "binary_sha256": "b024f60ccdda0c1a1fc2943edc41051903bbc05b74831ec41c54eddfbd602b43",
+          "counts": {
+            "completed_requests": 32.0,
+            "total_input_tokens": 32768.0,
+            "total_output_tokens": 4096.0
+          },
+          "report_sha256": "33ef8ba75921b4de5336f4730a46344919f4e31662a5cb67b13e61a4e34e3006"
+        },
+        {
+          "binary_sha256": "b024f60ccdda0c1a1fc2943edc41051903bbc05b74831ec41c54eddfbd602b43",
+          "counts": {
+            "completed_requests": 32.0,
+            "total_input_tokens": 32768.0,
+            "total_output_tokens": 4096.0
+          },
+          "report_sha256": "33ef8ba75921b4de5336f4730a46344919f4e31662a5cb67b13e61a4e34e3006"
+        }
+      ],
+      "candidate": [
+        {
+          "binary_sha256": "859de4317fc4bd98da82085c0ceebfa08d625d3c87a71545969d18c9e2c8b2de",
+          "counts": {
+            "completed_requests": 32.0,
+            "total_input_tokens": 32768.0,
+            "total_output_tokens": 4096.0
+          },
+          "report_sha256": "aaff47d5068b21e07b3a060406f8f24e5cace6d51b76f16f3774aef4cd6dde2c"
+        },
+        {
+          "binary_sha256": "859de4317fc4bd98da82085c0ceebfa08d625d3c87a71545969d18c9e2c8b2de",
+          "counts": {
+            "completed_requests": 32.0,
+            "total_input_tokens": 32768.0,
+            "total_output_tokens": 4096.0
+          },
+          "report_sha256": "aaff47d5068b21e07b3a060406f8f24e5cace6d51b76f16f3774aef4cd6dde2c"
+        }
+      ]
+    },
+    "qwen3-30b-a3b-h200-sglang-pure-both-saturated": {
+      "baseline": [
+        {
+          "binary_sha256": "b024f60ccdda0c1a1fc2943edc41051903bbc05b74831ec41c54eddfbd602b43",
+          "counts": {
+            "completed_requests": 64.0,
+            "total_input_tokens": 65536.0,
+            "total_output_tokens": 8192.0
+          },
+          "report_sha256": "822239e4978acf4acb15cb9c13b83c14542e9cda0b337bcc105092f114d86a63"
+        },
+        {
+          "binary_sha256": "b024f60ccdda0c1a1fc2943edc41051903bbc05b74831ec41c54eddfbd602b43",
+          "counts": {
+            "completed_requests": 64.0,
+            "total_input_tokens": 65536.0,
+            "total_output_tokens": 8192.0
+          },
+          "report_sha256": "822239e4978acf4acb15cb9c13b83c14542e9cda0b337bcc105092f114d86a63"
+        }
+      ],
+      "candidate": [
+        {
+          "binary_sha256": "859de4317fc4bd98da82085c0ceebfa08d625d3c87a71545969d18c9e2c8b2de",
+          "counts": {
+            "completed_requests": 64.0,
+            "total_input_tokens": 65536.0,
+            "total_output_tokens": 8192.0
+          },
+          "report_sha256": "be14a062835e972ac088280df536aed19a9989aa13edd41b62981123fa8a9999"
+        },
+        {
+          "binary_sha256": "859de4317fc4bd98da82085c0ceebfa08d625d3c87a71545969d18c9e2c8b2de",
+          "counts": {
+            "completed_requests": 64.0,
+            "total_input_tokens": 65536.0,
+            "total_output_tokens": 8192.0
+          },
+          "report_sha256": "be14a062835e972ac088280df536aed19a9989aa13edd41b62981123fa8a9999"
+        }
+      ]
+    },
+    "qwen3-30b-a3b-h200-sglang-two-stage": {
+      "baseline": [
+        {
+          "binary_sha256": "b024f60ccdda0c1a1fc2943edc41051903bbc05b74831ec41c54eddfbd602b43",
+          "counts": {
+            "completed_requests": 32.0,
+            "total_input_tokens": 32768.0,
+            "total_output_tokens": 4096.0
+          },
+          "report_sha256": "8a25b66f10150d03b9e6506febc3bffd250b5a9fc39f5a5ef56c67f8f3cff69b"
+        },
+        {
+          "binary_sha256": "b024f60ccdda0c1a1fc2943edc41051903bbc05b74831ec41c54eddfbd602b43",
+          "counts": {
+            "completed_requests": 32.0,
+            "total_input_tokens": 32768.0,
+            "total_output_tokens": 4096.0
+          },
+          "report_sha256": "8a25b66f10150d03b9e6506febc3bffd250b5a9fc39f5a5ef56c67f8f3cff69b"
+        }
+      ],
+      "candidate": [
+        {
+          "binary_sha256": "859de4317fc4bd98da82085c0ceebfa08d625d3c87a71545969d18c9e2c8b2de",
+          "counts": {
+            "completed_requests": 32.0,
+            "total_input_tokens": 32768.0,
+            "total_output_tokens": 4096.0
+          },
+          "report_sha256": "ea55c0ac83d29efaf64d3f0fe85c24bebb18d6fb23ea6142ec09780077ad83b3"
+        },
+        {
+          "binary_sha256": "859de4317fc4bd98da82085c0ceebfa08d625d3c87a71545969d18c9e2c8b2de",
+          "counts": {
+            "completed_requests": 32.0,
+            "total_input_tokens": 32768.0,
+            "total_output_tokens": 4096.0
+          },
+          "report_sha256": "ea55c0ac83d29efaf64d3f0fe85c24bebb18d6fb23ea6142ec09780077ad83b3"
+        }
+      ]
+    },
+    "qwen_tp1_mtp": {
+      "baseline": [
+        {
+          "binary_sha256": "b024f60ccdda0c1a1fc2943edc41051903bbc05b74831ec41c54eddfbd602b43",
+          "counts": {
+            "completed_requests": 4.0,
+            "total_input_tokens": 512.0,
+            "total_output_tokens": 32.0
+          },
+          "report_sha256": "97e12c45ee55769c4b1c4781e290e75e6eca3ad510bcb18360ef48aeb6b35428"
+        },
+        {
+          "binary_sha256": "b024f60ccdda0c1a1fc2943edc41051903bbc05b74831ec41c54eddfbd602b43",
+          "counts": {
+            "completed_requests": 4.0,
+            "total_input_tokens": 512.0,
+            "total_output_tokens": 32.0
+          },
+          "report_sha256": "97e12c45ee55769c4b1c4781e290e75e6eca3ad510bcb18360ef48aeb6b35428"
+        }
+      ],
+      "candidate": [
+        {
+          "binary_sha256": "859de4317fc4bd98da82085c0ceebfa08d625d3c87a71545969d18c9e2c8b2de",
+          "counts": {
+            "completed_requests": 4.0,
+            "total_input_tokens": 512.0,
+            "total_output_tokens": 32.0
+          },
+          "report_sha256": "c94ee1f5bd7d2efc03bbc40c9ec08fab8e0bd8399edc9b9e897c74c94e77c038"
+        },
+        {
+          "binary_sha256": "859de4317fc4bd98da82085c0ceebfa08d625d3c87a71545969d18c9e2c8b2de",
+          "counts": {
+            "completed_requests": 4.0,
+            "total_input_tokens": 512.0,
+            "total_output_tokens": 32.0
+          },
+          "report_sha256": "c94ee1f5bd7d2efc03bbc40c9ec08fab8e0bd8399edc9b9e897c74c94e77c038"
+        }
+      ]
+    },
+    "qwen_tp2": {
+      "baseline": [
+        {
+          "binary_sha256": "b024f60ccdda0c1a1fc2943edc41051903bbc05b74831ec41c54eddfbd602b43",
+          "counts": {
+            "completed_requests": 4.0,
+            "total_input_tokens": 512.0,
+            "total_output_tokens": 32.0
+          },
+          "report_sha256": "b370282fc6e9ba870b29a3933069ed07634bc9de3f4dd36e6f2b39ec68813a12"
+        },
+        {
+          "binary_sha256": "b024f60ccdda0c1a1fc2943edc41051903bbc05b74831ec41c54eddfbd602b43",
+          "counts": {
+            "completed_requests": 4.0,
+            "total_input_tokens": 512.0,
+            "total_output_tokens": 32.0
+          },
+          "report_sha256": "b370282fc6e9ba870b29a3933069ed07634bc9de3f4dd36e6f2b39ec68813a12"
+        }
+      ],
+      "candidate": [
+        {
+          "binary_sha256": "859de4317fc4bd98da82085c0ceebfa08d625d3c87a71545969d18c9e2c8b2de",
+          "counts": {
+            "completed_requests": 4.0,
+            "total_input_tokens": 512.0,
+            "total_output_tokens": 32.0
+          },
+          "report_sha256": "4243200bb06da45dd90a5834c59e49f819013101b1133d06b81e5652c8d3c7b1"
+        },
+        {
+          "binary_sha256": "859de4317fc4bd98da82085c0ceebfa08d625d3c87a71545969d18c9e2c8b2de",
+          "counts": {
+            "completed_requests": 4.0,
+            "total_input_tokens": 512.0,
+            "total_output_tokens": 32.0
+          },
+          "report_sha256": "4243200bb06da45dd90a5834c59e49f819013101b1133d06b81e5652c8d3c7b1"
+        }
+      ]
+    },
+    "qwen_tp2_cached_chunked": {
+      "baseline": [
+        {
+          "binary_sha256": "b024f60ccdda0c1a1fc2943edc41051903bbc05b74831ec41c54eddfbd602b43",
+          "counts": {
+            "completed_requests": 4.0,
+            "total_input_tokens": 2048.0,
+            "total_output_tokens": 32.0
+          },
+          "report_sha256": "a4fdec3a4014497eca03682a0ce7e68dca6891c5cb1049806b9c089b1d386ae6"
+        },
+        {
+          "binary_sha256": "b024f60ccdda0c1a1fc2943edc41051903bbc05b74831ec41c54eddfbd602b43",
+          "counts": {
+            "completed_requests": 4.0,
+            "total_input_tokens": 2048.0,
+            "total_output_tokens": 32.0
+          },
+          "report_sha256": "a4fdec3a4014497eca03682a0ce7e68dca6891c5cb1049806b9c089b1d386ae6"
+        }
+      ],
+      "candidate": [
+        {
+          "binary_sha256": "859de4317fc4bd98da82085c0ceebfa08d625d3c87a71545969d18c9e2c8b2de",
+          "counts": {
+            "completed_requests": 4.0,
+            "total_input_tokens": 2048.0,
+            "total_output_tokens": 32.0
+          },
+          "report_sha256": "1b80a3510931b10b6c3dbf187e060397f0482a5e555c7b164d75f1ac5faa63d3"
+        },
+        {
+          "binary_sha256": "859de4317fc4bd98da82085c0ceebfa08d625d3c87a71545969d18c9e2c8b2de",
+          "counts": {
+            "completed_requests": 4.0,
+            "total_input_tokens": 2048.0,
+            "total_output_tokens": 32.0
+          },
+          "report_sha256": "1b80a3510931b10b6c3dbf187e060397f0482a5e555c7b164d75f1ac5faa63d3"
+        }
+      ]
+    },
+    "qwen_tp2_hetero": {
+      "baseline": [
+        {
+          "binary_sha256": "b024f60ccdda0c1a1fc2943edc41051903bbc05b74831ec41c54eddfbd602b43",
+          "counts": {
+            "completed_requests": 4.0,
+            "total_input_tokens": 512.0,
+            "total_output_tokens": 32.0
+          },
+          "report_sha256": "60a2b339f52eceabd2b21a405df300e5864725c276ee8312e233c40338baec08"
+        },
+        {
+          "binary_sha256": "b024f60ccdda0c1a1fc2943edc41051903bbc05b74831ec41c54eddfbd602b43",
+          "counts": {
+            "completed_requests": 4.0,
+            "total_input_tokens": 512.0,
+            "total_output_tokens": 32.0
+          },
+          "report_sha256": "60a2b339f52eceabd2b21a405df300e5864725c276ee8312e233c40338baec08"
+        }
+      ],
+      "candidate": [
+        {
+          "binary_sha256": "859de4317fc4bd98da82085c0ceebfa08d625d3c87a71545969d18c9e2c8b2de",
+          "counts": {
+            "completed_requests": 4.0,
+            "total_input_tokens": 512.0,
+            "total_output_tokens": 32.0
+          },
+          "report_sha256": "2a2f2b2e9bb927c3f9e35205f8703108f9d241185d4a3c4e02bddd9b4fbe463b"
+        },
+        {
+          "binary_sha256": "859de4317fc4bd98da82085c0ceebfa08d625d3c87a71545969d18c9e2c8b2de",
+          "counts": {
+            "completed_requests": 4.0,
+            "total_input_tokens": 512.0,
+            "total_output_tokens": 32.0
+          },
+          "report_sha256": "2a2f2b2e9bb927c3f9e35205f8703108f9d241185d4a3c4e02bddd9b4fbe463b"
+        }
+      ]
+    },
+    "qwen_tp2_mtp": {
+      "baseline": [
+        {
+          "binary_sha256": "b024f60ccdda0c1a1fc2943edc41051903bbc05b74831ec41c54eddfbd602b43",
+          "counts": {
+            "completed_requests": 4.0,
+            "total_input_tokens": 512.0,
+            "total_output_tokens": 32.0
+          },
+          "report_sha256": "b4386f002ce1b57a31c6aec0486e0de0d406dda9c85cbdd0ee781ba97cbc2d9c"
+        },
+        {
+          "binary_sha256": "b024f60ccdda0c1a1fc2943edc41051903bbc05b74831ec41c54eddfbd602b43",
+          "counts": {
+            "completed_requests": 4.0,
+            "total_input_tokens": 512.0,
+            "total_output_tokens": 32.0
+          },
+          "report_sha256": "b4386f002ce1b57a31c6aec0486e0de0d406dda9c85cbdd0ee781ba97cbc2d9c"
+        }
+      ],
+      "candidate": [
+        {
+          "binary_sha256": "859de4317fc4bd98da82085c0ceebfa08d625d3c87a71545969d18c9e2c8b2de",
+          "counts": {
+            "completed_requests": 4.0,
+            "total_input_tokens": 512.0,
+            "total_output_tokens": 32.0
+          },
+          "report_sha256": "00bd391e340d581c32728ef23ec2bec0a2241e0112ccfef6e5ca2df1d0fe1cb5"
+        },
+        {
+          "binary_sha256": "859de4317fc4bd98da82085c0ceebfa08d625d3c87a71545969d18c9e2c8b2de",
+          "counts": {
+            "completed_requests": 4.0,
+            "total_input_tokens": 512.0,
+            "total_output_tokens": 32.0
+          },
+          "report_sha256": "00bd391e340d581c32728ef23ec2bec0a2241e0112ccfef6e5ca2df1d0fe1cb5"
+        }
+      ]
+    },
+    "qwen_tp2_pd_decode": {
+      "baseline": [
+        {
+          "binary_sha256": "b024f60ccdda0c1a1fc2943edc41051903bbc05b74831ec41c54eddfbd602b43",
+          "counts": {
+            "completed_requests": 4.0,
+            "total_input_tokens": 512.0,
+            "total_output_tokens": 32.0
+          },
+          "report_sha256": "cbdf5b72ecf33039e24b83e01ec5b4d7abbbb7e3f28e077be0ecd282ce459ab7"
+        },
+        {
+          "binary_sha256": "b024f60ccdda0c1a1fc2943edc41051903bbc05b74831ec41c54eddfbd602b43",
+          "counts": {
+            "completed_requests": 4.0,
+            "total_input_tokens": 512.0,
+            "total_output_tokens": 32.0
+          },
+          "report_sha256": "cbdf5b72ecf33039e24b83e01ec5b4d7abbbb7e3f28e077be0ecd282ce459ab7"
+        }
+      ],
+      "candidate": [
+        {
+          "binary_sha256": "859de4317fc4bd98da82085c0ceebfa08d625d3c87a71545969d18c9e2c8b2de",
+          "counts": {
+            "completed_requests": 4.0,
+            "total_input_tokens": 512.0,
+            "total_output_tokens": 32.0
+          },
+          "report_sha256": "d7a261e90e83e7d1c86c7601f12b58e1837400ca519449b63368b24df1373700"
+        },
+        {
+          "binary_sha256": "859de4317fc4bd98da82085c0ceebfa08d625d3c87a71545969d18c9e2c8b2de",
+          "counts": {
+            "completed_requests": 4.0,
+            "total_input_tokens": 512.0,
+            "total_output_tokens": 32.0
+          },
+          "report_sha256": "d7a261e90e83e7d1c86c7601f12b58e1837400ca519449b63368b24df1373700"
+        }
+      ]
+    },
+    "qwen_tp2_pd_prefill": {
+      "baseline": [
+        {
+          "binary_sha256": "b024f60ccdda0c1a1fc2943edc41051903bbc05b74831ec41c54eddfbd602b43",
+          "counts": {
+            "completed_requests": 4.0,
+            "total_input_tokens": 512.0,
+            "total_output_tokens": 32.0
+          },
+          "report_sha256": "6dafc316512b733f60191cbf190cda0d0df4f4725a4567603d4be1038a0800cf"
+        },
+        {
+          "binary_sha256": "b024f60ccdda0c1a1fc2943edc41051903bbc05b74831ec41c54eddfbd602b43",
+          "counts": {
+            "completed_requests": 4.0,
+            "total_input_tokens": 512.0,
+            "total_output_tokens": 32.0
+          },
+          "report_sha256": "6dafc316512b733f60191cbf190cda0d0df4f4725a4567603d4be1038a0800cf"
+        }
+      ],
+      "candidate": [
+        {
+          "binary_sha256": "859de4317fc4bd98da82085c0ceebfa08d625d3c87a71545969d18c9e2c8b2de",
+          "counts": {
+            "completed_requests": 4.0,
+            "total_input_tokens": 512.0,
+            "total_output_tokens": 32.0
+          },
+          "report_sha256": "16890fcef30bf574be42bfd1a2594a147e85e05de8dcc752be12255e07ecffb0"
+        },
+        {
+          "binary_sha256": "859de4317fc4bd98da82085c0ceebfa08d625d3c87a71545969d18c9e2c8b2de",
+          "counts": {
+            "completed_requests": 4.0,
+            "total_input_tokens": 512.0,
+            "total_output_tokens": 32.0
+          },
+          "report_sha256": "16890fcef30bf574be42bfd1a2594a147e85e05de8dcc752be12255e07ecffb0"
+        }
+      ]
+    },
+    "qwen_tp4": {
+      "baseline": [
+        {
+          "binary_sha256": "b024f60ccdda0c1a1fc2943edc41051903bbc05b74831ec41c54eddfbd602b43",
+          "counts": {
+            "completed_requests": 4.0,
+            "total_input_tokens": 512.0,
+            "total_output_tokens": 32.0
+          },
+          "report_sha256": "c6d8f69d0c971f8542c44f0e87dbb9212f092230f6735210894609676a00d35f"
+        },
+        {
+          "binary_sha256": "b024f60ccdda0c1a1fc2943edc41051903bbc05b74831ec41c54eddfbd602b43",
+          "counts": {
+            "completed_requests": 4.0,
+            "total_input_tokens": 512.0,
+            "total_output_tokens": 32.0
+          },
+          "report_sha256": "c6d8f69d0c971f8542c44f0e87dbb9212f092230f6735210894609676a00d35f"
+        }
+      ],
+      "candidate": [
+        {
+          "binary_sha256": "859de4317fc4bd98da82085c0ceebfa08d625d3c87a71545969d18c9e2c8b2de",
+          "counts": {
+            "completed_requests": 4.0,
+            "total_input_tokens": 512.0,
+            "total_output_tokens": 32.0
+          },
+          "report_sha256": "56fabafe8bde51bfd97b18b1708a7107955dca5ca081c630a0ecf4bfe792aa57"
+        },
+        {
+          "binary_sha256": "859de4317fc4bd98da82085c0ceebfa08d625d3c87a71545969d18c9e2c8b2de",
+          "counts": {
+            "completed_requests": 4.0,
+            "total_input_tokens": 512.0,
+            "total_output_tokens": 32.0
+          },
+          "report_sha256": "56fabafe8bde51bfd97b18b1708a7107955dca5ca081c630a0ecf4bfe792aa57"
+        }
+      ]
+    },
+    "qwen_tp8": {
+      "baseline": [
+        {
+          "binary_sha256": "b024f60ccdda0c1a1fc2943edc41051903bbc05b74831ec41c54eddfbd602b43",
+          "counts": {
+            "completed_requests": 4.0,
+            "total_input_tokens": 512.0,
+            "total_output_tokens": 32.0
+          },
+          "report_sha256": "2e9e515a85eff30286e6df7d6fc1b87ba6a070376a7e4b2023200a551146168c"
+        },
+        {
+          "binary_sha256": "b024f60ccdda0c1a1fc2943edc41051903bbc05b74831ec41c54eddfbd602b43",
+          "counts": {
+            "completed_requests": 4.0,
+            "total_input_tokens": 512.0,
+            "total_output_tokens": 32.0
+          },
+          "report_sha256": "2e9e515a85eff30286e6df7d6fc1b87ba6a070376a7e4b2023200a551146168c"
+        }
+      ],
+      "candidate": [
+        {
+          "binary_sha256": "859de4317fc4bd98da82085c0ceebfa08d625d3c87a71545969d18c9e2c8b2de",
+          "counts": {
+            "completed_requests": 4.0,
+            "total_input_tokens": 512.0,
+            "total_output_tokens": 32.0
+          },
+          "report_sha256": "03c5b43f87b8606ecbd46d41d3556c0f4863af7b9509eca240630ea3c31b55a6"
+        },
+        {
+          "binary_sha256": "859de4317fc4bd98da82085c0ceebfa08d625d3c87a71545969d18c9e2c8b2de",
+          "counts": {
+            "completed_requests": 4.0,
+            "total_input_tokens": 512.0,
+            "total_output_tokens": 32.0
+          },
+          "report_sha256": "03c5b43f87b8606ecbd46d41d3556c0f4863af7b9509eca240630ea3c31b55a6"
+        }
+      ]
+    }
+  },
+  "determinism": "canonical_v1"
+}

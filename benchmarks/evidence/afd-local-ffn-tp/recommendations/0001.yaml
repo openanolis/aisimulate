@@ -1,0 +1,56 @@
+traffic:
+  source:
+    type: synthetic
+    input_tokens: 128
+    output_tokens: 8
+    cached_prefix_tokens: 0
+  stop:
+    requests: 4
+  load:
+    type: concurrency
+    concurrency: 4
+    agentic_warmup: false
+engine:
+  nextn: 0
+  enable_eplb: false
+  database_mode: SILICON
+  estimation_mode: auto
+  fallback_policy: deny
+  estimator_config: {}
+  mode: aggregated
+  model: deepseek-ai/DeepSeek-V3.2
+  hardware: h200_sxm
+  backend: sglang
+  backend_version: 0.5.14
+  decoder_replay: false
+  context_length: 2048
+  workers:
+    aggregated:
+      type: afd
+      afd:
+        n_a_nodes: 1
+        n_f_nodes: 1
+        tp_a: 4
+        a_batch_size: 4
+        f_moe_ep_size: 8
+        num_microbatches: 2
+        pipeline_layout: two_stage
+        comm_overhead_factor: 1.0
+        routing_location: a
+        boundary_on_attn: true
+        a_system: h200_sxm
+        f_system: h200_sxm
+      startup_seconds: 0.0
+evaluation:
+  sla:
+    ttft_ms: 800.0
+    itl_ms: 30.0
+execution:
+  resources:
+    initialization_timeout_seconds: 60.0
+    shutdown_timeout_seconds: 5.0
+    memory_limit_gb: auto
+    cpu_limit: auto
+    reserve_memory_gb: 1.0
+    reserve_memory_fraction: 0.0
+    available_memory_fraction: 0.9

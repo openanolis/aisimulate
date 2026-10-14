@@ -1,0 +1,167 @@
+[
+  {
+    "hidden": 2048,
+    "tp": 2,
+    "logical_tokens": 4,
+    "old_elements": 1024,
+    "padded_elements": 2048,
+    "results": [
+      [
+        "old_all_gather",
+        0.01028,
+        0.0,
+        "silicon"
+      ],
+      [
+        "old_reduce_scatter",
+        0.01041,
+        0.0,
+        "silicon"
+      ],
+      [
+        "padded_all_gather",
+        0.011460000000000001,
+        0.0,
+        "silicon"
+      ],
+      [
+        "padded_reduce_scatter",
+        0.01053,
+        0.0,
+        "silicon"
+      ]
+    ]
+  },
+  {
+    "hidden": 2048,
+    "tp": 4,
+    "logical_tokens": 2,
+    "old_elements": 512,
+    "padded_elements": 2048,
+    "results": [
+      [
+        "old_all_gather",
+        0.010310000000000001,
+        0.0,
+        "silicon"
+      ],
+      [
+        "old_reduce_scatter",
+        0.011720000000000001,
+        0.0,
+        "silicon"
+      ],
+      [
+        "padded_all_gather",
+        0.011460000000000001,
+        0.0,
+        "silicon"
+      ],
+      [
+        "padded_reduce_scatter",
+        0.01053,
+        0.0,
+        "silicon"
+      ]
+    ]
+  },
+  {
+    "hidden": 2048,
+    "tp": 8,
+    "logical_tokens": 1,
+    "old_elements": 256,
+    "padded_elements": 2048,
+    "results": [
+      [
+        "old_all_gather",
+        0.01034,
+        0.0,
+        "silicon"
+      ],
+      [
+        "old_reduce_scatter",
+        0.01191,
+        0.0,
+        "silicon"
+      ],
+      [
+        "padded_all_gather",
+        0.011460000000000001,
+        0.0,
+        "silicon"
+      ],
+      [
+        "padded_reduce_scatter",
+        0.01053,
+        0.0,
+        "silicon"
+      ]
+    ]
+  },
+  {
+    "hidden": 7168,
+    "tp": 4,
+    "logical_tokens": 2,
+    "old_elements": 1792,
+    "padded_elements": 7168,
+    "results": [
+      [
+        "old_all_gather",
+        0.011165000000000001,
+        0.0,
+        "silicon"
+      ],
+      [
+        "old_reduce_scatter",
+        0.010499999999999999,
+        0.0,
+        "silicon"
+      ],
+      [
+        "padded_all_gather",
+        0.012947499999999999,
+        0.0,
+        "silicon"
+      ],
+      [
+        "padded_reduce_scatter",
+        0.0114775,
+        0.0,
+        "silicon"
+      ]
+    ]
+  },
+  {
+    "hidden": 4096,
+    "tp": 4,
+    "logical_tokens": 2,
+    "old_elements": 1024,
+    "padded_elements": 4096,
+    "results": [
+      [
+        "old_all_gather",
+        0.01028,
+        0.0,
+        "silicon"
+      ],
+      [
+        "old_reduce_scatter",
+        0.01041,
+        0.0,
+        "silicon"
+      ],
+      [
+        "padded_all_gather",
+        0.01177,
+        0.0,
+        "silicon"
+      ],
+      [
+        "padded_reduce_scatter",
+        0.012580000000000001,
+        0.0,
+        "silicon"
+      ]
+    ]
+  }
+]

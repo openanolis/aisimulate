@@ -1,0 +1,324 @@
+{
+  "host": {
+    "platform": "macOS-15.8-arm64-arm-64bit-Mach-O",
+    "machine": "arm64",
+    "python": "3.13.16 (main, Oct  9 2026, 15:11:24) [Clang 22.1.3 ]"
+  },
+  "baseline": {
+    "source": "/private/tmp/aisimulate-afd-baseline/source",
+    "runtime": "/private/tmp/aisimulate-afd-baseline/source/aisimulate/_runtime.abi3.so",
+    "runtime_sha256": "441d41a8b3336d8547e7ef6b4af7fa72eb426ff6d33ea22b43f28eea920870f3"
+  },
+  "candidate": {
+    "source": "/Users/phgh/code/aisimulate/python/aisimulate/src",
+    "runtime": "/Users/phgh/code/aisimulate/python/aisimulate/src/aisimulate/_runtime.abi3.so",
+    "runtime_sha256": "ce25a2563d5a7aa7d8303edc534887c25159a37b76ffcca75bd42b7259575055"
+  },
+  "scope": {
+    "cli_ms": "fresh CLI process, including startup, construction, replay and output",
+    "native_replay_ms": "Replayer::run_inner through collector finalization; excludes model construction and output"
+  },
+  "warmups_per_arm": 2,
+  "pairs": 8,
+  "rows": [
+    {
+      "name": "trace_two_stage",
+      "requests": 1024,
+      "microbatches": 2,
+      "layout": "two_stage",
+      "samples": [
+        {
+          "pair": 0,
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "baseline": {
+            "cli_ms": 2256.608541996684,
+            "native_replay_ms": 249.70075,
+            "completed_requests": 1024,
+            "total_input_tokens": 655232,
+            "total_output_tokens": 114672,
+            "simulated_duration_ms": 276939.2317889965
+          },
+          "candidate": {
+            "cli_ms": 2306.7106250091456,
+            "native_replay_ms": 268.083,
+            "completed_requests": 1024,
+            "total_input_tokens": 655232,
+            "total_output_tokens": 114672,
+            "simulated_duration_ms": 276939.2317889965
+          }
+        },
+        {
+          "pair": 1,
+          "order": [
+            "candidate",
+            "baseline"
+          ],
+          "candidate": {
+            "cli_ms": 2296.5093330130912,
+            "native_replay_ms": 262.156458,
+            "completed_requests": 1024,
+            "total_input_tokens": 655232,
+            "total_output_tokens": 114672,
+            "simulated_duration_ms": 276939.2317889965
+          },
+          "baseline": {
+            "cli_ms": 2294.2129579896573,
+            "native_replay_ms": 259.085125,
+            "completed_requests": 1024,
+            "total_input_tokens": 655232,
+            "total_output_tokens": 114672,
+            "simulated_duration_ms": 276939.2317889965
+          }
+        },
+        {
+          "pair": 2,
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "baseline": {
+            "cli_ms": 2333.289333007997,
+            "native_replay_ms": 251.052333,
+            "completed_requests": 1024,
+            "total_input_tokens": 655232,
+            "total_output_tokens": 114672,
+            "simulated_duration_ms": 276939.2317889965
+          },
+          "candidate": {
+            "cli_ms": 2319.1672910179477,
+            "native_replay_ms": 257.03912499999996,
+            "completed_requests": 1024,
+            "total_input_tokens": 655232,
+            "total_output_tokens": 114672,
+            "simulated_duration_ms": 276939.2317889965
+          }
+        },
+        {
+          "pair": 3,
+          "order": [
+            "candidate",
+            "baseline"
+          ],
+          "candidate": {
+            "cli_ms": 2304.5021669822745,
+            "native_replay_ms": 258.88908399999997,
+            "completed_requests": 1024,
+            "total_input_tokens": 655232,
+            "total_output_tokens": 114672,
+            "simulated_duration_ms": 276939.2317889965
+          },
+          "baseline": {
+            "cli_ms": 2314.8553330102004,
+            "native_replay_ms": 249.028583,
+            "completed_requests": 1024,
+            "total_input_tokens": 655232,
+            "total_output_tokens": 114672,
+            "simulated_duration_ms": 276939.2317889965
+          }
+        },
+        {
+          "pair": 4,
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "baseline": {
+            "cli_ms": 2314.718667010311,
+            "native_replay_ms": 271.233667,
+            "completed_requests": 1024,
+            "total_input_tokens": 655232,
+            "total_output_tokens": 114672,
+            "simulated_duration_ms": 276939.2317889965
+          },
+          "candidate": {
+            "cli_ms": 2373.7985829939134,
+            "native_replay_ms": 255.879125,
+            "completed_requests": 1024,
+            "total_input_tokens": 655232,
+            "total_output_tokens": 114672,
+            "simulated_duration_ms": 276939.2317889965
+          }
+        },
+        {
+          "pair": 5,
+          "order": [
+            "candidate",
+            "baseline"
+          ],
+          "candidate": {
+            "cli_ms": 2326.2609169760253,
+            "native_replay_ms": 250.91166599999997,
+            "completed_requests": 1024,
+            "total_input_tokens": 655232,
+            "total_output_tokens": 114672,
+            "simulated_duration_ms": 276939.2317889965
+          },
+          "baseline": {
+            "cli_ms": 2320.3018339991104,
+            "native_replay_ms": 248.16808400000002,
+            "completed_requests": 1024,
+            "total_input_tokens": 655232,
+            "total_output_tokens": 114672,
+            "simulated_duration_ms": 276939.2317889965
+          }
+        },
+        {
+          "pair": 6,
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "baseline": {
+            "cli_ms": 2311.6042500187177,
+            "native_replay_ms": 256.49841699999996,
+            "completed_requests": 1024,
+            "total_input_tokens": 655232,
+            "total_output_tokens": 114672,
+            "simulated_duration_ms": 276939.2317889965
+          },
+          "candidate": {
+            "cli_ms": 2360.2028749883175,
+            "native_replay_ms": 256.749417,
+            "completed_requests": 1024,
+            "total_input_tokens": 655232,
+            "total_output_tokens": 114672,
+            "simulated_duration_ms": 276939.2317889965
+          }
+        },
+        {
+          "pair": 7,
+          "order": [
+            "candidate",
+            "baseline"
+          ],
+          "candidate": {
+            "cli_ms": 2297.0023750094697,
+            "native_replay_ms": 260.411583,
+            "completed_requests": 1024,
+            "total_input_tokens": 655232,
+            "total_output_tokens": 114672,
+            "simulated_duration_ms": 276939.2317889965
+          },
+          "baseline": {
+            "cli_ms": 2318.505915987771,
+            "native_replay_ms": 255.91087499999998,
+            "completed_requests": 1024,
+            "total_input_tokens": 655232,
+            "total_output_tokens": 114672,
+            "simulated_duration_ms": 276939.2317889965
+          }
+        }
+      ],
+      "trace_sha256": "6faa00596a0ae58bbc7621a5ea7b6a1f6d5ca8189eab340db841089cd0a1815b",
+      "baseline_config": {
+        "engine": {
+          "backend": "sglang",
+          "backend_version": "0.5.14",
+          "context_length": 2048,
+          "hardware": "h200_sxm",
+          "mode": "aggregated",
+          "model": "Qwen/Qwen3-30B-A3B",
+          "workers": {
+            "aggregated": {
+              "afd": {
+                "a_batch_size": 18,
+                "n_a_nodes": 1,
+                "n_f_nodes": 1,
+                "num_microbatches": 2,
+                "pipeline_layout": "two_stage",
+                "tp_a": 1
+              },
+              "type": "afd"
+            }
+          }
+        },
+        "evaluation": {
+          "sla": {
+            "itl_ms": 30,
+            "ttft_ms": 800
+          }
+        },
+        "traffic": {
+          "load": {
+            "concurrency": 18,
+            "type": "concurrency"
+          },
+          "source": {
+            "format": "mooncake",
+            "paths": [
+              "/var/folders/yl/3n0gd2vs4819q9x2hvk_x0l40000gn/T/afd-pipeline-inputs-up63ekrl/trace_two_stage.jsonl"
+            ],
+            "type": "trace"
+          },
+          "stop": {}
+        }
+      },
+      "candidate_config": {
+        "traffic": {
+          "source": {
+            "type": "trace",
+            "format": "mooncake",
+            "paths": [
+              "/var/folders/yl/3n0gd2vs4819q9x2hvk_x0l40000gn/T/afd-pipeline-inputs-up63ekrl/trace_two_stage.jsonl"
+            ]
+          },
+          "load": {
+            "type": "concurrency",
+            "concurrency": 18
+          },
+          "stop": {}
+        },
+        "engine": {
+          "mode": "aggregated",
+          "model": "Qwen/Qwen3-30B-A3B",
+          "hardware": "h200_sxm",
+          "backend": "sglang",
+          "backend_version": "0.5.14",
+          "context_length": 2048,
+          "workers": {
+            "aggregated": {
+              "type": "afd",
+              "afd": {
+                "n_a_nodes": 1,
+                "n_f_nodes": 1,
+                "tp_a": 1,
+                "a_batch_size": 18,
+                "num_microbatches": 2,
+                "pipeline_layout": "two_stage"
+              }
+            }
+          }
+        },
+        "evaluation": {
+          "sla": {
+            "ttft_ms": 800,
+            "itl_ms": 30
+          }
+        }
+      },
+      "timings": {
+        "cli_ms": {
+          "baseline_median": 2314.7870000102557,
+          "candidate_median": 2312.9389580135467,
+          "paired_ratio_median": 1.0017845892592843,
+          "paired_ratio_range": [
+            0.9907252593879451,
+            1.0255235838487058
+          ]
+        },
+        "native_replay_ms": {
+          "baseline_median": 253.481604,
+          "candidate_median": 257.96410449999996,
+          "paired_ratio_median": 1.0147207729070433,
+          "paired_ratio_range": [
+            0.9433899848428475,
+            1.0736171196922717
+          ]
+        }
+      }
+    }
+  ]
+}
