@@ -7,6 +7,10 @@ _MoeCommFallbackPayload = tuple[str, str, int, int, int, int]
 _MoeCommFallbackMetadata = tuple[_MoeCommFallbackPayload, list[_MoeCommFallbackPayload]]
 _PerOpValueWithMetadata = tuple[str, float, float, str, _MoeCommFallbackMetadata | None]
 
+AFD_DEFAULT_ROUTING_LOCATION: str
+
+def validate_afd_routing_location(location: str) -> None: ...
+
 class AicEngine:
     @staticmethod
     def from_spec(bytes: bytes, systems_path: str | None = None) -> AicEngine: ...  # noqa: A002

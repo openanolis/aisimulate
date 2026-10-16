@@ -41,7 +41,7 @@ validate finer feature combinations.
 
 ## Replay data contract
 
-`REPLAY_SPEC_API_VERSION` is `1`. `ReplaySpec` contains:
+`REPLAY_SPEC_API_VERSION` is `2`. `ReplaySpec` contains:
 
 | Field | Meaning |
 | --- | --- |
@@ -69,6 +69,10 @@ contract allows it. More specific flags cover disaggregated attention-DP,
 AgentX backends/topologies/lanes/snapshots/warmup/profiles, offload/speculation,
 analytical EPD, cached-prefix tokens, state/grouped cache and model controls.
 Generic flag defaults are not qualification evidence for an optional stack.
+`supported_worker_types` defaults to `("monolithic",)`; a runner must explicitly
+include `"afd"` to accept AFD roles. The built-in engine advertises both types.
+Deployment modes are `agg|disagg`, independent of role implementation. API 1
+saved inputs and runners must be upgraded; old AFD combination modes are removed.
 
 `require_compatible(spec)` checks versions and coarse combinations before
 execution. AgentX G2 additionally requires offline vLLM, a static single

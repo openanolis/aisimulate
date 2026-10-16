@@ -29,6 +29,7 @@ use serde::{Deserialize, Serialize};
 use crate::ENGINE_SPEC_SCHEMA_VERSION;
 use crate::common::error::AicError;
 use crate::perfmodel::EngineConfig;
+use crate::perfmodel::afd::plan::AfdExecutionPlan;
 
 /// Public name for the serializable op. Aliases the crate's [`Op`] enum so
 /// the "OpSpec" surface exists without duplicating the definition.
@@ -60,6 +61,8 @@ pub struct EngineSpec {
     pub context_ops: Vec<OpSpec>,
     /// Generation-phase ops, in execution order.
     pub generation_ops: Vec<OpSpec>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub afd_plan: Option<AfdExecutionPlan>,
 }
 
 /// Private bincode payload. `engine` is carried as a JSON string so the
@@ -72,6 +75,7 @@ struct BincodeWire {
     engine_json: String,
     context_ops: Vec<OpSpec>,
     generation_ops: Vec<OpSpec>,
+    afd_plan: Option<AfdExecutionPlan>,
 }
 
 impl EngineSpec {
@@ -82,6 +86,7 @@ impl EngineSpec {
         generation_ops: Vec<OpSpec>,
     ) -> Self {
         Self {
+            afd_plan: None,
             schema_version: ENGINE_SPEC_SCHEMA_VERSION,
             engine,
             context_ops,
@@ -100,6 +105,7 @@ impl EngineSpec {
             engine_json,
             context_ops: self.context_ops.clone(),
             generation_ops: self.generation_ops.clone(),
+            afd_plan: self.afd_plan.clone(),
         };
         bincode::serialize(&wire).map_err(|e| AicError::EngineSpec(format!("bincode encode: {e}")))
     }
@@ -151,6 +157,7 @@ impl EngineSpec {
             engine,
             context_ops: wire.context_ops,
             generation_ops: wire.generation_ops,
+            afd_plan: wire.afd_plan,
         })
     }
 }
@@ -163,15 +170,16 @@ mod tests {
     use crate::common::enums::{
         BackendKind, CommQuantMode, FmhaQuantMode, GemmQuantMode, KvCacheQuantMode, MoeQuantMode,
     };
+    use crate::operators::afd_comm::AfdTransferDirection;
     use crate::operators::moe_dispatch::DispatchFlavor;
     use crate::operators::op::{FallbackOp, OverlapOp};
     use crate::operators::{
-        ContextAttentionOp, ContextMlaOp, CustomAllReduceOp, DsaModuleOp, Dsv4MegaMoeOp,
-        Dsv4ModuleOp, Dsv41AttentionOp, Dsv41EngramOp, Dsv41LinearOp, Dsv41MhcOp, Dsv41StageOp,
-        ElementwiseOp, EmbeddingOp, EncoderAttentionOp, GdnOp, GemmOp, GenerationAttentionOp,
-        GenerationMlaOp, KdaOp, Mamba2Op, MhcModuleOp, MlaBmmOp, MlaModuleOp, MoEDispatchOp,
-        MoeAllToAllOp, MoeExpertComputeOp, MoeOp, NcclOp, P2POp, VisionEncoderOp,
-        WideEpContextMlaOp, WideEpGenerationMlaOp,
+        AfdCombineOp, AfdFCollectiveOp, AfdTransferOp, ContextAttentionOp, ContextMlaOp,
+        CustomAllReduceOp, DsaModuleOp, Dsv4MegaMoeOp, Dsv4ModuleOp, Dsv41AttentionOp,
+        Dsv41EngramOp, Dsv41LinearOp, Dsv41MhcOp, Dsv41StageOp, ElementwiseOp, EmbeddingOp,
+        EncoderAttentionOp, GdnOp, GemmOp, GenerationAttentionOp, GenerationMlaOp, KdaOp, Mamba2Op,
+        MhcModuleOp, MlaBmmOp, MlaModuleOp, MoEDispatchOp, MoeAllToAllOp, MoeExpertComputeOp,
+        MoeOp, NcclOp, P2POp, VisionEncoderOp, WideEpContextMlaOp, WideEpGenerationMlaOp,
     };
     use crate::perf_database::dsv4::AttnKind;
     use crate::{
@@ -383,6 +391,8 @@ mod tests {
             pp_size: 4,
             hidden_size: 4096,
             seq_split: 1,
+            span_gpus: None,
+            force_scale_out: false,
         }
     }
 
@@ -774,6 +784,38 @@ mod tests {
                 k: 5120,
                 quant_mode: GemmQuantMode::Fp8Block,
             }),
+            // Appended AFTER Dsv41Linear (schema 28): the four AFD comm
+            // variants. Tail-append keeps every earlier index stable.
+            OpSpec::AfdTransfer(AfdTransferOp {
+                f_gpus_per_node: None,
+                name: "afd_transfer".into(),
+                scale_factor: 1.0,
+                direction: AfdTransferDirection::A2f,
+                hidden_size: 5120,
+                a_replica_count: 4,
+                f_rank_count: 16,
+                gpus_per_node: 8,
+                num_experts: 8,
+                topk: 2,
+                comm_quant_mode: CommQuantMode::Half,
+                comm_overhead_factor: 1.0,
+            }),
+            OpSpec::AfdFAllGather(AfdFCollectiveOp {
+                operation: "all_gather".into(),
+                ..AfdFCollectiveOp::all_gather("afd_f_all_gather", 1.0)
+            }),
+            OpSpec::AfdFReduceScatter(AfdFCollectiveOp {
+                operation: "reduce_scatter".into(),
+                ..AfdFCollectiveOp::reduce_scatter("afd_f_reduce_scatter", 1.0)
+            }),
+            OpSpec::AfdCombine(AfdCombineOp {
+                name: "afd_combine".into(),
+                scale_factor: 1.0,
+                hidden_size: 5120,
+                a_tp_size: 8,
+                f_moe_ep_size: 4,
+                comm_quant_mode: CommQuantMode::Half,
+            }),
         ];
 
         // Exhaustiveness guard: if a variant is added to `Op`, this match
@@ -820,6 +862,10 @@ mod tests {
                 | OpSpec::Dsv41Engram(_)
                 | OpSpec::Dsv41Stage(_)
                 | OpSpec::Dsv41Linear(_)
+                | OpSpec::AfdTransfer(_)
+                | OpSpec::AfdFAllGather(_)
+                | OpSpec::AfdFReduceScatter(_)
+                | OpSpec::AfdCombine(_)
                 | OpSpec::TokenScale(_) => {}
             }
         }
@@ -915,20 +961,16 @@ mod tests {
         // Appending is the only safe growth direction.
         assert_eq!(MOE_EXPERT_COMPUTE_INDEX, MOE_ALL_TO_ALL_INDEX + 1);
         assert_eq!(TOKEN_SCALE_INDEX, MOE_EXPERT_COMPUTE_INDEX + 1);
-        // Keep the main-branch TokenScale index; V41 variants append after it.
-        let appended: Vec<_> = all_op_variants()
-            .iter()
-            .skip(36)
-            .take(5)
-            .map(index_of)
-            .collect();
+        // Keep the main-branch TokenScale index; V41 variants append after it,
+        // and the four AFD comm variants append after V41.
+        let appended: Vec<_> = all_op_variants().iter().skip(36).map(index_of).collect();
         assert_eq!(
             appended,
-            vec![36, 37, 38, 39, 40],
-            "V41 appended indices moved"
+            vec![36, 37, 38, 39, 40, 41, 42, 43, 44],
+            "V41 + AFD appended indices moved"
         );
         assert_eq!(
-            41,
+            TOKEN_SCALE_INDEX as usize + 10,
             all_op_variants().len(),
             "all_op_variants() must cover exactly the pinned variant count"
         );
@@ -1107,7 +1149,8 @@ mod tests {
         assert_eq!(EngineSpec::from_bincode(&bytes).unwrap(), spec);
         // The final op ends in interpolation (4 bytes), empty sol_ops (8),
         // original-FMHA None (1), and recorded-DCP None (1).
-        let selector = bytes.len() - 14;
+        // EngineSpec then appends the schema28 AFD-plan None marker.
+        let selector = bytes.len() - 15;
         assert_eq!(&bytes[selector..selector + 4], &1u32.to_le_bytes());
         // Recreate both branches' incompatible payloads, not just their stamps.
         for version in [20u32, 21, 22, 23, 24, 25, 26] {
@@ -1187,8 +1230,9 @@ mod tests {
         assert_eq!(EngineSpec::from_bincode(&bytes).unwrap(), spec);
         // SglangFp8Bf16 is enum1 (four bytes), the final field of the final op.
         // Removing it restores the actual prior Dsv41Attention schema18 shape.
-        assert_eq!(&bytes[bytes.len() - 4..], &1u32.to_le_bytes());
-        bytes.truncate(bytes.len() - 4);
+        let op_end = bytes.len() - 1; // schema28 AFD-plan None marker
+        assert_eq!(&bytes[op_end - 4..op_end], &1u32.to_le_bytes());
+        bytes.truncate(op_end - 4);
         bytes[..4].copy_from_slice(&18u32.to_le_bytes());
         assert!(matches!(
             EngineSpec::from_bincode(&bytes),
@@ -1309,6 +1353,7 @@ mod tests {
         // a deliberately malformed `engine_json`.
         let wire = BincodeWire {
             schema_version: ENGINE_SPEC_SCHEMA_VERSION,
+            afd_plan: None,
             engine_json: "this is not json".to_string(),
             context_ops: vec![],
             generation_ops: vec![],
@@ -1324,6 +1369,40 @@ mod tests {
             }
             other => panic!("expected EngineSpec engine-JSON error, got {other:?}"),
         }
+    }
+
+    #[test]
+    fn afd_execution_plan_survives_the_positional_wire() {
+        use crate::perfmodel::afd::plan::{AfdLayerTemplate, AfdPhasePlan};
+        let mut spec = handshake_spec();
+        let phase = AfdPhasePlan {
+            templates: vec![AfdLayerTemplate {
+                attention_kind: "global".into(),
+                routed: true,
+                ops: vec![0],
+                rank_ops: vec![],
+                work_scale: 1.0,
+            }],
+            prefix: vec![],
+            suffix: vec![],
+        };
+        spec.afd_plan = Some(AfdExecutionPlan {
+            role: crate::AfdPoolRole::A,
+            model: spec.engine.model_name.clone(),
+            hidden_size: 32,
+            num_experts: 4,
+            topk: 2,
+            layers: vec![0, 0],
+            shared_inter_size: 16,
+            context: phase.clone(),
+            generation: phase,
+        });
+        let bytes = spec.to_bincode().unwrap();
+        assert_eq!(EngineSpec::from_bincode(&bytes).unwrap(), spec);
+        assert_eq!(
+            serde_json::from_str::<EngineSpec>(&serde_json::to_string(&spec).unwrap()).unwrap(),
+            spec
+        );
     }
     #[test]
     fn speculative_width_json_defaults_and_bincode_version_gate() {
@@ -1425,5 +1504,26 @@ mod tests {
             EngineSpec::from_bincode(&previous),
             Err(AicError::UnsupportedSchemaVersion { got: 23, .. })
         ));
+    }
+
+    #[test]
+    fn old_p2p_wire_layout_is_rejected_before_decode() {
+        let spec = EngineSpec::new(sample_engine_config(), vec![OpSpec::P2P(p2p())], vec![]);
+        let mut bytes = spec.to_bincode().unwrap();
+        let op = bincode::serialize(&OpSpec::P2P(p2p())).unwrap();
+        let start = bytes.windows(op.len()).position(|x| x == op).unwrap();
+        // The baseline v27 P2P op has neither span Option tag nor force-scale-out bool.
+        bytes.drain(start + op.len() - 2..start + op.len());
+        for version in [27_u32, 29, 30] {
+            bytes[..4].copy_from_slice(&version.to_le_bytes());
+            assert!(matches!(
+                EngineSpec::from_bincode(&bytes),
+                Err(AicError::UnsupportedSchemaVersion {
+                    got,
+                    expected: 28,
+                    ..
+                }) if got == version
+            ));
+        }
     }
 }

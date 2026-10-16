@@ -1,0 +1,137 @@
+{
+  "baseline_revision": "5b668b9873664db042e20711ea31a348d607b625",
+  "candidate_binary_sha256": "99a22ecc694bf630ca856413c72f2bcab71ca65834e9f3b76195c5577a14ac2a",
+  "oracle": "Rust synthetic non-linear GEMM fixture: B=8, m=3, prefix=9 ms plus routed pipeline=7 ms, total=16 ms",
+  "cases": {
+    "deepseek_v32_tp2": {
+      "before": {
+        "completed_requests": 4,
+        "duration_ms": 280.14855499999993,
+        "mean_tpot_ms": 26.53010799999999,
+        "mean_ttft_ms": 94.437799,
+        "total_input_tokens": 512,
+        "total_output_tokens": 32
+      },
+      "after": {
+        "completed_requests": 4,
+        "duration_ms": 276.283176,
+        "mean_tpot_ms": 25.977911000000006,
+        "mean_ttft_ms": 94.437799,
+        "total_input_tokens": 512,
+        "total_output_tokens": 32
+      },
+      "delta": {
+        "completed_requests": 0,
+        "duration_ms": -3.865378999999905,
+        "mean_tpot_ms": -0.5521969999999854,
+        "mean_ttft_ms": 0.0,
+        "total_input_tokens": 0,
+        "total_output_tokens": 0
+      }
+    },
+    "deepseek_v32_tp4_trace": {
+      "before": {
+        "completed_requests": 4,
+        "duration_ms": 261.609487,
+        "mean_tpot_ms": 18.272552374999997,
+        "mean_ttft_ms": 115.73090499999999,
+        "total_input_tokens": 576,
+        "total_output_tokens": 34
+      },
+      "after": {
+        "completed_requests": 4,
+        "duration_ms": 255.80668699999995,
+        "mean_tpot_ms": 17.86019259821428,
+        "mean_ttft_ms": 113.007058,
+        "total_input_tokens": 576,
+        "total_output_tokens": 34
+      },
+      "delta": {
+        "completed_requests": 0,
+        "duration_ms": -5.8028000000000475,
+        "mean_tpot_ms": -0.412359776785717,
+        "mean_ttft_ms": -2.723846999999992,
+        "total_input_tokens": 0,
+        "total_output_tokens": 0
+      }
+    },
+    "deepseek_v3_tp1": {
+      "before": {
+        "completed_requests": 4,
+        "duration_ms": 268.536441,
+        "mean_tpot_ms": 29.950913000000003,
+        "mean_ttft_ms": 58.880050000000004,
+        "total_input_tokens": 512,
+        "total_output_tokens": 32
+      },
+      "after": {
+        "completed_requests": 4,
+        "duration_ms": 263.35337499999997,
+        "mean_tpot_ms": 29.210474999999995,
+        "mean_ttft_ms": 58.880050000000004,
+        "total_input_tokens": 512,
+        "total_output_tokens": 32
+      },
+      "delta": {
+        "completed_requests": 0,
+        "duration_ms": -5.1830660000000535,
+        "mean_tpot_ms": -0.7404380000000081,
+        "mean_ttft_ms": 0.0,
+        "total_input_tokens": 0,
+        "total_output_tokens": 0
+      }
+    },
+    "mimo_tp2": {
+      "before": {
+        "completed_requests": 4,
+        "duration_ms": 110.53913900000002,
+        "mean_tpot_ms": 12.770846000000002,
+        "mean_ttft_ms": 21.143217,
+        "total_input_tokens": 512,
+        "total_output_tokens": 32
+      },
+      "after": {
+        "completed_requests": 4,
+        "duration_ms": 109.81607400000001,
+        "mean_tpot_ms": 12.667551000000003,
+        "mean_ttft_ms": 21.143217,
+        "total_input_tokens": 512,
+        "total_output_tokens": 32
+      },
+      "delta": {
+        "completed_requests": 0,
+        "duration_ms": -0.7230650000000054,
+        "mean_tpot_ms": -0.10329499999999925,
+        "mean_ttft_ms": 0.0,
+        "total_input_tokens": 0,
+        "total_output_tokens": 0
+      }
+    },
+    "mimo_tp4_trace": {
+      "before": {
+        "completed_requests": 4,
+        "duration_ms": 100.491159,
+        "mean_tpot_ms": 9.05026475892857,
+        "mean_ttft_ms": 28.809452,
+        "total_input_tokens": 576,
+        "total_output_tokens": 34
+      },
+      "after": {
+        "completed_requests": 4,
+        "duration_ms": 99.807147,
+        "mean_tpot_ms": 8.965916678571428,
+        "mean_ttft_ms": 28.755239,
+        "total_input_tokens": 576,
+        "total_output_tokens": 34
+      },
+      "delta": {
+        "completed_requests": 0,
+        "duration_ms": -0.6840119999999956,
+        "mean_tpot_ms": -0.0843480803571417,
+        "mean_ttft_ms": -0.05421300000000073,
+        "total_input_tokens": 0,
+        "total_output_tokens": 0
+      }
+    }
+  }
+}

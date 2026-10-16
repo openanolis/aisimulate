@@ -659,14 +659,14 @@ def test_native_epd_search_smoke(mode, total_gpus):
     assert candidate.config["encoder"]["image_count"] == 1
 
 
-@pytest.mark.parametrize("mode", ["afd", "afd+pd"])
+@pytest.mark.parametrize("mode", ["afd"])
 def test_epd_rejects_afd_search_before_materialization(mode):
     payload = _config().model_dump(mode="json")
     payload["search_space"].update(
-        deployment_mode=[mode],
-        afd_batch_size_candidates=[16],
+        deployment_mode=["agg"],
+        afd_roles={"aggregated": {"type": "afd", "afd": {"a_batch_size": 16}}},
     )
-    with pytest.raises(ValueError, match="EPD supports only agg/disagg.*AFD is unsupported"):
+    with pytest.raises(ValueError, match="AFD roles require.*reject encoder"):
         SmartSearchConfig.model_validate(payload)
 
 
@@ -704,11 +704,12 @@ def test_afd_qualification_rejects_image_or_encoder_composition(encoder_present)
         spec,
         backend_deployment=replace(
             spec.backend_deployment,
-            deployment_mode="afd",
+            deployment_mode="agg",
+            agg_engine_args={"afd": {}},
             encoder=spec.backend_deployment.encoder if encoder_present else None,
         ),
     )
-    with pytest.raises(AFDQualificationError, match="AFD qualification does not support analytical EPD"):
+    with pytest.raises(AFDQualificationError, match="AFD qualification rejects encoder"):
         build_afd_qualification(spec)
 
 

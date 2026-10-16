@@ -1,0 +1,499 @@
+{
+  "host": "macOS-15.8-arm64-arm-64bit-Mach-O",
+  "scope": "fresh full CLI + native replay interval; new layouts have no supported baseline",
+  "samples_per_row": 3,
+  "rows": [
+    {
+      "name": "qwen_tp2",
+      "requests": 16,
+      "config": {
+        "engine": {
+          "backend": "sglang",
+          "backend_version": "0.5.14",
+          "context_length": 2048,
+          "hardware": "h200_sxm",
+          "mode": "aggregated",
+          "model": "Qwen/Qwen3-30B-A3B",
+          "workers": {
+            "aggregated": {
+              "afd": {
+                "a_batch_size": 4,
+                "n_a_nodes": 1,
+                "n_f_nodes": 1,
+                "num_microbatches": 2,
+                "pipeline_layout": "four_stage",
+                "tp_a": 2
+              },
+              "type": "afd"
+            }
+          }
+        },
+        "evaluation": {
+          "sla": {
+            "itl_ms": 30,
+            "ttft_ms": 800
+          }
+        },
+        "traffic": {
+          "load": {
+            "concurrency": 32,
+            "type": "concurrency"
+          },
+          "source": {
+            "type": "trace",
+            "format": "mooncake",
+            "paths": [
+              "/var/folders/yl/3n0gd2vs4819q9x2hvk_x0l40000gn/T/afd-new-scale-tnn0y8l6/requests.jsonl"
+            ]
+          },
+          "stop": {}
+        }
+      },
+      "trace_sha256": "78776663bd28a60a7e6fe026322ca3ff4ca41472234c507595b04bba52736a24",
+      "samples": [
+        {
+          "cli_ms": 2441.649874992436,
+          "wall_time_ms": 184.814792,
+          "duration_ms": 398.74006299999996,
+          "completed_requests": 16,
+          "total_input_tokens": 10112,
+          "total_output_tokens": 632,
+          "committed_prefill_tokens": 2444,
+          "power_coverage": 0.0
+        },
+        {
+          "cli_ms": 2215.9108750056475,
+          "wall_time_ms": 185.673125,
+          "duration_ms": 398.74006299999996,
+          "completed_requests": 16,
+          "total_input_tokens": 10112,
+          "total_output_tokens": 632,
+          "committed_prefill_tokens": 2444,
+          "power_coverage": 0.0
+        },
+        {
+          "cli_ms": 2194.6392499958165,
+          "wall_time_ms": 189.504291,
+          "duration_ms": 398.74006299999996,
+          "completed_requests": 16,
+          "total_input_tokens": 10112,
+          "total_output_tokens": 632,
+          "committed_prefill_tokens": 2444,
+          "power_coverage": 0.0
+        }
+      ],
+      "median_native_replay_ms": 185.673125,
+      "median_cli_ms": 2215.9108750056475
+    },
+    {
+      "name": "qwen_tp2",
+      "requests": 1024,
+      "config": {
+        "engine": {
+          "backend": "sglang",
+          "backend_version": "0.5.14",
+          "context_length": 2048,
+          "hardware": "h200_sxm",
+          "mode": "aggregated",
+          "model": "Qwen/Qwen3-30B-A3B",
+          "workers": {
+            "aggregated": {
+              "afd": {
+                "a_batch_size": 4,
+                "n_a_nodes": 1,
+                "n_f_nodes": 1,
+                "num_microbatches": 2,
+                "pipeline_layout": "four_stage",
+                "tp_a": 2
+              },
+              "type": "afd"
+            }
+          }
+        },
+        "evaluation": {
+          "sla": {
+            "itl_ms": 30,
+            "ttft_ms": 800
+          }
+        },
+        "traffic": {
+          "load": {
+            "concurrency": 32,
+            "type": "concurrency"
+          },
+          "source": {
+            "type": "trace",
+            "format": "mooncake",
+            "paths": [
+              "/var/folders/yl/3n0gd2vs4819q9x2hvk_x0l40000gn/T/afd-new-scale-tnn0y8l6/requests.jsonl"
+            ]
+          },
+          "stop": {}
+        }
+      },
+      "trace_sha256": "03d5970c176514a36257edae22c681623987d44ff9b13a3f0a0c9185ff1bee36",
+      "samples": [
+        {
+          "cli_ms": 2248.4187909867615,
+          "wall_time_ms": 233.547291,
+          "duration_ms": 23715.89039700029,
+          "completed_requests": 1024,
+          "total_input_tokens": 655232,
+          "total_output_tokens": 40952,
+          "committed_prefill_tokens": 3452,
+          "power_coverage": 0.0
+        },
+        {
+          "cli_ms": 2236.7617079871707,
+          "wall_time_ms": 228.434208,
+          "duration_ms": 23715.89039700029,
+          "completed_requests": 1024,
+          "total_input_tokens": 655232,
+          "total_output_tokens": 40952,
+          "committed_prefill_tokens": 3452,
+          "power_coverage": 0.0
+        },
+        {
+          "cli_ms": 2244.4452500203624,
+          "wall_time_ms": 231.455916,
+          "duration_ms": 23715.89039700029,
+          "completed_requests": 1024,
+          "total_input_tokens": 655232,
+          "total_output_tokens": 40952,
+          "committed_prefill_tokens": 3452,
+          "power_coverage": 0.0
+        }
+      ],
+      "median_native_replay_ms": 231.455916,
+      "median_cli_ms": 2244.4452500203624
+    },
+    {
+      "name": "deepseek_v32_tp4_trace",
+      "requests": 16,
+      "config": {
+        "engine": {
+          "backend": "sglang",
+          "backend_version": "0.5.14",
+          "context_length": 2048,
+          "hardware": "h200_sxm",
+          "mode": "aggregated",
+          "model": "deepseek-ai/DeepSeek-V3.2",
+          "workers": {
+            "aggregated": {
+              "afd": {
+                "a_batch_size": 4,
+                "n_a_nodes": 1,
+                "n_f_nodes": 1,
+                "num_microbatches": 2,
+                "pipeline_layout": "four_stage",
+                "tp_a": 4
+              },
+              "type": "afd"
+            }
+          }
+        },
+        "evaluation": {
+          "sla": {
+            "itl_ms": 30,
+            "ttft_ms": 800
+          }
+        },
+        "traffic": {
+          "load": {
+            "concurrency": 32,
+            "type": "concurrency"
+          },
+          "source": {
+            "type": "trace",
+            "format": "mooncake",
+            "paths": [
+              "/var/folders/yl/3n0gd2vs4819q9x2hvk_x0l40000gn/T/afd-new-scale-tnn0y8l6/requests.jsonl"
+            ]
+          },
+          "stop": {}
+        }
+      },
+      "trace_sha256": "78776663bd28a60a7e6fe026322ca3ff4ca41472234c507595b04bba52736a24",
+      "samples": [
+        {
+          "cli_ms": 2908.436541998526,
+          "wall_time_ms": 435.75420799999995,
+          "duration_ms": 2409.491833000001,
+          "completed_requests": 16,
+          "total_input_tokens": 10112,
+          "total_output_tokens": 632,
+          "committed_prefill_tokens": 2444,
+          "power_coverage": 0.0
+        },
+        {
+          "cli_ms": 2897.794000018621,
+          "wall_time_ms": 436.973,
+          "duration_ms": 2409.491833000001,
+          "completed_requests": 16,
+          "total_input_tokens": 10112,
+          "total_output_tokens": 632,
+          "committed_prefill_tokens": 2444,
+          "power_coverage": 0.0
+        },
+        {
+          "cli_ms": 2899.0064579993486,
+          "wall_time_ms": 436.6145,
+          "duration_ms": 2409.491833000001,
+          "completed_requests": 16,
+          "total_input_tokens": 10112,
+          "total_output_tokens": 632,
+          "committed_prefill_tokens": 2444,
+          "power_coverage": 0.0
+        }
+      ],
+      "median_native_replay_ms": 436.6145,
+      "median_cli_ms": 2899.0064579993486
+    },
+    {
+      "name": "deepseek_v32_tp4_trace",
+      "requests": 1024,
+      "config": {
+        "engine": {
+          "backend": "sglang",
+          "backend_version": "0.5.14",
+          "context_length": 2048,
+          "hardware": "h200_sxm",
+          "mode": "aggregated",
+          "model": "deepseek-ai/DeepSeek-V3.2",
+          "workers": {
+            "aggregated": {
+              "afd": {
+                "a_batch_size": 4,
+                "n_a_nodes": 1,
+                "n_f_nodes": 1,
+                "num_microbatches": 2,
+                "pipeline_layout": "four_stage",
+                "tp_a": 4
+              },
+              "type": "afd"
+            }
+          }
+        },
+        "evaluation": {
+          "sla": {
+            "itl_ms": 30,
+            "ttft_ms": 800
+          }
+        },
+        "traffic": {
+          "load": {
+            "concurrency": 32,
+            "type": "concurrency"
+          },
+          "source": {
+            "type": "trace",
+            "format": "mooncake",
+            "paths": [
+              "/var/folders/yl/3n0gd2vs4819q9x2hvk_x0l40000gn/T/afd-new-scale-tnn0y8l6/requests.jsonl"
+            ]
+          },
+          "stop": {}
+        }
+      },
+      "trace_sha256": "03d5970c176514a36257edae22c681623987d44ff9b13a3f0a0c9185ff1bee36",
+      "samples": [
+        {
+          "cli_ms": 3008.646875008708,
+          "wall_time_ms": 511.673291,
+          "duration_ms": 153999.06210999814,
+          "completed_requests": 1024,
+          "total_input_tokens": 655232,
+          "total_output_tokens": 40952,
+          "committed_prefill_tokens": 3452,
+          "power_coverage": 0.0
+        },
+        {
+          "cli_ms": 2957.566583005246,
+          "wall_time_ms": 518.2475,
+          "duration_ms": 153999.06210999814,
+          "completed_requests": 1024,
+          "total_input_tokens": 655232,
+          "total_output_tokens": 40952,
+          "committed_prefill_tokens": 3452,
+          "power_coverage": 0.0
+        },
+        {
+          "cli_ms": 2999.119084008271,
+          "wall_time_ms": 508.32816700000006,
+          "duration_ms": 153999.06210999814,
+          "completed_requests": 1024,
+          "total_input_tokens": 655232,
+          "total_output_tokens": 40952,
+          "committed_prefill_tokens": 3452,
+          "power_coverage": 0.0
+        }
+      ],
+      "median_native_replay_ms": 511.673291,
+      "median_cli_ms": 2999.119084008271
+    },
+    {
+      "name": "mimo_tp4_trace",
+      "requests": 16,
+      "config": {
+        "engine": {
+          "backend": "sglang",
+          "backend_version": "0.5.14",
+          "context_length": 2048,
+          "hardware": "h200_sxm",
+          "mode": "aggregated",
+          "model": "XiaomiMiMo/MiMo-V2-Flash",
+          "workers": {
+            "aggregated": {
+              "afd": {
+                "a_batch_size": 4,
+                "n_a_nodes": 1,
+                "n_f_nodes": 1,
+                "num_microbatches": 2,
+                "pipeline_layout": "two_stage",
+                "tp_a": 4
+              },
+              "type": "afd"
+            }
+          }
+        },
+        "evaluation": {
+          "sla": {
+            "itl_ms": 30,
+            "ttft_ms": 800
+          }
+        },
+        "traffic": {
+          "load": {
+            "concurrency": 32,
+            "type": "concurrency"
+          },
+          "source": {
+            "type": "trace",
+            "format": "mooncake",
+            "paths": [
+              "/var/folders/yl/3n0gd2vs4819q9x2hvk_x0l40000gn/T/afd-new-scale-tnn0y8l6/requests.jsonl"
+            ]
+          },
+          "stop": {}
+        }
+      },
+      "trace_sha256": "78776663bd28a60a7e6fe026322ca3ff4ca41472234c507595b04bba52736a24",
+      "samples": [
+        {
+          "cli_ms": 2257.281124999281,
+          "wall_time_ms": 199.391875,
+          "duration_ms": 1043.0811270000004,
+          "completed_requests": 16,
+          "total_input_tokens": 10112,
+          "total_output_tokens": 632,
+          "committed_prefill_tokens": 2444,
+          "power_coverage": 0.0
+        },
+        {
+          "cli_ms": 2188.950708019547,
+          "wall_time_ms": 194.63270899999998,
+          "duration_ms": 1043.0811270000004,
+          "completed_requests": 16,
+          "total_input_tokens": 10112,
+          "total_output_tokens": 632,
+          "committed_prefill_tokens": 2444,
+          "power_coverage": 0.0
+        },
+        {
+          "cli_ms": 2195.6573330098763,
+          "wall_time_ms": 198.8315,
+          "duration_ms": 1043.0811270000004,
+          "completed_requests": 16,
+          "total_input_tokens": 10112,
+          "total_output_tokens": 632,
+          "committed_prefill_tokens": 2444,
+          "power_coverage": 0.0
+        }
+      ],
+      "median_native_replay_ms": 198.8315,
+      "median_cli_ms": 2195.6573330098763
+    },
+    {
+      "name": "mimo_tp4_trace",
+      "requests": 1024,
+      "config": {
+        "engine": {
+          "backend": "sglang",
+          "backend_version": "0.5.14",
+          "context_length": 2048,
+          "hardware": "h200_sxm",
+          "mode": "aggregated",
+          "model": "XiaomiMiMo/MiMo-V2-Flash",
+          "workers": {
+            "aggregated": {
+              "afd": {
+                "a_batch_size": 4,
+                "n_a_nodes": 1,
+                "n_f_nodes": 1,
+                "num_microbatches": 2,
+                "pipeline_layout": "two_stage",
+                "tp_a": 4
+              },
+              "type": "afd"
+            }
+          }
+        },
+        "evaluation": {
+          "sla": {
+            "itl_ms": 30,
+            "ttft_ms": 800
+          }
+        },
+        "traffic": {
+          "load": {
+            "concurrency": 32,
+            "type": "concurrency"
+          },
+          "source": {
+            "type": "trace",
+            "format": "mooncake",
+            "paths": [
+              "/var/folders/yl/3n0gd2vs4819q9x2hvk_x0l40000gn/T/afd-new-scale-tnn0y8l6/requests.jsonl"
+            ]
+          },
+          "stop": {}
+        }
+      },
+      "trace_sha256": "03d5970c176514a36257edae22c681623987d44ff9b13a3f0a0c9185ff1bee36",
+      "samples": [
+        {
+          "cli_ms": 2315.47704100376,
+          "wall_time_ms": 296.669625,
+          "duration_ms": 57668.984181999986,
+          "completed_requests": 1024,
+          "total_input_tokens": 655232,
+          "total_output_tokens": 40952,
+          "committed_prefill_tokens": 3452,
+          "power_coverage": 0.0
+        },
+        {
+          "cli_ms": 2328.302249981789,
+          "wall_time_ms": 278.556167,
+          "duration_ms": 57668.984181999986,
+          "completed_requests": 1024,
+          "total_input_tokens": 655232,
+          "total_output_tokens": 40952,
+          "committed_prefill_tokens": 3452,
+          "power_coverage": 0.0
+        },
+        {
+          "cli_ms": 2335.84187499946,
+          "wall_time_ms": 299.30283299999996,
+          "duration_ms": 57668.984181999986,
+          "completed_requests": 1024,
+          "total_input_tokens": 655232,
+          "total_output_tokens": 40952,
+          "committed_prefill_tokens": 3452,
+          "power_coverage": 0.0
+        }
+      ],
+      "median_native_replay_ms": 296.669625,
+      "median_cli_ms": 2328.302249981789
+    }
+  ]
+}

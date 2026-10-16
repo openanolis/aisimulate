@@ -1,0 +1,373 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-15",
+  "timezone": "Asia/Shanghai",
+  "branch": "feat/afd-heter-supernode-port",
+  "baseline_revision": "7836ce9a9b1a56cfe6f3244ae12870060022d286",
+  "implementation_revision": "9062f4d89036e33bee8e999e4f8d33598c80a498",
+  "reference_revision": "af56328c4ba7ffa1b8c42c8375244568c2e7bb8c",
+  "build": {
+    "command": "RUSTFLAGS='-C link-arg=-undefined -C link-arg=dynamic_lookup' cargo build --release --features extension-module --offline",
+    "cargo_features": [
+      "extension-module",
+      "python"
+    ],
+    "profile": "release (codegen-units=1, thin LTO)",
+    "python": "3.9.6",
+    "host": "macOS-15.8-arm64-arm-64bit",
+    "toolchain": "rustc 1.99.0 (b940084d7 2026-09-28)\nbinary: rustc\ncommit-hash: b940084d7eb6a299eb4bfeb8e34901bc051e7ac4\ncommit-date: 2026-09-28\nhost: aarch64-apple-darwin\nrelease: 1.99.0\nLLVM version: 23.1.1\n",
+    "baseline_staging": "Python packages copied from clean 7836ce9a before edits; unchanged systems data shared by symlink; runtime copied from baseline release build."
+  },
+  "binaries": {
+    "baseline": {
+      "sha256": "f4cb5ac13edac12e65327ebee3995b87c4bcae8c7643db616e43cb83d930918b",
+      "file_bytes": 11403824,
+      "text_bytes": 7669180
+    },
+    "candidate": {
+      "sha256": "f183880fe410ab90ea0122075b6f897ef64b2841cfc8998005e03dcb3a53f7cd",
+      "file_bytes": 11404720,
+      "text_bytes": 7677692
+    }
+  },
+  "contracts": {
+    "public_version": "existing engine.backend_version shared across P/D and A/F; no per-role or per-A/F version fields",
+    "version_resolution": "explicit versions must exist on every pool; defaults/aliases must resolve consistently",
+    "public_hardware_fields": "existing workers.<role>.afd.a_system/f_system; width inferred from selected pool specs",
+    "internal_geometry": "gpus_per_node=A width; f_gpus_per_node=F width, omitted inherits A",
+    "schemas": {
+      "afd_topology": 6,
+      "qualification": 6,
+      "replay_spec_api": 2,
+      "engine_spec": 30
+    },
+    "compatibility": "old topology 5 / ReplaySpec 2 replay and qualify; saved derived counts validated; old EngineSpec binary rejected with recompile diagnostic"
+  },
+  "verification": [
+    {
+      "command": "cargo test --offline --lib",
+      "result": "2009 passed, 1 ignored; includes communication hand-oracles, exhaustive rank-mapping conservation, AFD lifecycle and ordinary backends"
+    },
+    {
+      "command": "cargo test --offline --lib prepared_fabric",
+      "result": "1 passed after adding the final production-wiring case; exact rack boundary, rack crossing, cross-system force-scale-out"
+    },
+    {
+      "command": "python/aisimulate/.venv/bin/python -m pytest -p no:timeout -q tests/sweeper/test_afd_parallel.py tests/test_afd_artifacts.py tests/sweeper/test_afd_support.py tests/sweeper/test_afd_search_integration.py python/aisimulate/tests/unit/sdk/test_afd_engine_materialize.py python/aisimulate/tests/unit/sdk/test_afd_memory.py python/aisimulate/tests/unit/sdk/test_afd_composition.py python/aisimulate/tests/unit/sdk/test_afd_routing.py python/aisimulate/tests/unit/sdk/test_afd_kv_budget.py python/aisimulate/tests/unit/sdk/test_opspec_coverage.py",
+      "result": "249 passed before adding two final unequal-width A/F OOM cases"
+    },
+    {
+      "command": "python/aisimulate/.venv/bin/python -m pytest -p no:timeout -q tests/sweeper/test_afd_search_integration.py -k 'heterogeneous_memory or saved_schema_five'",
+      "result": "3 passed: both additional OOM cases and repeated old-schema replay parity"
+    },
+    {
+      "command": "python/aisimulate/.venv/bin/python -m pytest -p no:timeout -q tests/test_unified_cli.py",
+      "result": "157 passed with macOS process-monitor permissions"
+    },
+    {
+      "command": "python/aisimulate/.venv/bin/python -m pytest -p no:timeout -q crates/core/parity_tests/perfmodel/test_engine_step_parity.py crates/core/parity_tests/perfmodel/test_compile_engine_parity.py crates/core/parity_tests/perfmodel/test_afd_parity.py crates/core/parity_tests/perfmodel/test_afd_execution_plan_parity.py python/aisimulate/tests/cross_package/test_single_oracle_contract.py",
+      "result": "Initial combined run: 401 passed, 28 CLI cases failed solely because sandbox denied macOS sysctl/process access. All 395 non-AFD-suite cases passed; affected AFD suites rerun below."
+    },
+    {
+      "command": "python/aisimulate/.venv/bin/python -m pytest -p no:timeout -q crates/core/parity_tests/perfmodel/test_afd_parity.py crates/core/parity_tests/perfmodel/test_afd_execution_plan_parity.py",
+      "result": "34 passed with process-monitor permissions; no numerical golden refresh required"
+    },
+    {
+      "command": "python/aisimulate/.venv/bin/python -m pytest -p no:timeout -q python/aisimulate/tests/cross_package/test_single_oracle_contract.py tests/sweeper/test_afd_parallel.py tests/test_afd_artifacts.py",
+      "result": "69 passed in final focused checks"
+    },
+    {
+      "command": "ruff check and ruff format --check on changed Python files; cargo fmt --all --check; git diff --check; python3 scripts/ci/check_packaged_legal_files.py",
+      "result": "passed"
+    }
+  ],
+  "real_hardware_identity_cli_checks": [
+    {
+      "case": "predict",
+      "a_system": "h200_sxm",
+      "f_system": "gb200",
+      "a_width": 8,
+      "f_width": 4,
+      "tp_a": 2,
+      "backend_version": "0.5.14",
+      "completed_requests": 8,
+      "total_input_tokens": 8192,
+      "total_output_tokens": 1024,
+      "decode_gpus_per_worker": 12
+    },
+    {
+      "case": "saved_recommendation_predict",
+      "a_system": "h200_sxm",
+      "f_system": "gb200",
+      "a_width": 8,
+      "f_width": 4,
+      "tp_a": 2,
+      "backend_version": "0.5.14",
+      "completed_requests": 8,
+      "total_input_tokens": 1024,
+      "total_output_tokens": 64,
+      "decode_gpus_per_worker": 12
+    },
+    {
+      "case": "recommend",
+      "used_gpus": 12,
+      "trials": 1,
+      "saved_config_version": "0.5.14",
+      "saved_config": "traffic:\n  source:\n    type: synthetic\n    input_tokens: 128\n    output_tokens: 8\n    cached_prefix_tokens: 0\n  stop:\n    requests: 8\n  load:\n    type: concurrency\n    concurrency: 8\n    agentic_warmup: false\nengine:\n  nextn: 0\n  enable_eplb: false\n  database_mode: SILICON\n  estimation_mode: auto\n  fallback_policy: deny\n  estimator_config: {}\n  mode: aggregated\n  model: Qwen/Qwen3-30B-A3B\n  hardware: h200_sxm\n  backend: sglang\n  backend_version: 0.5.14\n  decoder_replay: false\n  context_length: 2048\n  workers:\n    aggregated:\n      type: afd\n      afd:\n        n_a_nodes: 1\n        n_f_nodes: 1\n        tp_a: 2\n        a_batch_size: 18\n        f_moe_ep_size: 4\n        num_microbatches: 3\n        pipeline_layout: four_stage\n        comm_overhead_factor: 1.0\n        routing_location: a\n        boundary_on_attn: true\n        a_system: h200_sxm\n        f_system: gb200\n      startup_seconds: 0.0\nevaluation:\n  sla:\n    ttft_ms: 800.0\n    itl_ms: 30.0\nexecution:\n  resources:\n    initialization_timeout_seconds: 60.0\n    shutdown_timeout_seconds: 5.0\n    memory_limit_gb: auto\n    cpu_limit: auto\n    reserve_memory_gb: 1.0\n    reserve_memory_fraction: 0.0\n    available_memory_fraction: 0.9\n"
+    }
+  ],
+  "semantic_comparison": {
+    "scope": "synthetic 1000-request AFD role matrix and ordinary fixed-timing control; not a long-corpus qualification",
+    "repetitions_per_revision": 2,
+    "requests_per_repetition": 1000,
+    "cases": [
+      {
+        "case": "afd:both:large",
+        "sha256": "6e797ad319f736d6eff1b93de640ea0e840b76fc85e6b9ce5845f5abf8d414a4"
+      },
+      {
+        "case": "afd:prefill:large",
+        "sha256": "7f9b80c3c4741c3addcd2da7b9712be6ba4072966e44bc8253c66e25e5b4e50a"
+      },
+      {
+        "case": "afd:decode:large",
+        "sha256": "e62ce896eb7131396d80060243d62f898e1f6a2134395ef4e25c9824500dd6ee"
+      },
+      {
+        "case": "afd:dual:large",
+        "sha256": "7de8248fbc5b50b8f6911eb77762faa7818d3bea6fec28446c0ff31d6d334182"
+      },
+      {
+        "case": "ordinary:fixed:large",
+        "sha256": "5378984a3d37c20de6a83de3bf813c425b7532850d21797abd309c22c7ad2687"
+      }
+    ],
+    "result": "all per-request + non-wall-clock metric digests identical within and between revisions; complete token counts and P/D handoffs verified"
+  },
+  "performance": {
+    "preparation": [
+      {
+        "case": "afd:both:large",
+        "timings": {
+          "compile_ms": {
+            "baseline_median_ms": 1.604458986548707,
+            "candidate_median_ms": 1.6867500089574605,
+            "paired_ratio_median": 1.043512316457414,
+            "paired_ratio_range": [
+              0.9339779079868851,
+              1.1352633704987338
+            ]
+          },
+          "zero_request_preparation_ms": {
+            "baseline_median_ms": 1387.609124998562,
+            "candidate_median_ms": 1329.9711250001565,
+            "paired_ratio_median": 0.9554891060253312,
+            "paired_ratio_range": [
+              0.9458345804600876,
+              0.975004141684211
+            ]
+          }
+        }
+      },
+      {
+        "case": "afd:prefill:large",
+        "timings": {
+          "compile_ms": {
+            "baseline_median_ms": 1.745416986523196,
+            "candidate_median_ms": 1.7252910183742642,
+            "paired_ratio_median": 0.9879444216625436,
+            "paired_ratio_range": [
+              0.943942207556031,
+              1.2326053483366066
+            ]
+          },
+          "zero_request_preparation_ms": {
+            "baseline_median_ms": 1426.1931660003029,
+            "candidate_median_ms": 1388.2688330195379,
+            "paired_ratio_median": 0.9655043513922758,
+            "paired_ratio_range": [
+              0.9331244402135822,
+              0.9865567524633588
+            ]
+          }
+        }
+      },
+      {
+        "case": "afd:decode:large",
+        "timings": {
+          "compile_ms": {
+            "baseline_median_ms": 1.759457984007895,
+            "candidate_median_ms": 1.7300000181421638,
+            "paired_ratio_median": 0.9717283343220245,
+            "paired_ratio_range": [
+              0.9079229865626419,
+              1.0852549780245093
+            ]
+          },
+          "zero_request_preparation_ms": {
+            "baseline_median_ms": 1202.6788329822011,
+            "candidate_median_ms": 1178.4705410245806,
+            "paired_ratio_median": 0.9859166419867894,
+            "paired_ratio_range": [
+              0.9677554182190857,
+              0.9926787378725187
+            ]
+          }
+        }
+      },
+      {
+        "case": "afd:dual:large",
+        "timings": {
+          "compile_ms": {
+            "baseline_median_ms": 1.6929169942159206,
+            "candidate_median_ms": 1.6977920022327453,
+            "paired_ratio_median": 1.0002472509761562,
+            "paired_ratio_range": [
+              0.8179111645669462,
+              1.0224231413619893
+            ]
+          },
+          "zero_request_preparation_ms": {
+            "baseline_median_ms": 1418.575209012488,
+            "candidate_median_ms": 1360.2513750083745,
+            "paired_ratio_median": 0.9641187221670112,
+            "paired_ratio_range": [
+              0.9490753363449953,
+              0.9759919509675438
+            ]
+          }
+        }
+      },
+      {
+        "case": "ordinary:fixed:large",
+        "timings": {
+          "compile_ms": {
+            "baseline_median_ms": 0.05425000563263893,
+            "candidate_median_ms": 0.051000009989365935,
+            "paired_ratio_median": 1.0414744294040394,
+            "paired_ratio_range": [
+              0.8296499717277109,
+              1.091658773464338
+            ]
+          },
+          "zero_request_preparation_ms": {
+            "baseline_median_ms": 0.4735830007120967,
+            "candidate_median_ms": 0.4829159879591316,
+            "paired_ratio_median": 1.000430852538759,
+            "paired_ratio_range": [
+              0.9535508776358674,
+              1.1583985445412246
+            ]
+          }
+        }
+      }
+    ],
+    "complete_cli": [
+      {
+        "case": "small_fixed_control",
+        "timings": {
+          "cli_ms": {
+            "baseline_median": 2201.044916990213,
+            "candidate_median": 2201.4768329972867,
+            "paired_ratio_median": 0.9940861235603914,
+            "paired_ratio_range": [
+              0.9847786401773108,
+              1.0178790645579054
+            ]
+          },
+          "native_replay_ms": {
+            "baseline_median": 184.32825,
+            "candidate_median": 183.32558400000002,
+            "paired_ratio_median": 1.0374448577107813,
+            "paired_ratio_range": [
+              0.9111755393110489,
+              1.0862502832886112
+            ]
+          }
+        },
+        "simulation": "identical simulated durations and request/token counts in every pair"
+      },
+      {
+        "case": "trace_four_stage",
+        "timings": {
+          "cli_ms": {
+            "baseline_median": 2327.371207997203,
+            "candidate_median": 2285.512957983883,
+            "paired_ratio_median": 0.9952546970989234,
+            "paired_ratio_range": [
+              0.9742676987650324,
+              1.0231446794933676
+            ]
+          },
+          "native_replay_ms": {
+            "baseline_median": 261.534542,
+            "candidate_median": 268.38858300000004,
+            "paired_ratio_median": 1.0103102269229762,
+            "paired_ratio_range": [
+              0.9874828600234862,
+              1.0992582089545
+            ]
+          }
+        },
+        "simulation": "identical simulated durations and request/token counts in every pair"
+      },
+      {
+        "case": "trace_two_stage",
+        "timings": {
+          "cli_ms": {
+            "baseline_median": 2327.875791990664,
+            "candidate_median": 2328.1147919769865,
+            "paired_ratio_median": 0.9972083043654393,
+            "paired_ratio_range": [
+              0.9790454481554739,
+              1.0085139077673793
+            ]
+          },
+          "native_replay_ms": {
+            "baseline_median": 265.329,
+            "candidate_median": 264.243833,
+            "paired_ratio_median": 0.9929043245760535,
+            "paired_ratio_range": [
+              0.9518603287851871,
+              1.03540619596387
+            ]
+          }
+        },
+        "simulation": "identical simulated durations and request/token counts in every pair"
+      }
+    ],
+    "assessment": "No material integrated overhead observed in these matched samples. Full CLI paired medians are within 1% of baseline; AFD preparation paired medians are 0.95-0.99x. Native replay timer shows wider variation and is reported separately; no formal statistical non-regression gate is claimed.",
+    "timing_boundaries": {
+      "compile_ms": "Python compiler only; each input is validated before this timer",
+      "zero_request_preparation_ms": "compile + zero-request native preparation, including model construction and memory preflight",
+      "cli_ms": "fresh supervised CLI, startup + compilation + model construction + replay + output",
+      "native_replay_ms": "Replayer::run_inner through collector finalization; excludes model construction, Python startup and output; not loop-only timing"
+    },
+    "sample_design": "two warmups per arm; seven alternating adjacent pairs; same host, dependencies, data, release flags and verified runtime hashes; no builds/tests during sampling",
+    "cost_bound": "Fabric resolved once per model. Prepared rank mapping queries are O(1); homogeneous mapping retains no vector allocation. Nonuniform mapping retains 16*TP bytes of coefficients and prepares O(TP*F_node_width) temporary counts, independent of requests/layers/A-node count."
+  },
+  "goldens": {
+    "numerical_changed": false,
+    "qualification_fixture_changed": "schema 6, explicit F width, receiver-map label and resulting replay hash"
+  },
+  "limits": [
+    "Cross-rack A/F pricing uses the conservative whole-pair span, not actual rack-layout traffic fractions.",
+    "AFD support remains SGLang / supported routed MoE / pure F EP; no new backend, dense, routing or deployment support.",
+    "NVFP4-on-non-Blackwell SILICON gap is unchanged.",
+    "Host timings are descriptive on macOS without CPU affinity; no long-corpus Mooncake campaign, hardware serving-accuracy validation or loop-only timing is claimed."
+  ],
+  "artifacts": {
+    "afd-heter-supernode-preparation.json": {
+      "sha256": "337d28cc921f54b1cbfc187a8e98492cb33990d77f872e53ca02188816df30c8",
+      "bytes": 155609
+    },
+    "afd-heter-supernode-cli.json": {
+      "sha256": "402d730fedf0c574c092c2eb5745e2ebc371e12b4053c54313c2f66185b86a24",
+      "bytes": 25496
+    },
+    "afd-heter-supernode-benchmark.py": {
+      "sha256": "b4111ce8dddb1c3cdd83526c5ff6e3e3d9cc79e71db1c4932ab373186d8ff3a0",
+      "bytes": 6629
+    }
+  }
+}

@@ -1,0 +1,801 @@
+{
+  "baseline_issue": {
+    "error": "cached_prefix_tokens is unsupported for AFD",
+    "test": "tests/sweeper/test_engine_request.py::test_cached_prefix_tokens_are_accepted_for_afd",
+    "verification": "replay.py is byte-identical to HEAD; executing the baseline require_compatible method reproduces this rejection."
+  },
+  "baseline_revision": "bb4a74d47163b09795d7aa52b7a3f17098a8c990",
+  "candidate": "working tree; patch hash excludes this evidence file",
+  "candidate_patch_sha256": "29c69b9374466862b1586ff53c779b2a004226643b102acee2bd615397776612",
+  "checks": [
+    {
+      "command": "cargo test -p aisimulate-core --lib afd --offline",
+      "result": "54 passed"
+    },
+    {
+      "command": "python/aisimulate/.venv/bin/pytest -c pytest.ini -p no:timeout -q tests/sweeper/test_afd_parallel.py tests/sweeper/test_afd_search_integration.py tests/sweeper/test_engine_request.py tests/test_afd_artifacts.py --deselect=tests/sweeper/test_engine_request.py::test_cached_prefix_tokens_are_accepted_for_afd",
+      "result": "144 passed, 1 existing baseline issue deselected"
+    },
+    {
+      "command": "python/aisimulate/.venv/bin/pytest -c python/aisimulate/pytest.ini -p no:timeout -q python/aisimulate/tests/unit/sdk/test_afd_engine_materialize.py python/aisimulate/tests/unit/sdk/test_afd_parallel_lists.py",
+      "result": "35 passed"
+    },
+    {
+      "command": "python/aisimulate/.venv/bin/pytest -c python/aisimulate/pytest.ini -p no:timeout -q crates/core/parity_tests/perfmodel/test_engine_step_parity.py crates/core/parity_tests/perfmodel/test_compile_engine_parity.py",
+      "result": "385 passed"
+    },
+    {
+      "command": "python/aisimulate/.venv/bin/pytest -c python/aisimulate/pytest.ini -p no:timeout -q crates/core/parity_tests/perfmodel/test_afd_parity.py",
+      "result": "9 passed; macOS process inspection and priority adjustment permitted"
+    }
+  ],
+  "golden_changes": {
+    "qwen3-32b-h200-sglang-chunked-prefill": [
+      {
+        "after": 21.76734125999994,
+        "before": 20.59995127599991,
+        "field": "/decode_worker_seconds"
+      },
+      {
+        "after": 21767.34125999996,
+        "before": 20599.951275999974,
+        "field": "/duration_ms"
+      },
+      {
+        "after": 0.09674373893333307,
+        "before": 0.09155533900444404,
+        "field": "/gpu_hours"
+      },
+      {
+        "after": 1505.3744786100744,
+        "before": 1590.6833740027553,
+        "field": "/input_throughput_tok_s"
+      },
+      {
+        "after": 5441.835314999997,
+        "before": 5149.987819000011,
+        "field": "/max_e2e_latency_ms"
+      },
+      {
+        "after": 3513.379001000005,
+        "before": 3258.012442000021,
+        "field": "/max_itl_ms"
+      },
+      {
+        "after": 38.90978947244091,
+        "before": 36.89902916535443,
+        "field": "/max_tpot_ms"
+      },
+      {
+        "after": 4002.3364160000056,
+        "before": 3710.48892000002,
+        "field": "/max_ttft_ms"
+      },
+      {
+        "after": 3513.379001000005,
+        "before": 3258.012442000021,
+        "field": "/max_ttst_ms"
+      },
+      {
+        "after": 5441.83531499999,
+        "before": 5149.98781899999,
+        "field": "/mean_e2e_latency_ms"
+      },
+      {
+        "after": 25.12221323622039,
+        "before": 24.11683308267705,
+        "field": "/mean_itl_ms"
+      },
+      {
+        "after": 87.6223300843645,
+        "before": 87.62272058929094,
+        "field": "/mean_output_token_throughput_per_user"
+      },
+      {
+        "after": 25.122213236220396,
+        "before": 24.11683308267711,
+        "field": "/mean_tpot_ms"
+      },
+      {
+        "after": 2251.314234,
+        "before": 2087.1500174999996,
+        "field": "/mean_ttft_ms"
+      },
+      {
+        "after": 1762.356818999999,
+        "before": 1634.6735395000019,
+        "field": "/mean_ttst_ms"
+      },
+      {
+        "after": 5441.835314999992,
+        "before": 5149.987818999993,
+        "field": "/median_e2e_latency_ms"
+      },
+      {
+        "after": 27.091866984251862,
+        "before": 25.942861094488073,
+        "field": "/median_tpot_ms"
+      },
+      {
+        "after": 2501.4602599999944,
+        "before": 2319.055574999993,
+        "field": "/median_ttft_ms"
+      },
+      {
+        "after": 2012.5028449999954,
+        "before": 1866.5790969999944,
+        "field": "/median_ttst_ms"
+      },
+      {
+        "after": 5441.835314999982,
+        "before": 5149.98781899998,
+        "field": "/min_e2e_latency_ms"
+      },
+      {
+        "after": 0.28462628134208473,
+        "before": 0.30693559886656613,
+        "field": "/min_output_token_throughput_per_user"
+      },
+      {
+        "after": 500.2920519999989,
+        "before": 463.8111149999986,
+        "field": "/min_ttft_ms"
+      },
+      {
+        "after": 188.1718098262593,
+        "before": 198.8354217503444,
+        "field": "/output_throughput_tok_s"
+      },
+      {
+        "after": 5441.835314999992,
+        "before": 5149.987818999993,
+        "field": "/p75_e2e_latency_ms"
+      },
+      {
+        "after": 31.031174480314917,
+        "before": 29.594917118110327,
+        "field": "/p75_tpot_ms"
+      },
+      {
+        "after": 3001.752312000004,
+        "before": 2782.8666900000117,
+        "field": "/p75_ttft_ms"
+      },
+      {
+        "after": 2512.7948970000034,
+        "before": 2330.3902120000203,
+        "field": "/p75_ttst_ms"
+      },
+      {
+        "after": 5441.835314999997,
+        "before": 5149.987819000011,
+        "field": "/p90_e2e_latency_ms"
+      },
+      {
+        "after": 38.90978947244081,
+        "before": 36.899029165354186,
+        "field": "/p90_tpot_ms"
+      },
+      {
+        "after": 4002.336415999991,
+        "before": 3710.488919999989,
+        "field": "/p90_ttft_ms"
+      },
+      {
+        "after": 3513.379000999992,
+        "before": 3258.01244199999,
+        "field": "/p90_ttst_ms"
+      },
+      {
+        "after": 5441.835314999997,
+        "before": 5149.987819000011,
+        "field": "/p95_e2e_latency_ms"
+      },
+      {
+        "after": 38.90978947244087,
+        "before": 36.89902916535426,
+        "field": "/p95_tpot_ms"
+      },
+      {
+        "after": 4002.3364159999987,
+        "before": 3710.4889199999993,
+        "field": "/p95_ttft_ms"
+      },
+      {
+        "after": 3513.3790009999984,
+        "before": 3258.0124419999993,
+        "field": "/p95_ttst_ms"
+      },
+      {
+        "after": 5441.835314999997,
+        "before": 5149.987819000011,
+        "field": "/p99_e2e_latency_ms"
+      },
+      {
+        "after": 38.90978947244091,
+        "before": 36.89902916535443,
+        "field": "/p99_tpot_ms"
+      },
+      {
+        "after": 4002.3364160000056,
+        "before": 3710.48892000002,
+        "field": "/p99_ttft_ms"
+      },
+      {
+        "after": 3513.379001000005,
+        "before": 3258.012442000021,
+        "field": "/p99_ttst_ms"
+      },
+      {
+        "after": 1.4700922642676508,
+        "before": 1.5534017324245657,
+        "field": "/request_throughput_rps"
+      },
+      {
+        "after": 185.19982931459796,
+        "before": 171.6951908166904,
+        "field": "/std_itl_ms"
+      },
+      {
+        "after": 7.237516132976838,
+        "before": 7.2328504559968545,
+        "field": "/std_output_token_throughput_per_user"
+      },
+      {
+        "after": 9.026087393207806,
+        "before": 8.367911585233742,
+        "field": "/std_tpot_ms"
+      },
+      {
+        "after": 1146.3130989373915,
+        "before": 1062.7247713246852,
+        "field": "/std_ttft_ms"
+      },
+      {
+        "after": 1146.3130989373913,
+        "before": 1062.7247713246852,
+        "field": "/std_ttst_ms"
+      },
+      {
+        "after": 1693.5462884363337,
+        "before": 1789.5187957530995,
+        "field": "/total_throughput_tok_s"
+      }
+    ],
+    "qwen3-32b-h200-sglang-fill-amortized": [
+      {
+        "after": 7.640953170000055,
+        "before": 7.372118042000054,
+        "field": "/decode_worker_seconds"
+      },
+      {
+        "after": 7640.953169999973,
+        "before": 7372.118041999973,
+        "field": "/duration_ms"
+      },
+      {
+        "after": 536.0587755048385,
+        "before": 555.6069472388428,
+        "field": "/goodput_output_throughput_tok_s"
+      },
+      {
+        "after": 4.187959183631551,
+        "before": 4.34067927530346,
+        "field": "/goodput_request_throughput_rps"
+      },
+      {
+        "after": 0.03395979186666691,
+        "before": 0.032764969075555796,
+        "field": "/gpu_hours"
+      },
+      {
+        "after": 4288.470204038708,
+        "before": 4444.855577910743,
+        "field": "/input_throughput_tok_s"
+      },
+      {
+        "after": 1910.3427839999972,
+        "before": 1843.1340019999975,
+        "field": "/max_e2e_latency_ms"
+      },
+      {
+        "after": 488.39845700000023,
+        "before": 421.1896750000001,
+        "field": "/max_ttft_ms"
+      },
+      {
+        "after": 1910.2382924999922,
+        "before": 1843.029510499992,
+        "field": "/mean_e2e_latency_ms"
+      },
+      {
+        "after": 488.39845699999955,
+        "before": 421.18967499999974,
+        "field": "/mean_ttft_ms"
+      },
+      {
+        "after": 1910.2034619999922,
+        "before": 1842.994679999992,
+        "field": "/median_e2e_latency_ms"
+      },
+      {
+        "after": 488.39845700000023,
+        "before": 421.18967499999997,
+        "field": "/median_ttft_ms"
+      },
+      {
+        "after": 1910.2034619999918,
+        "before": 1842.9946799999916,
+        "field": "/min_e2e_latency_ms"
+      },
+      {
+        "after": 488.3984569999998,
+        "before": 421.1896749999996,
+        "field": "/min_ttft_ms"
+      },
+      {
+        "after": 536.0587755048385,
+        "before": 555.6069472388428,
+        "field": "/output_throughput_tok_s"
+      },
+      {
+        "after": 1910.2034619999922,
+        "before": 1842.994679999992,
+        "field": "/p75_e2e_latency_ms"
+      },
+      {
+        "after": 488.39845700000023,
+        "before": 421.18967499999997,
+        "field": "/p75_ttft_ms"
+      },
+      {
+        "after": 1910.3427839999972,
+        "before": 1843.1340019999975,
+        "field": "/p90_e2e_latency_ms"
+      },
+      {
+        "after": 488.39845700000023,
+        "before": 421.1896750000001,
+        "field": "/p90_ttft_ms"
+      },
+      {
+        "after": 1910.3427839999972,
+        "before": 1843.1340019999975,
+        "field": "/p95_e2e_latency_ms"
+      },
+      {
+        "after": 488.39845700000023,
+        "before": 421.1896750000001,
+        "field": "/p95_ttft_ms"
+      },
+      {
+        "after": 1910.3427839999972,
+        "before": 1843.1340019999975,
+        "field": "/p99_e2e_latency_ms"
+      },
+      {
+        "after": 488.39845700000023,
+        "before": 421.1896750000001,
+        "field": "/p99_ttft_ms"
+      },
+      {
+        "after": 4.187959183631551,
+        "before": 4.34067927530346,
+        "field": "/request_throughput_rps"
+      },
+      {
+        "after": 4824.5289795435465,
+        "before": 5000.462525149585,
+        "field": "/total_throughput_tok_s"
+      }
+    ],
+    "qwen3-32b-h200-sglang-pd-decode": [],
+    "qwen3-32b-h200-sglang-pd-prefill": [
+      {
+        "after": 5.386095632,
+        "before": 5.117260503999996,
+        "field": "/decode_worker_seconds"
+      },
+      {
+        "after": 5386.095632000002,
+        "before": 5117.260504000001,
+        "field": "/duration_ms"
+      },
+      {
+        "after": 760.4766569061168,
+        "before": 800.4282754020996,
+        "field": "/goodput_output_throughput_tok_s"
+      },
+      {
+        "after": 5.941223882079037,
+        "before": 6.2533459015789035,
+        "field": "/goodput_request_throughput_rps"
+      },
+      {
+        "after": 0.03590730421333333,
+        "before": 0.03411507002666664,
+        "field": "/gpu_hours"
+      },
+      {
+        "after": 6083.813255248934,
+        "before": 6403.426203216797,
+        "field": "/input_throughput_tok_s"
+      },
+      {
+        "after": 1346.523908000002,
+        "before": 1279.3151260000013,
+        "field": "/max_e2e_latency_ms"
+      },
+      {
+        "after": 495.10259600000063,
+        "before": 427.893814,
+        "field": "/max_ttft_ms"
+      },
+      {
+        "after": 1346.523908000001,
+        "before": 1279.3151260000004,
+        "field": "/mean_e2e_latency_ms"
+      },
+      {
+        "after": 495.10259600000023,
+        "before": 427.8938139999997,
+        "field": "/mean_ttft_ms"
+      },
+      {
+        "after": 1346.523908000001,
+        "before": 1279.3151260000009,
+        "field": "/median_e2e_latency_ms"
+      },
+      {
+        "after": 495.1025960000002,
+        "before": 427.893814,
+        "field": "/median_ttft_ms"
+      },
+      {
+        "after": 1346.5239079999992,
+        "before": 1279.3151259999986,
+        "field": "/min_e2e_latency_ms"
+      },
+      {
+        "after": 495.10259599999995,
+        "before": 427.89381399999996,
+        "field": "/min_ttft_ms"
+      },
+      {
+        "after": 760.4766569061168,
+        "before": 800.4282754020996,
+        "field": "/output_throughput_tok_s"
+      },
+      {
+        "after": 1346.523908000001,
+        "before": 1279.3151260000009,
+        "field": "/p75_e2e_latency_ms"
+      },
+      {
+        "after": 495.1025960000002,
+        "before": 427.893814,
+        "field": "/p75_ttft_ms"
+      },
+      {
+        "after": 1346.523908000002,
+        "before": 1279.3151260000013,
+        "field": "/p90_e2e_latency_ms"
+      },
+      {
+        "after": 495.10259600000063,
+        "before": 427.893814,
+        "field": "/p90_ttft_ms"
+      },
+      {
+        "after": 1346.523908000002,
+        "before": 1279.3151260000013,
+        "field": "/p95_e2e_latency_ms"
+      },
+      {
+        "after": 495.10259600000063,
+        "before": 427.893814,
+        "field": "/p95_ttft_ms"
+      },
+      {
+        "after": 1346.523908000002,
+        "before": 1279.3151260000013,
+        "field": "/p99_e2e_latency_ms"
+      },
+      {
+        "after": 495.10259600000063,
+        "before": 427.893814,
+        "field": "/p99_ttft_ms"
+      },
+      {
+        "after": 5.386095632,
+        "before": 5.117260503999996,
+        "field": "/prefill_worker_seconds"
+      },
+      {
+        "after": 5.941223882079037,
+        "before": 6.2533459015789035,
+        "field": "/request_throughput_rps"
+      },
+      {
+        "after": 6844.289912155051,
+        "before": 7203.854478618897,
+        "field": "/total_throughput_tok_s"
+      }
+    ],
+    "qwen3-32b-h200-sglang-pure-both": [
+      {
+        "after": 7.711589424000019,
+        "before": 7.442754296000018,
+        "field": "/decode_worker_seconds"
+      },
+      {
+        "after": 7711.58942399997,
+        "before": 7442.754295999969,
+        "field": "/duration_ms"
+      },
+      {
+        "after": 531.1486095528439,
+        "before": 550.333900206991,
+        "field": "/goodput_output_throughput_tok_s"
+      },
+      {
+        "after": 4.149598512131593,
+        "before": 4.299483595367117,
+        "field": "/goodput_request_throughput_rps"
+      },
+      {
+        "after": 0.03427373077333342,
+        "before": 0.0330789079822223,
+        "field": "/gpu_hours"
+      },
+      {
+        "after": 4249.1888764227515,
+        "before": 4402.671201655928,
+        "field": "/input_throughput_tok_s"
+      },
+      {
+        "after": 1927.8973559999963,
+        "before": 1860.6885739999966,
+        "field": "/max_e2e_latency_ms"
+      },
+      {
+        "after": 488.39845700000023,
+        "before": 421.1896750000001,
+        "field": "/max_ttft_ms"
+      },
+      {
+        "after": 1927.8973559999936,
+        "before": 1860.6885739999934,
+        "field": "/mean_e2e_latency_ms"
+      },
+      {
+        "after": 488.39845699999955,
+        "before": 421.18967499999974,
+        "field": "/mean_ttft_ms"
+      },
+      {
+        "after": 1927.8973559999913,
+        "before": 1860.6885739999911,
+        "field": "/median_e2e_latency_ms"
+      },
+      {
+        "after": 488.39845700000023,
+        "before": 421.18967499999997,
+        "field": "/median_ttft_ms"
+      },
+      {
+        "after": 1927.8973559999909,
+        "before": 1860.6885739999907,
+        "field": "/min_e2e_latency_ms"
+      },
+      {
+        "after": 488.3984569999998,
+        "before": 421.1896749999996,
+        "field": "/min_ttft_ms"
+      },
+      {
+        "after": 531.1486095528439,
+        "before": 550.333900206991,
+        "field": "/output_throughput_tok_s"
+      },
+      {
+        "after": 1927.8973559999913,
+        "before": 1860.6885739999911,
+        "field": "/p75_e2e_latency_ms"
+      },
+      {
+        "after": 488.39845700000023,
+        "before": 421.18967499999997,
+        "field": "/p75_ttft_ms"
+      },
+      {
+        "after": 1927.8973559999963,
+        "before": 1860.6885739999966,
+        "field": "/p90_e2e_latency_ms"
+      },
+      {
+        "after": 488.39845700000023,
+        "before": 421.1896750000001,
+        "field": "/p90_ttft_ms"
+      },
+      {
+        "after": 1927.8973559999963,
+        "before": 1860.6885739999966,
+        "field": "/p95_e2e_latency_ms"
+      },
+      {
+        "after": 488.39845700000023,
+        "before": 421.1896750000001,
+        "field": "/p95_ttft_ms"
+      },
+      {
+        "after": 1927.8973559999963,
+        "before": 1860.6885739999966,
+        "field": "/p99_e2e_latency_ms"
+      },
+      {
+        "after": 488.39845700000023,
+        "before": 421.1896750000001,
+        "field": "/p99_ttft_ms"
+      },
+      {
+        "after": 4.149598512131593,
+        "before": 4.299483595367117,
+        "field": "/request_throughput_rps"
+      },
+      {
+        "after": 4780.337485975595,
+        "before": 4953.005101862918,
+        "field": "/total_throughput_tok_s"
+      }
+    ],
+    "qwen3-32b-h200-sglang-pure-both-saturated": [
+      {
+        "after": 7.711589424000019,
+        "before": 7.442754296000018,
+        "field": "/decode_worker_seconds"
+      },
+      {
+        "after": 7711.58942399997,
+        "before": 7442.754295999969,
+        "field": "/duration_ms"
+      },
+      {
+        "after": 763.5261262322131,
+        "before": 791.1049815475494,
+        "field": "/goodput_output_throughput_tok_s"
+      },
+      {
+        "after": 5.965047861189165,
+        "before": 6.18050766834023,
+        "field": "/goodput_request_throughput_rps"
+      },
+      {
+        "after": 0.03427373077333342,
+        "before": 0.0330789079822223,
+        "field": "/gpu_hours"
+      },
+      {
+        "after": 8498.377752845503,
+        "before": 8805.342403311855,
+        "field": "/input_throughput_tok_s"
+      },
+      {
+        "after": 3855.794711999987,
+        "before": 3721.3771479999878,
+        "field": "/max_e2e_latency_ms"
+      },
+      {
+        "after": 2416.295812999996,
+        "before": 2281.8782489999967,
+        "field": "/max_ttft_ms"
+      },
+      {
+        "after": 2470.11848737499,
+        "before": 2384.0072354374893,
+        "field": "/mean_e2e_latency_ms"
+      },
+      {
+        "after": 1030.6195883749983,
+        "before": 944.5083364374984,
+        "field": "/mean_ttft_ms"
+      },
+      {
+        "after": 1927.8973559999963,
+        "before": 1860.6885739999966,
+        "field": "/median_e2e_latency_ms"
+      },
+      {
+        "after": 488.39845700000023,
+        "before": 421.18967499999997,
+        "field": "/median_ttft_ms"
+      },
+      {
+        "after": 1927.8973559999909,
+        "before": 1860.6885739999907,
+        "field": "/min_e2e_latency_ms"
+      },
+      {
+        "after": 488.3984569999998,
+        "before": 421.1896749999996,
+        "field": "/min_ttft_ms"
+      },
+      {
+        "after": 1062.2972191056879,
+        "before": 1100.667800413982,
+        "field": "/output_throughput_tok_s"
+      },
+      {
+        "after": 3855.794711999982,
+        "before": 3721.3771479999814,
+        "field": "/p75_e2e_latency_ms"
+      },
+      {
+        "after": 2416.295812999991,
+        "before": 2281.8782489999903,
+        "field": "/p75_ttft_ms"
+      },
+      {
+        "after": 3855.7947119999826,
+        "before": 3721.377147999982,
+        "field": "/p90_e2e_latency_ms"
+      },
+      {
+        "after": 2416.2958129999915,
+        "before": 2281.878248999991,
+        "field": "/p90_ttft_ms"
+      },
+      {
+        "after": 3855.794711999987,
+        "before": 3721.3771479999878,
+        "field": "/p95_e2e_latency_ms"
+      },
+      {
+        "after": 2416.295812999996,
+        "before": 2281.8782489999967,
+        "field": "/p95_ttft_ms"
+      },
+      {
+        "after": 3855.794711999987,
+        "before": 3721.3771479999878,
+        "field": "/p99_e2e_latency_ms"
+      },
+      {
+        "after": 2416.295812999996,
+        "before": 2281.8782489999967,
+        "field": "/p99_ttft_ms"
+      },
+      {
+        "after": 8.299197024263187,
+        "before": 8.598967190734234,
+        "field": "/request_throughput_rps"
+      },
+      {
+        "after": 866.8003981515002,
+        "before": 836.5827110865886,
+        "field": "/std_e2e_latency_ms"
+      },
+      {
+        "after": 866.8003981515012,
+        "before": 836.5827110865897,
+        "field": "/std_ttft_ms"
+      },
+      {
+        "after": 9560.67497195119,
+        "before": 9906.010203725837,
+        "field": "/total_throughput_tok_s"
+      }
+    ]
+  },
+  "host_cost": "Count selection remains O(1) without allocation, removing the communication ratio calculation. Default search emits 3 candidates per shape for counts 2/3/4 instead of 5 pipeline/count combinations, with every requested count retained.",
+  "oracle": "Rust hand-derived tests with A=2, F=3, A_to_F=4, F_to_A=5 and 2 layers: counts 1/2/3/4 produce cycles 14/8/9/9 and steps 28/38/59/77.",
+  "rule": {
+    "1": "no_overlap",
+    "2": "partial_overlap",
+    "3_or_more": "full_overlap"
+  },
+  "scope": "Simulated serving latency and configuration qualification, not measured serving accuracy or a host performance benchmark.",
+  "semantic_change": "Regime depends only on effective microbatch count; communication no longer changes regime. Independent pipeline_model inputs and the Sweeper pipeline-model axis are removed.",
+  "status": "Historical intermediate count-selection model; superseded by the ordered-stage pipeline.",
+  "superseded_by": "benchmarks/evidence/afd-pipeline-layout.json"
+}

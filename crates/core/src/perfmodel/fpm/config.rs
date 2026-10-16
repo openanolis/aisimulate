@@ -9,7 +9,7 @@ use serde::{Deserialize, Serialize};
 
 use super::{EstimatorConfig, ForwardPassWorkerType};
 use crate::common::enums::{DatabaseMode, TransferPolicy};
-use crate::{AicError, BackendKind};
+use crate::{AfdPoolRole, AfdRoutingLocation, AicError, BackendKind};
 
 const fn one() -> u32 {
     1
@@ -81,6 +81,12 @@ impl ForwardPassSpeculationConfig {
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct ForwardPassPerfModelConfig {
+    /// AFD routing identity, absent for ordinary forward-pass models.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub afd_routing_location: Option<AfdRoutingLocation>,
+    /// Selective AFD pool compilation; absent for ordinary agg models.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub afd_pool_role: Option<AfdPoolRole>,
     pub model: String,
     pub system: String,
     pub backend: BackendKind,
@@ -174,6 +180,8 @@ impl ForwardPassPerfModelConfig {
         worker_type: ForwardPassWorkerType,
     ) -> Self {
         Self {
+            afd_routing_location: None,
+            afd_pool_role: None,
             model: model.into(),
             system: system.into(),
             backend,
@@ -304,6 +312,29 @@ impl ForwardPassPerfModelConfig {
     }
 
     pub(crate) fn validate(&self) -> Result<(), AicError> {
+        if self.afd_pool_role.is_some()
+            && !matches!(
+                self.estimation_mode,
+                EstimationMode::Auto | EstimationMode::OpLevel
+            )
+        {
+            return Err(invalid_config(
+                "AFD pool compilation requires op_level estimation",
+            ));
+        }
+        if self.afd_pool_role.is_some()
+            && (self.backend != BackendKind::Sglang
+                || self.pp != 1
+                || self.cp_size.unwrap_or(1) != 1
+                || self.dcp.unwrap_or(1) != 1)
+        {
+            return Err(invalid_config(
+                "AFD pool compilation requires SGLang, PP1, CP1 and DCP1",
+            ));
+        }
+        if let Some(location) = self.afd_routing_location {
+            location.ensure_supported()?;
+        }
         if self.estimator_config.fpm_interpolation.collect_coverage
             && (self.estimation_mode != EstimationMode::FpmInterpolation
                 || self.fallback_policy != ForwardPassFallbackPolicy::Deny
@@ -482,6 +513,36 @@ mod tests {
             .unwrap()
             .extend(value.as_object().unwrap().clone());
         serde_json::from_value(base).unwrap()
+    }
+
+    #[test]
+    fn afd_routing_identity_round_trips_and_fails_before_fallback() {
+        for location in ["a", "f"] {
+            let cfg = config(serde_json::json!({"afd_routing_location": location}));
+            let saved = serde_json::to_value(&cfg).unwrap();
+            assert_eq!(saved["afd_routing_location"], location);
+            assert_eq!(
+                serde_json::from_value::<ForwardPassPerfModelConfig>(saved).unwrap(),
+                cfg
+            );
+        }
+        for policy in ["deny", "allow", "regression"] {
+            let cfg = config(serde_json::json!({
+                "afd_routing_location": "f", "fallback_policy": policy,
+                "model": "missing/model", "systems_paths": ["/does/not/exist"]
+            }));
+            assert!(matches!(
+                crate::ForwardPassPerfModel::best_available(cfg),
+                Err(AicError::NotImplemented(_))
+            ));
+        }
+        assert!(
+            !serde_json::to_value(config(serde_json::json!({})))
+                .unwrap()
+                .as_object()
+                .unwrap()
+                .contains_key("afd_routing_location")
+        );
     }
 
     #[test]

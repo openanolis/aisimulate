@@ -1,0 +1,110 @@
+[
+  {
+    "name": "qwen_tp4",
+    "before": {
+      "completed_requests": 4,
+      "total_input_tokens": 512,
+      "total_output_tokens": 32,
+      "mean_ttft_ms": 15.964030000000001,
+      "mean_tpot_ms": 7.626238,
+      "duration_ms": 69.347696
+    },
+    "after": {
+      "completed_requests": 4,
+      "total_input_tokens": 512,
+      "total_output_tokens": 32,
+      "mean_ttft_ms": 15.964030000000001,
+      "mean_tpot_ms": 7.751038000000001,
+      "duration_ms": 70.22129600000001
+    },
+    "delta": {
+      "completed_requests": 0,
+      "total_input_tokens": 0,
+      "total_output_tokens": 0,
+      "mean_ttft_ms": 0.0,
+      "mean_tpot_ms": 0.12480000000000135,
+      "duration_ms": 0.8736000000000104
+    }
+  },
+  {
+    "name": "qwen_tp8",
+    "before": {
+      "completed_requests": 4,
+      "total_input_tokens": 512,
+      "total_output_tokens": 32,
+      "mean_ttft_ms": 11.966415,
+      "mean_tpot_ms": 7.204465999999998,
+      "duration_ms": 62.39767699999999
+    },
+    "after": {
+      "completed_requests": 4,
+      "total_input_tokens": 512,
+      "total_output_tokens": 32,
+      "mean_ttft_ms": 11.966415,
+      "mean_tpot_ms": 7.202545999999999,
+      "duration_ms": 62.38423699999999
+    },
+    "delta": {
+      "completed_requests": 0,
+      "total_input_tokens": 0,
+      "total_output_tokens": 0,
+      "mean_ttft_ms": 0.0,
+      "mean_tpot_ms": -0.0019199999999992556,
+      "duration_ms": -0.013439999999995678
+    }
+  },
+  {
+    "name": "deepseek_v32_tp4_trace",
+    "before": {
+      "completed_requests": 4,
+      "total_input_tokens": 576,
+      "total_output_tokens": 34,
+      "mean_ttft_ms": 115.73090499999999,
+      "mean_tpot_ms": 18.112472375,
+      "duration_ms": 260.328847
+    },
+    "after": {
+      "completed_requests": 4,
+      "total_input_tokens": 576,
+      "total_output_tokens": 34,
+      "mean_ttft_ms": 115.73090499999999,
+      "mean_tpot_ms": 18.272552374999997,
+      "duration_ms": 261.609487
+    },
+    "delta": {
+      "completed_requests": 0,
+      "total_input_tokens": 0,
+      "total_output_tokens": 0,
+      "mean_ttft_ms": 0.0,
+      "mean_tpot_ms": 0.1600799999999971,
+      "duration_ms": 1.2806400000000053
+    }
+  },
+  {
+    "name": "mimo_tp4_trace",
+    "before": {
+      "completed_requests": 4,
+      "total_input_tokens": 576,
+      "total_output_tokens": 34,
+      "mean_ttft_ms": 28.809452,
+      "mean_tpot_ms": 8.71697600892857,
+      "duration_ms": 97.91085899999999
+    },
+    "after": {
+      "completed_requests": 4,
+      "total_input_tokens": 576,
+      "total_output_tokens": 34,
+      "mean_ttft_ms": 28.809452,
+      "mean_tpot_ms": 9.05026475892857,
+      "duration_ms": 100.491159
+    },
+    "delta": {
+      "completed_requests": 0,
+      "total_input_tokens": 0,
+      "total_output_tokens": 0,
+      "mean_ttft_ms": 0.0,
+      "mean_tpot_ms": 0.33328874999999947,
+      "duration_ms": 2.5803000000000083
+    }
+  }
+]

@@ -1,0 +1,685 @@
+{
+  "source": "crates/core/parity_tests/perfmodel/goldens/afd_execution_plan.json",
+  "validation": "All 12 cases rerun on final release in test_afd_execution_plan_parity.py; passed within 1e-6 relative tolerance.",
+  "cases": [
+    {
+      "name": "qwen_tp2",
+      "config": {
+        "engine": {
+          "backend": "sglang",
+          "backend_version": "0.5.14",
+          "context_length": 2048,
+          "hardware": "h200_sxm",
+          "mode": "aggregated",
+          "model": "Qwen/Qwen3-30B-A3B",
+          "workers": {
+            "aggregated": {
+              "afd": {
+                "a_batch_size": 4,
+                "n_a_nodes": 1,
+                "n_f_nodes": 1,
+                "num_microbatches": 2,
+                "pipeline_layout": "four_stage",
+                "tp_a": 2
+              },
+              "type": "afd"
+            }
+          }
+        },
+        "evaluation": {
+          "sla": {
+            "itl_ms": 30,
+            "ttft_ms": 800
+          }
+        },
+        "traffic": {
+          "load": {
+            "concurrency": 4,
+            "type": "concurrency"
+          },
+          "source": {
+            "type": "synthetic",
+            "input_tokens": 128,
+            "output_tokens": 8
+          },
+          "stop": {
+            "requests": 4
+          }
+        }
+      },
+      "trace": false,
+      "expected": {
+        "completed_requests": 4,
+        "total_input_tokens": 512,
+        "total_output_tokens": 32,
+        "mean_ttft_ms": 17.692726,
+        "mean_tpot_ms": 7.695536000000003,
+        "duration_ms": 71.56147800000002
+      }
+    },
+    {
+      "name": "qwen_tp4",
+      "config": {
+        "engine": {
+          "backend": "sglang",
+          "backend_version": "0.5.14",
+          "context_length": 2048,
+          "hardware": "h200_sxm",
+          "mode": "aggregated",
+          "model": "Qwen/Qwen3-30B-A3B",
+          "workers": {
+            "aggregated": {
+              "afd": {
+                "a_batch_size": 4,
+                "n_a_nodes": 1,
+                "n_f_nodes": 1,
+                "num_microbatches": 2,
+                "pipeline_layout": "two_stage",
+                "tp_a": 4
+              },
+              "type": "afd"
+            }
+          }
+        },
+        "evaluation": {
+          "sla": {
+            "itl_ms": 30,
+            "ttft_ms": 800
+          }
+        },
+        "traffic": {
+          "load": {
+            "concurrency": 4,
+            "type": "concurrency"
+          },
+          "source": {
+            "type": "synthetic",
+            "input_tokens": 128,
+            "output_tokens": 8
+          },
+          "stop": {
+            "requests": 4
+          }
+        }
+      },
+      "trace": false,
+      "expected": {
+        "completed_requests": 4,
+        "total_input_tokens": 512,
+        "total_output_tokens": 32,
+        "mean_ttft_ms": 15.964030000000001,
+        "mean_tpot_ms": 7.751038000000001,
+        "duration_ms": 70.22129600000001
+      }
+    },
+    {
+      "name": "qwen_tp8",
+      "config": {
+        "engine": {
+          "backend": "sglang",
+          "backend_version": "0.5.14",
+          "context_length": 2048,
+          "hardware": "h200_sxm",
+          "mode": "aggregated",
+          "model": "Qwen/Qwen3-30B-A3B",
+          "workers": {
+            "aggregated": {
+              "afd": {
+                "a_batch_size": 4,
+                "n_a_nodes": 1,
+                "n_f_nodes": 1,
+                "num_microbatches": 2,
+                "pipeline_layout": "four_stage",
+                "tp_a": 8
+              },
+              "type": "afd"
+            }
+          }
+        },
+        "evaluation": {
+          "sla": {
+            "itl_ms": 30,
+            "ttft_ms": 800
+          }
+        },
+        "traffic": {
+          "load": {
+            "concurrency": 4,
+            "type": "concurrency"
+          },
+          "source": {
+            "type": "synthetic",
+            "input_tokens": 128,
+            "output_tokens": 8
+          },
+          "stop": {
+            "requests": 4
+          }
+        }
+      },
+      "trace": false,
+      "expected": {
+        "completed_requests": 4,
+        "total_input_tokens": 512,
+        "total_output_tokens": 32,
+        "mean_ttft_ms": 11.966415,
+        "mean_tpot_ms": 7.202545999999999,
+        "duration_ms": 62.38423699999999
+      }
+    },
+    {
+      "name": "deepseek_v3_tp1",
+      "config": {
+        "engine": {
+          "backend": "sglang",
+          "backend_version": "0.5.14",
+          "context_length": 2048,
+          "hardware": "h200_sxm",
+          "mode": "aggregated",
+          "model": "deepseek-ai/DeepSeek-V3",
+          "workers": {
+            "aggregated": {
+              "afd": {
+                "a_batch_size": 4,
+                "n_a_nodes": 1,
+                "n_f_nodes": 1,
+                "num_microbatches": 2,
+                "pipeline_layout": "four_stage",
+                "tp_a": 1
+              },
+              "type": "afd"
+            }
+          }
+        },
+        "evaluation": {
+          "sla": {
+            "itl_ms": 30,
+            "ttft_ms": 800
+          }
+        },
+        "traffic": {
+          "load": {
+            "concurrency": 4,
+            "type": "concurrency"
+          },
+          "source": {
+            "type": "synthetic",
+            "input_tokens": 128,
+            "output_tokens": 8
+          },
+          "stop": {
+            "requests": 4
+          }
+        }
+      },
+      "trace": false,
+      "expected": {
+        "completed_requests": 4,
+        "total_input_tokens": 512,
+        "total_output_tokens": 32,
+        "mean_ttft_ms": 130.979477,
+        "mean_tpot_ms": 29.95091300000001,
+        "duration_ms": 340.6358680000001
+      }
+    },
+    {
+      "name": "deepseek_v32_tp2",
+      "config": {
+        "engine": {
+          "backend": "sglang",
+          "backend_version": "0.5.14",
+          "context_length": 2048,
+          "hardware": "h200_sxm",
+          "mode": "aggregated",
+          "model": "deepseek-ai/DeepSeek-V3.2",
+          "workers": {
+            "aggregated": {
+              "afd": {
+                "a_batch_size": 4,
+                "n_a_nodes": 1,
+                "n_f_nodes": 1,
+                "num_microbatches": 2,
+                "pipeline_layout": "two_stage",
+                "tp_a": 2
+              },
+              "type": "afd"
+            }
+          }
+        },
+        "evaluation": {
+          "sla": {
+            "itl_ms": 30,
+            "ttft_ms": 800
+          }
+        },
+        "traffic": {
+          "load": {
+            "concurrency": 4,
+            "type": "concurrency"
+          },
+          "source": {
+            "type": "synthetic",
+            "input_tokens": 128,
+            "output_tokens": 8
+          },
+          "stop": {
+            "requests": 4
+          }
+        }
+      },
+      "trace": false,
+      "expected": {
+        "completed_requests": 4,
+        "total_input_tokens": 512,
+        "total_output_tokens": 32,
+        "mean_ttft_ms": 123.02723399999999,
+        "mean_tpot_ms": 26.530107999999988,
+        "duration_ms": 308.7379899999999
+      }
+    },
+    {
+      "name": "deepseek_v32_tp4_trace",
+      "config": {
+        "engine": {
+          "backend": "sglang",
+          "backend_version": "0.5.14",
+          "context_length": 2048,
+          "hardware": "h200_sxm",
+          "mode": "aggregated",
+          "model": "deepseek-ai/DeepSeek-V3.2",
+          "workers": {
+            "aggregated": {
+              "afd": {
+                "a_batch_size": 4,
+                "n_a_nodes": 1,
+                "n_f_nodes": 1,
+                "num_microbatches": 2,
+                "pipeline_layout": "four_stage",
+                "tp_a": 4
+              },
+              "type": "afd"
+            }
+          }
+        },
+        "evaluation": {
+          "sla": {
+            "itl_ms": 30,
+            "ttft_ms": 800
+          }
+        },
+        "traffic": {
+          "load": {
+            "concurrency": 4,
+            "type": "concurrency"
+          },
+          "source": {
+            "type": "synthetic",
+            "input_tokens": 128,
+            "output_tokens": 8
+          },
+          "stop": {}
+        }
+      },
+      "trace": true,
+      "expected": {
+        "completed_requests": 4,
+        "total_input_tokens": 576,
+        "total_output_tokens": 34,
+        "mean_ttft_ms": 115.73090499999999,
+        "mean_tpot_ms": 18.272552374999997,
+        "duration_ms": 261.609487
+      }
+    },
+    {
+      "name": "mimo_tp2",
+      "config": {
+        "engine": {
+          "backend": "sglang",
+          "backend_version": "0.5.14",
+          "context_length": 2048,
+          "hardware": "h200_sxm",
+          "mode": "aggregated",
+          "model": "XiaomiMiMo/MiMo-V2-Flash",
+          "workers": {
+            "aggregated": {
+              "afd": {
+                "a_batch_size": 4,
+                "n_a_nodes": 1,
+                "n_f_nodes": 1,
+                "num_microbatches": 2,
+                "pipeline_layout": "four_stage",
+                "tp_a": 2
+              },
+              "type": "afd"
+            }
+          }
+        },
+        "evaluation": {
+          "sla": {
+            "itl_ms": 30,
+            "ttft_ms": 800
+          }
+        },
+        "traffic": {
+          "load": {
+            "concurrency": 4,
+            "type": "concurrency"
+          },
+          "source": {
+            "type": "synthetic",
+            "input_tokens": 128,
+            "output_tokens": 8
+          },
+          "stop": {
+            "requests": 4
+          }
+        }
+      },
+      "trace": false,
+      "expected": {
+        "completed_requests": 4,
+        "total_input_tokens": 512,
+        "total_output_tokens": 32,
+        "mean_ttft_ms": 37.059731,
+        "mean_tpot_ms": 12.770846000000004,
+        "duration_ms": 126.45565300000003
+      }
+    },
+    {
+      "name": "mimo_tp4_trace",
+      "config": {
+        "engine": {
+          "backend": "sglang",
+          "backend_version": "0.5.14",
+          "context_length": 2048,
+          "hardware": "h200_sxm",
+          "mode": "aggregated",
+          "model": "XiaomiMiMo/MiMo-V2-Flash",
+          "workers": {
+            "aggregated": {
+              "afd": {
+                "a_batch_size": 4,
+                "n_a_nodes": 1,
+                "n_f_nodes": 1,
+                "num_microbatches": 2,
+                "pipeline_layout": "two_stage",
+                "tp_a": 4
+              },
+              "type": "afd"
+            }
+          }
+        },
+        "evaluation": {
+          "sla": {
+            "itl_ms": 30,
+            "ttft_ms": 800
+          }
+        },
+        "traffic": {
+          "load": {
+            "concurrency": 4,
+            "type": "concurrency"
+          },
+          "source": {
+            "type": "synthetic",
+            "input_tokens": 128,
+            "output_tokens": 8
+          },
+          "stop": {}
+        }
+      },
+      "trace": true,
+      "expected": {
+        "completed_requests": 4,
+        "total_input_tokens": 576,
+        "total_output_tokens": 34,
+        "mean_ttft_ms": 28.809452,
+        "mean_tpot_ms": 9.05026475892857,
+        "duration_ms": 100.491159
+      }
+    },
+    {
+      "name": "qwen_tp2_hetero",
+      "config": {
+        "engine": {
+          "backend": "sglang",
+          "backend_version": "0.5.14",
+          "context_length": 2048,
+          "hardware": "h200_sxm",
+          "mode": "aggregated",
+          "model": "Qwen/Qwen3-30B-A3B",
+          "workers": {
+            "aggregated": {
+              "afd": {
+                "a_batch_size": 4,
+                "n_a_nodes": 1,
+                "n_f_nodes": 1,
+                "num_microbatches": 2,
+                "pipeline_layout": "four_stage",
+                "tp_a": 2,
+                "f_system": "b200_sxm"
+              },
+              "type": "afd"
+            }
+          }
+        },
+        "evaluation": {
+          "sla": {
+            "itl_ms": 30,
+            "ttft_ms": 800
+          }
+        },
+        "traffic": {
+          "load": {
+            "concurrency": 4,
+            "type": "concurrency"
+          },
+          "source": {
+            "type": "synthetic",
+            "input_tokens": 128,
+            "output_tokens": 8
+          },
+          "stop": {
+            "requests": 4
+          }
+        }
+      },
+      "trace": false,
+      "expected": {
+        "completed_requests": 4,
+        "total_input_tokens": 512,
+        "total_output_tokens": 32,
+        "mean_ttft_ms": 11.305314000000001,
+        "mean_tpot_ms": 7.000109000000001,
+        "duration_ms": 60.30607700000001
+      }
+    },
+    {
+      "name": "qwen_tp2_cached_chunked",
+      "config": {
+        "engine": {
+          "backend": "sglang",
+          "backend_version": "0.5.14",
+          "context_length": 2048,
+          "hardware": "h200_sxm",
+          "mode": "aggregated",
+          "model": "Qwen/Qwen3-30B-A3B",
+          "workers": {
+            "aggregated": {
+              "afd": {
+                "a_batch_size": 4,
+                "n_a_nodes": 1,
+                "n_f_nodes": 1,
+                "num_microbatches": 2,
+                "pipeline_layout": "four_stage",
+                "tp_a": 2,
+                "chunked_prefill_size": 128
+              },
+              "type": "afd"
+            }
+          }
+        },
+        "evaluation": {
+          "sla": {
+            "itl_ms": 30,
+            "ttft_ms": 800
+          }
+        },
+        "traffic": {
+          "load": {
+            "concurrency": 1,
+            "type": "concurrency"
+          },
+          "source": {
+            "type": "synthetic",
+            "input_tokens": 512,
+            "output_tokens": 8,
+            "cached_prefix_tokens": 256
+          },
+          "stop": {
+            "requests": 4
+          }
+        }
+      },
+      "trace": false,
+      "expected": {
+        "completed_requests": 4,
+        "total_input_tokens": 2048,
+        "total_output_tokens": 32,
+        "mean_ttft_ms": 44.2229655,
+        "mean_tpot_ms": 7.844528000000011,
+        "duration_ms": 396.5386460000003
+      }
+    },
+    {
+      "name": "qwen_tp2_pd_decode",
+      "config": {
+        "engine": {
+          "backend": "sglang",
+          "backend_version": "0.5.14",
+          "context_length": 2048,
+          "hardware": "h200_sxm",
+          "mode": "disaggregated",
+          "model": "Qwen/Qwen3-30B-A3B",
+          "workers": {
+            "decode": {
+              "type": "afd",
+              "afd": {
+                "a_batch_size": 4,
+                "n_a_nodes": 1,
+                "n_f_nodes": 1,
+                "num_microbatches": 2,
+                "pipeline_layout": "four_stage",
+                "tp_a": 2
+              }
+            },
+            "prefill": {
+              "parallelism": {
+                "replicas": 1,
+                "tensor": 8,
+                "pipeline": 1,
+                "attention_data": 1,
+                "moe_tensor": 1,
+                "moe_expert": 8
+              }
+            }
+          }
+        },
+        "evaluation": {
+          "sla": {
+            "itl_ms": 30,
+            "ttft_ms": 800
+          }
+        },
+        "traffic": {
+          "load": {
+            "concurrency": 4,
+            "type": "concurrency"
+          },
+          "source": {
+            "type": "synthetic",
+            "input_tokens": 128,
+            "output_tokens": 8
+          },
+          "stop": {
+            "requests": 4
+          }
+        }
+      },
+      "trace": false,
+      "expected": {
+        "completed_requests": 4,
+        "total_input_tokens": 512,
+        "total_output_tokens": 32,
+        "mean_ttft_ms": 34.013396,
+        "mean_tpot_ms": 7.695536000000004,
+        "duration_ms": 101.34933600000004
+      }
+    },
+    {
+      "name": "qwen_tp2_pd_prefill",
+      "config": {
+        "engine": {
+          "backend": "sglang",
+          "backend_version": "0.5.14",
+          "context_length": 2048,
+          "hardware": "h200_sxm",
+          "mode": "disaggregated",
+          "model": "Qwen/Qwen3-30B-A3B",
+          "workers": {
+            "prefill": {
+              "type": "afd",
+              "afd": {
+                "a_batch_size": 4,
+                "n_a_nodes": 1,
+                "n_f_nodes": 1,
+                "num_microbatches": 2,
+                "pipeline_layout": "four_stage",
+                "tp_a": 2
+              }
+            },
+            "decode": {
+              "parallelism": {
+                "replicas": 1,
+                "tensor": 8,
+                "pipeline": 1,
+                "attention_data": 1,
+                "moe_tensor": 1,
+                "moe_expert": 8
+              }
+            }
+          }
+        },
+        "evaluation": {
+          "sla": {
+            "itl_ms": 30,
+            "ttft_ms": 800
+          }
+        },
+        "traffic": {
+          "load": {
+            "concurrency": 4,
+            "type": "concurrency"
+          },
+          "source": {
+            "type": "synthetic",
+            "input_tokens": 128,
+            "output_tokens": 8
+          },
+          "stop": {
+            "requests": 4
+          }
+        }
+      },
+      "trace": false,
+      "expected": {
+        "completed_requests": 4,
+        "total_input_tokens": 512,
+        "total_output_tokens": 32,
+        "mean_ttft_ms": 22.756936,
+        "mean_tpot_ms": 5.065056714285715,
+        "duration_ms": 58.212333
+      }
+    }
+  ]
+}

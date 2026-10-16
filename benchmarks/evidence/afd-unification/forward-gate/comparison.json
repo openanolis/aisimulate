@@ -1,0 +1,690 @@
+{
+  "base_revision": "23d21fa4f62ff47e742c48c26d3ed202f97308d2",
+  "blocking": false,
+  "cells": [
+    {
+      "database_mode": "SILICON",
+      "geomean_ratio": 0.9002863022277893,
+      "invalid": 0,
+      "metric": "cold",
+      "model_id": "deepseek-v3.2-b200_sxm-vllm-0.24.0-tp8-pp1-adp1-mtp1-ep8",
+      "phase": "context",
+      "regressions": 0,
+      "unstable": 1,
+      "worst_case_id": "deepseek-v3.2-b200_sxm-vllm-0.24.0-tp8-pp1-adp1-mtp1-ep8/silicon/context/bs1-isl1024-prefix0",
+      "worst_ratio": 0.9002863022277893
+    },
+    {
+      "database_mode": "SILICON",
+      "geomean_ratio": 0.9263024909411653,
+      "invalid": 0,
+      "metric": "cold",
+      "model_id": "deepseek-v3.2-b200_sxm-vllm-0.24.0-tp8-pp1-adp1-mtp1-ep8",
+      "phase": "generation",
+      "regressions": 0,
+      "unstable": 1,
+      "worst_case_id": "deepseek-v3.2-b200_sxm-vllm-0.24.0-tp8-pp1-adp1-mtp1-ep8/silicon/generation/bs1-isl1024-prefix0",
+      "worst_ratio": 0.9983293264333156
+    },
+    {
+      "database_mode": "SILICON",
+      "geomean_ratio": 1.0046111111111111,
+      "invalid": 0,
+      "metric": "warm",
+      "model_id": "deepseek-v3.2-b200_sxm-vllm-0.24.0-tp8-pp1-adp1-mtp1-ep8",
+      "phase": "context",
+      "regressions": 0,
+      "unstable": 0,
+      "worst_case_id": "deepseek-v3.2-b200_sxm-vllm-0.24.0-tp8-pp1-adp1-mtp1-ep8/silicon/context/bs1-isl1024-prefix0",
+      "worst_ratio": 1.0046111111111111
+    },
+    {
+      "database_mode": "SILICON",
+      "geomean_ratio": 0.9999942679007521,
+      "invalid": 0,
+      "metric": "warm",
+      "model_id": "deepseek-v3.2-b200_sxm-vllm-0.24.0-tp8-pp1-adp1-mtp1-ep8",
+      "phase": "generation",
+      "regressions": 0,
+      "unstable": 0,
+      "worst_case_id": "deepseek-v3.2-b200_sxm-vllm-0.24.0-tp8-pp1-adp1-mtp1-ep8/silicon/generation/bs1-isl1024-prefix0",
+      "worst_ratio": 1.004823337982334
+    },
+    {
+      "database_mode": "SILICON",
+      "geomean_ratio": 0.989254922146442,
+      "invalid": 0,
+      "metric": "cold",
+      "model_id": "qwen3-32b",
+      "phase": "context",
+      "regressions": 0,
+      "unstable": 0,
+      "worst_case_id": "qwen3-32b/silicon/context/bs1-isl1024",
+      "worst_ratio": 0.989254922146442
+    },
+    {
+      "database_mode": "SILICON",
+      "geomean_ratio": 0.9954726449571811,
+      "invalid": 0,
+      "metric": "warm",
+      "model_id": "qwen3-32b",
+      "phase": "context",
+      "regressions": 0,
+      "unstable": 0,
+      "worst_case_id": "qwen3-32b/silicon/context/bs1-isl1024",
+      "worst_ratio": 0.9954726449571811
+    },
+    {
+      "database_mode": "SILICON",
+      "geomean_ratio": 0.8972830188679246,
+      "invalid": 0,
+      "metric": "cold",
+      "model_id": "qwen3-32b",
+      "phase": "generation",
+      "regressions": 0,
+      "unstable": 0,
+      "worst_case_id": "qwen3-32b/silicon/generation/bs1-isl1024",
+      "worst_ratio": 0.8972830188679246
+    },
+    {
+      "database_mode": "SILICON",
+      "geomean_ratio": 0.9981468926553673,
+      "invalid": 0,
+      "metric": "warm",
+      "model_id": "qwen3-32b",
+      "phase": "generation",
+      "regressions": 0,
+      "unstable": 0,
+      "worst_case_id": "qwen3-32b/silicon/generation/bs1-isl1024",
+      "worst_ratio": 0.9981468926553673
+    }
+  ],
+  "head_revision": "23d21fa4f62ff47e742c48c26d3ed202f97308d2+working-tree",
+  "matrix_case_count": 64,
+  "mode": "local-macos-subset",
+  "points": [
+    {
+      "absolute_threshold_us": 2.0,
+      "base_median_us": 31.084,
+      "case_id": "qwen3-32b/silicon/context/bs1-isl1024",
+      "classification": "IMPROVEMENT",
+      "consensus_required": 4,
+      "database_mode": "SILICON",
+      "exceed_count": 0,
+      "head_median_us": 30.75,
+      "median_delta_us": -0.33399999999999963,
+      "median_ratio": 0.989254922146442,
+      "metric": "cold",
+      "model_id": "qwen3-32b",
+      "phase": "context",
+      "relative_threshold": 0.1,
+      "rounds": [
+        {
+          "base_us": 31.084,
+          "delta_us": -0.33399999999999963,
+          "exceeds": false,
+          "head_us": 30.75,
+          "ratio": 0.989254922146442,
+          "round": 0
+        },
+        {
+          "base_us": 22.583,
+          "delta_us": -1.416999999999998,
+          "exceeds": false,
+          "head_us": 21.166,
+          "ratio": 0.9372536864012754,
+          "round": 1
+        },
+        {
+          "base_us": 31.666,
+          "delta_us": 1.3339999999999996,
+          "exceeds": false,
+          "head_us": 33.0,
+          "ratio": 1.0421272026779511,
+          "round": 2
+        },
+        {
+          "base_us": 25.375,
+          "delta_us": -4.207999999999998,
+          "exceeds": false,
+          "head_us": 21.167,
+          "ratio": 0.8341674876847291,
+          "round": 3
+        },
+        {
+          "base_us": 31.625,
+          "delta_us": 0.625,
+          "exceeds": false,
+          "head_us": 32.25,
+          "ratio": 1.0197628458498025,
+          "round": 4
+        }
+      ]
+    },
+    {
+      "absolute_threshold_us": 2.0,
+      "base_median_us": 9.1665,
+      "case_id": "qwen3-32b/silicon/context/bs1-isl1024",
+      "classification": "IMPROVEMENT",
+      "consensus_required": 4,
+      "database_mode": "SILICON",
+      "exceed_count": 0,
+      "head_median_us": 9.125,
+      "median_delta_us": -0.041499999999999204,
+      "median_ratio": 0.9954726449571811,
+      "metric": "warm",
+      "model_id": "qwen3-32b",
+      "phase": "context",
+      "relative_threshold": 0.1,
+      "rounds": [
+        {
+          "base_us": 9.1665,
+          "delta_us": 0.04150000000000098,
+          "exceeds": false,
+          "head_us": 9.208,
+          "ratio": 1.004527355042819,
+          "round": 0
+        },
+        {
+          "base_us": 9.125,
+          "delta_us": -0.125,
+          "exceeds": false,
+          "head_us": 9.0,
+          "ratio": 0.9863013698630136,
+          "round": 1
+        },
+        {
+          "base_us": 9.167,
+          "delta_us": 0.0,
+          "exceeds": false,
+          "head_us": 9.167,
+          "ratio": 1.0,
+          "round": 2
+        },
+        {
+          "base_us": 9.375,
+          "delta_us": -0.2919999999999998,
+          "exceeds": false,
+          "head_us": 9.083,
+          "ratio": 0.9688533333333333,
+          "round": 3
+        },
+        {
+          "base_us": 8.959,
+          "delta_us": 0.16600000000000037,
+          "exceeds": false,
+          "head_us": 9.125,
+          "ratio": 1.0185288536667039,
+          "round": 4
+        }
+      ]
+    },
+    {
+      "absolute_threshold_us": 2.0,
+      "base_median_us": 39.75,
+      "case_id": "qwen3-32b/silicon/generation/bs1-isl1024",
+      "classification": "IMPROVEMENT",
+      "consensus_required": 4,
+      "database_mode": "SILICON",
+      "exceed_count": 0,
+      "head_median_us": 35.667,
+      "median_delta_us": -4.082999999999998,
+      "median_ratio": 0.8972830188679246,
+      "metric": "cold",
+      "model_id": "qwen3-32b",
+      "phase": "generation",
+      "relative_threshold": 0.1,
+      "rounds": [
+        {
+          "base_us": 34.583,
+          "delta_us": 0.875,
+          "exceeds": false,
+          "head_us": 35.458,
+          "ratio": 1.025301448688662,
+          "round": 0
+        },
+        {
+          "base_us": 39.75,
+          "delta_us": 0.8340000000000032,
+          "exceeds": false,
+          "head_us": 40.584,
+          "ratio": 1.0209811320754718,
+          "round": 1
+        },
+        {
+          "base_us": 50.166,
+          "delta_us": -14.498999999999995,
+          "exceeds": false,
+          "head_us": 35.667,
+          "ratio": 0.7109795479009688,
+          "round": 2
+        },
+        {
+          "base_us": 42.292,
+          "delta_us": -3.4170000000000016,
+          "exceeds": false,
+          "head_us": 38.875,
+          "ratio": 0.9192045776979098,
+          "round": 3
+        },
+        {
+          "base_us": 34.959,
+          "delta_us": -0.0010000000000047748,
+          "exceeds": false,
+          "head_us": 34.958,
+          "ratio": 0.9999713950627876,
+          "round": 4
+        }
+      ]
+    },
+    {
+      "absolute_threshold_us": 2.0,
+      "base_median_us": 22.125,
+      "case_id": "qwen3-32b/silicon/generation/bs1-isl1024",
+      "classification": "IMPROVEMENT",
+      "consensus_required": 4,
+      "database_mode": "SILICON",
+      "exceed_count": 0,
+      "head_median_us": 22.084,
+      "median_delta_us": -0.04100000000000037,
+      "median_ratio": 0.9981468926553673,
+      "metric": "warm",
+      "model_id": "qwen3-32b",
+      "phase": "generation",
+      "relative_threshold": 0.1,
+      "rounds": [
+        {
+          "base_us": 22.292,
+          "delta_us": 0.2909999999999968,
+          "exceeds": false,
+          "head_us": 22.583,
+          "ratio": 1.013054010407321,
+          "round": 0
+        },
+        {
+          "base_us": 22.125,
+          "delta_us": -0.04200000000000159,
+          "exceeds": false,
+          "head_us": 22.083,
+          "ratio": 0.9981016949152541,
+          "round": 1
+        },
+        {
+          "base_us": 21.375,
+          "delta_us": 0.7089999999999996,
+          "exceeds": false,
+          "head_us": 22.084,
+          "ratio": 1.0331695906432747,
+          "round": 2
+        },
+        {
+          "base_us": 23.041,
+          "delta_us": -0.833000000000002,
+          "exceeds": false,
+          "head_us": 22.208,
+          "ratio": 0.963847055249338,
+          "round": 3
+        },
+        {
+          "base_us": 22.0415,
+          "delta_us": -0.3119999999999976,
+          "exceeds": false,
+          "head_us": 21.7295,
+          "ratio": 0.9858448835151874,
+          "round": 4
+        }
+      ]
+    },
+    {
+      "absolute_threshold_us": 2.0,
+      "base_median_us": 44.708,
+      "case_id": "deepseek-v3.2-b200_sxm-vllm-0.24.0-tp8-pp1-adp1-mtp1-ep8/silicon/context/bs1-isl1024-prefix0",
+      "classification": "UNSTABLE",
+      "consensus_required": 4,
+      "database_mode": "SILICON",
+      "exceed_count": 1,
+      "head_median_us": 40.25,
+      "median_delta_us": -4.457999999999998,
+      "median_ratio": 0.9002863022277893,
+      "metric": "cold",
+      "model_id": "deepseek-v3.2-b200_sxm-vllm-0.24.0-tp8-pp1-adp1-mtp1-ep8",
+      "phase": "context",
+      "relative_threshold": 0.1,
+      "rounds": [
+        {
+          "base_us": 46.833,
+          "delta_us": -6.582999999999998,
+          "exceeds": false,
+          "head_us": 40.25,
+          "ratio": 0.8594367219695515,
+          "round": 0
+        },
+        {
+          "base_us": 17.125,
+          "delta_us": 1.9589999999999996,
+          "exceeds": false,
+          "head_us": 19.084,
+          "ratio": 1.1143941605839416,
+          "round": 1
+        },
+        {
+          "base_us": 44.708,
+          "delta_us": 6.457999999999998,
+          "exceeds": true,
+          "head_us": 51.166,
+          "ratio": 1.144448420864275,
+          "round": 2
+        },
+        {
+          "base_us": 16.0,
+          "delta_us": 0.7089999999999996,
+          "exceeds": false,
+          "head_us": 16.709,
+          "ratio": 1.0443125,
+          "round": 3
+        },
+        {
+          "base_us": 53.0,
+          "delta_us": -3.4579999999999984,
+          "exceeds": false,
+          "head_us": 49.542,
+          "ratio": 0.9347547169811321,
+          "round": 4
+        }
+      ]
+    },
+    {
+      "absolute_threshold_us": 2.0,
+      "base_median_us": 9.0,
+      "case_id": "deepseek-v3.2-b200_sxm-vllm-0.24.0-tp8-pp1-adp1-mtp1-ep8/silicon/context/bs1-isl1024-prefix0",
+      "classification": "OK",
+      "consensus_required": 4,
+      "database_mode": "SILICON",
+      "exceed_count": 0,
+      "head_median_us": 9.0415,
+      "median_delta_us": 0.041499999999999204,
+      "median_ratio": 1.0046111111111111,
+      "metric": "warm",
+      "model_id": "deepseek-v3.2-b200_sxm-vllm-0.24.0-tp8-pp1-adp1-mtp1-ep8",
+      "phase": "context",
+      "relative_threshold": 0.1,
+      "rounds": [
+        {
+          "base_us": 9.0,
+          "delta_us": 0.041499999999999204,
+          "exceeds": false,
+          "head_us": 9.0415,
+          "ratio": 1.0046111111111111,
+          "round": 0
+        },
+        {
+          "base_us": 9.0,
+          "delta_us": 0.25,
+          "exceeds": false,
+          "head_us": 9.25,
+          "ratio": 1.0277777777777777,
+          "round": 1
+        },
+        {
+          "base_us": 9.125,
+          "delta_us": 0.041999999999999815,
+          "exceeds": false,
+          "head_us": 9.167,
+          "ratio": 1.0046027397260273,
+          "round": 2
+        },
+        {
+          "base_us": 8.875,
+          "delta_us": 0.14550000000000018,
+          "exceeds": false,
+          "head_us": 9.0205,
+          "ratio": 1.016394366197183,
+          "round": 3
+        },
+        {
+          "base_us": 8.958,
+          "delta_us": 0.041999999999999815,
+          "exceeds": false,
+          "head_us": 9.0,
+          "ratio": 1.0046885465505693,
+          "round": 4
+        }
+      ]
+    },
+    {
+      "absolute_threshold_us": 2.0,
+      "base_median_us": 24.541,
+      "case_id": "deepseek-v3.2-b200_sxm-vllm-0.24.0-tp8-pp1-adp1-mtp1-ep8/silicon/generation/bs1-isl1024-prefix0",
+      "classification": "IMPROVEMENT",
+      "consensus_required": 4,
+      "database_mode": "SILICON",
+      "exceed_count": 0,
+      "head_median_us": 24.5,
+      "median_delta_us": -0.04100000000000037,
+      "median_ratio": 0.9983293264333156,
+      "metric": "cold",
+      "model_id": "deepseek-v3.2-b200_sxm-vllm-0.24.0-tp8-pp1-adp1-mtp1-ep8",
+      "phase": "generation",
+      "relative_threshold": 0.1,
+      "rounds": [
+        {
+          "base_us": 23.333,
+          "delta_us": -0.2079999999999984,
+          "exceeds": false,
+          "head_us": 23.125,
+          "ratio": 0.9910855869369564,
+          "round": 0
+        },
+        {
+          "base_us": 31.625,
+          "delta_us": -2.8329999999999984,
+          "exceeds": false,
+          "head_us": 28.792,
+          "ratio": 0.9104189723320159,
+          "round": 1
+        },
+        {
+          "base_us": 23.417,
+          "delta_us": 1.0829999999999984,
+          "exceeds": false,
+          "head_us": 24.5,
+          "ratio": 1.0462484519793311,
+          "round": 2
+        },
+        {
+          "base_us": 26.25,
+          "delta_us": 1.375,
+          "exceeds": false,
+          "head_us": 27.625,
+          "ratio": 1.0523809523809524,
+          "round": 3
+        },
+        {
+          "base_us": 24.541,
+          "delta_us": -0.41600000000000037,
+          "exceeds": false,
+          "head_us": 24.125,
+          "ratio": 0.98304877551852,
+          "round": 4
+        }
+      ]
+    },
+    {
+      "absolute_threshold_us": 2.0,
+      "base_median_us": 17.208,
+      "case_id": "deepseek-v3.2-b200_sxm-vllm-0.24.0-tp8-pp1-adp1-mtp1-ep8/silicon/generation/bs1-isl1024-prefix0",
+      "classification": "OK",
+      "consensus_required": 4,
+      "database_mode": "SILICON",
+      "exceed_count": 0,
+      "head_median_us": 17.291,
+      "median_delta_us": 0.08300000000000196,
+      "median_ratio": 1.004823337982334,
+      "metric": "warm",
+      "model_id": "deepseek-v3.2-b200_sxm-vllm-0.24.0-tp8-pp1-adp1-mtp1-ep8",
+      "phase": "generation",
+      "relative_threshold": 0.1,
+      "rounds": [
+        {
+          "base_us": 17.167,
+          "delta_us": 0.10349999999999682,
+          "exceeds": false,
+          "head_us": 17.2705,
+          "ratio": 1.0060290091454533,
+          "round": 0
+        },
+        {
+          "base_us": 17.208,
+          "delta_us": 0.14650000000000318,
+          "exceeds": false,
+          "head_us": 17.3545,
+          "ratio": 1.0085134821013484,
+          "round": 1
+        },
+        {
+          "base_us": 17.375,
+          "delta_us": -0.08399999999999963,
+          "exceeds": false,
+          "head_us": 17.291,
+          "ratio": 0.9951654676258993,
+          "round": 2
+        },
+        {
+          "base_us": 17.0205,
+          "delta_us": 0.3125,
+          "exceeds": false,
+          "head_us": 17.333,
+          "ratio": 1.0183602126847038,
+          "round": 3
+        },
+        {
+          "base_us": 18.041,
+          "delta_us": -0.9989999999999988,
+          "exceeds": false,
+          "head_us": 17.042,
+          "ratio": 0.9446261293719861,
+          "round": 4
+        }
+      ]
+    },
+    {
+      "absolute_threshold_us": 2.0,
+      "base_median_us": 30.542,
+      "case_id": "deepseek-v3.2-b200_sxm-vllm-0.24.0-tp8-pp1-adp1-mtp1-ep8/silicon/generation/bs128-isl1024-prefix0",
+      "classification": "UNSTABLE",
+      "consensus_required": 4,
+      "database_mode": "SILICON",
+      "exceed_count": 1,
+      "head_median_us": 26.25,
+      "median_delta_us": -4.292000000000002,
+      "median_ratio": 0.8594722022133455,
+      "metric": "cold",
+      "model_id": "deepseek-v3.2-b200_sxm-vllm-0.24.0-tp8-pp1-adp1-mtp1-ep8",
+      "phase": "generation",
+      "relative_threshold": 0.1,
+      "rounds": [
+        {
+          "base_us": 26.042,
+          "delta_us": -1.25,
+          "exceeds": false,
+          "head_us": 24.792,
+          "ratio": 0.9520006143921358,
+          "round": 0
+        },
+        {
+          "base_us": 54.208,
+          "delta_us": 5.459000000000003,
+          "exceeds": true,
+          "head_us": 59.667,
+          "ratio": 1.1007046930342386,
+          "round": 1
+        },
+        {
+          "base_us": 24.5,
+          "delta_us": 1.75,
+          "exceeds": false,
+          "head_us": 26.25,
+          "ratio": 1.0714285714285714,
+          "round": 2
+        },
+        {
+          "base_us": 48.333,
+          "delta_us": 0.375,
+          "exceeds": false,
+          "head_us": 48.708,
+          "ratio": 1.0077586741977531,
+          "round": 3
+        },
+        {
+          "base_us": 30.542,
+          "delta_us": -4.459000000000003,
+          "exceeds": false,
+          "head_us": 26.083,
+          "ratio": 0.8540043219173596,
+          "round": 4
+        }
+      ]
+    },
+    {
+      "absolute_threshold_us": 2.0,
+      "base_median_us": 17.25,
+      "case_id": "deepseek-v3.2-b200_sxm-vllm-0.24.0-tp8-pp1-adp1-mtp1-ep8/silicon/generation/bs128-isl1024-prefix0",
+      "classification": "IMPROVEMENT",
+      "consensus_required": 4,
+      "database_mode": "SILICON",
+      "exceed_count": 0,
+      "head_median_us": 17.167,
+      "median_delta_us": -0.08299999999999841,
+      "median_ratio": 0.9951884057971015,
+      "metric": "warm",
+      "model_id": "deepseek-v3.2-b200_sxm-vllm-0.24.0-tp8-pp1-adp1-mtp1-ep8",
+      "phase": "generation",
+      "relative_threshold": 0.1,
+      "rounds": [
+        {
+          "base_us": 17.25,
+          "delta_us": -0.08299999999999841,
+          "exceeds": false,
+          "head_us": 17.167,
+          "ratio": 0.9951884057971015,
+          "round": 0
+        },
+        {
+          "base_us": 17.125,
+          "delta_us": 0.08299999999999841,
+          "exceeds": false,
+          "head_us": 17.208,
+          "ratio": 1.004846715328467,
+          "round": 1
+        },
+        {
+          "base_us": 17.333,
+          "delta_us": 0.04200000000000159,
+          "exceeds": false,
+          "head_us": 17.375,
+          "ratio": 1.0024231235216063,
+          "round": 2
+        },
+        {
+          "base_us": 17.125,
+          "delta_us": -0.1670000000000016,
+          "exceeds": false,
+          "head_us": 16.958,
+          "ratio": 0.9902481751824816,
+          "round": 3
+        },
+        {
+          "base_us": 18.0,
+          "delta_us": -0.9589999999999996,
+          "exceeds": false,
+          "head_us": 17.041,
+          "ratio": 0.9467222222222222,
+          "round": 4
+        }
+      ]
+    }
+  ],
+  "run_errors": [],
+  "schema_version": 2,
+  "selected_case_count": 5
+}

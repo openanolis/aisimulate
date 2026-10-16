@@ -48,6 +48,20 @@ print(model.diagnostics()["provenance"])
 
 ### Engine identity controls
 
+The canonical configuration carries the following AFD identity fields. Ordinary
+agg configurations omit them; AFD derives pool identities through the same
+`best_available` construction interface.
+
+| Field | Default | Behavior |
+|---|---|---|
+| `afd_routing_location` | absent | AFD passes `a` to both pools. An explicit `f` fails before estimator/data preparation. |
+| `afd_pool_role` | absent | `a` emits attention, shared and dense computation; `f` emits routed computation. Used for selective pool compilation and retained in canonical/cache identity. |
+
+Selective pool compilation requires SGLang, PP1/CP1/DCP1 and op-level estimation.
+Every AFD pool carries its role and a typed source layer plan. See
+[AFD execution plans](../sweeper/afd-topology.md#performance-model) for ownership
+and [AFD configuration](../replay/engine/analytical.md#afd) for public YAML.
+
 The canonical configuration also carries quantization overrides and `attention_backend`, `moe_backend`, `moe_kernel_source` (default absent), `enable_eplb` (default `false`), and `wideep_num_slots` (default absent). These controls reach model construction, KV memory sizing, and replay provenance. EPLB/slots and nondefault MoE backend or kernel-source selection require an MoE model. Collected FPM interpolation cannot represent EPLB, slots, MoE backend, or kernel-source overrides; it rejects an explicit incompatible request and is skipped during automatic selection for those identities.
 
 `moe_kernel_source` selects an exact, nonblank collected `kernel_source` label for fused MoE compute. It is distinct from the existing `moe_backend` graph/backend control; source labels are not backend aliases and are preserved without trimming. `None` keeps the existing default source-selection policy, including eligible low-latency NVFP4 selection. `SILICON` reads only the requested source's table; `EMPIRICAL` derives its estimate from that same source; `HYBRID` may fall back to empirical estimation within that source, but does not substitute a different source. Missing source data remains an error. An explicit `moe_torch_flow_min_latency` requires gated NVFP4 and at most 128 tokens after attention-DP gathering. Pure-roofline `SOL` remains table-independent and does not claim measured support for the requested source.
@@ -248,10 +262,14 @@ These additional public YAML fields are concrete controls:
 | Field | Meaning |
 | --- | --- |
 | `engine.gemm_quant_mode`, `moe_quant_mode`, `fmha_quant_mode`, `kvcache_quant_mode`, `comm_quant_mode` | Explicit precision overrides; omitted values follow model/profile normalization. |
-| `engine.attention_backend`, `moe_backend`, `moe_kernel_source` | Runtime graph/backend and exact collected source selectors, subject to canonical validation. |
+| `engine.attention_backend` | Attention kernel selector, including AFD per-pool construction; subject to canonical model/backend validation. |
+| `engine.moe_kernel_source` | Exact collected fused-MoE compute source, including AFD per-pool construction; unsupported with a large-EP MoE graph. |
+| `engine.moe_backend` | Runtime graph/backend selector, subject to canonical validation; nondefault overrides remain unsupported for AFD. |
 | `engine.enable_eplb`, `wideep_num_slots` | Expert load balancing and redundant expert slots; require compatible MoE execution. |
 | `engine.nextn`, `nextn_accepted` | Compute-side MTP identity and separate expected acceptance assumption; both are required for explicit MTP. |
 | `engine.enable_chunked_prefill` | Override chunked prefill; omission preserves the backend default. |
+| `engine.enable_shared_layer` | Optional shared-data reuse override; explicit `false` disables reuse. Preserved by both AFD pools and their memory preflight. |
+| `engine.strict_provenance` | Fail-closed performance-data provenance validation; defaults to `false` in the canonical model. Preserved by both AFD pools and memory preflight. |
 
 These controls require default timing on language roles. AFD and analytical
 encoder configurations reject the unsupported controls. Use `--stack engine`
@@ -259,6 +277,14 @@ and the supported model/backend; an older external adapter can reject them at
 capability validation before Replay. Expected acceptance is workload behavior,
 not an estimator-fitting observation. See [Replay features](../replay/features.md)
 for execution and cache combinations.
+
+AFD preserves supported controls, including explicit `attention_backend` and
+`moe_kernel_source`, through prediction, recommendation, saved replay specifications,
+canonical pool construction and memory preflight. Attention uses A; routed MoE
+uses F. Omission preserves pool defaults;
+explicit selectors retain the canonical eligibility, data-source and SOL rules
+above without changing communication. EPLB, redundant slots and nondefault
+`moe_backend` overrides remain unsupported for AFD.
 
 ## Migrating saved configuration
 

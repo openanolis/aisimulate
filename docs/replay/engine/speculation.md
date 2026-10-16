@@ -26,7 +26,7 @@ draft tokens.
 | `engine.speculation.num_speculative_tokens` | Required | fixed | Integer from 1 to 5. |
 | `engine.speculation.acceptance_rates` | Required | fixed | Exactly one value per draft token, each in `[0, 1]`. |
 | `engine.speculation.seed` | `42` | fixed | Unsigned 64-bit sampling seed. |
-| `engine.nextn` | `0` (off) | fixed | MTP/EAGLE draft tokens, 0 to 5. |
+| `engine.nextn` | `0` (off) | fixed | MTP/EAGLE draft tokens, 0 to 5. AFD decode communication also uses the model's MTP work scale. |
 | `engine.nextn_accepted` | Unset | fixed | Required when `nextn > 0`. Expected accepted tokens per round, in `[0, nextn]`. |
 
 `recommend` keeps these values fixed for every candidate; it does not search
@@ -95,6 +95,15 @@ accepted and the fraction is the chance of one more. The example accepts
 or 4 tokens. Output is clipped to the request's remaining length. The selected timing model must price
 verification passes; see
 [performance-model configuration](../../perf-model/configuration.md#flat-engine-precision-and-execution-controls).
+
+For AFD, decode verification widens each request to `nextn + 1` tokens.
+Injected A/F transfers, F-node collectives, A-side combine, shared merge and
+all-gather also scale latency and energy by `(num_layers + nextn) / num_layers`,
+as generation compute does. This draft-work approximation distributes work
+across the target source layout, including its routed-layer fraction. It applies
+before pipeline evaluation and evidence, independently of `comm_overhead_factor`;
+compiled A-local TP collectives already carry the scale. Prefill and `nextn: 0`
+are unchanged. See [AFD batch pricing](../../sweeper/afd-topology.md#batch-pricing).
 
 Rejected with MTP: grouped caches, G2/G3 offload, state-cache prefix matching
 with `prefix_match_unit`, and agentic traffic. Combinations accepted by the

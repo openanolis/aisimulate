@@ -1,0 +1,37 @@
+{
+  "reason": "Pre-delivery new-layout expectations before correcting F equal-count padding. See padding-oracle.json for message-size and measured collective lookup differences. Legacy numerical goldens are not changed.",
+  "cases": {
+    "qwen_tp4": {
+      "completed_requests": 4,
+      "total_input_tokens": 512,
+      "total_output_tokens": 32,
+      "mean_ttft_ms": 15.964030000000001,
+      "mean_tpot_ms": 7.626238,
+      "duration_ms": 69.347696
+    },
+    "qwen_tp8": {
+      "completed_requests": 4,
+      "total_input_tokens": 512,
+      "total_output_tokens": 32,
+      "mean_ttft_ms": 11.966415,
+      "mean_tpot_ms": 7.204465999999998,
+      "duration_ms": 62.39767699999999
+    },
+    "deepseek_v32_tp4_trace": {
+      "completed_requests": 4,
+      "total_input_tokens": 576,
+      "total_output_tokens": 34,
+      "mean_ttft_ms": 115.73090499999999,
+      "mean_tpot_ms": 18.112472375,
+      "duration_ms": 260.328847
+    },
+    "mimo_tp4_trace": {
+      "completed_requests": 4,
+      "total_input_tokens": 576,
+      "total_output_tokens": 34,
+      "mean_ttft_ms": 28.809452,
+      "mean_tpot_ms": 8.71697600892857,
+      "duration_ms": 97.91085899999999
+    }
+  }
+}

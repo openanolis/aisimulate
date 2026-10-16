@@ -15,13 +15,17 @@ from typing import Any, Protocol, runtime_checkable
 
 from pydantic import BaseModel
 
-from ..config.common import ENGINE_MODEL_CONTROL_FIELDS, is_active_engine_model_control
+from ..config.common import (
+    AFD_KERNEL_CONTROL_FIELDS,
+    ENGINE_MODEL_CONTROL_FIELDS,
+    is_active_engine_model_control,
+)
 from ..config.traffic import AgenticProfileOptions
 from ..fpm_profile import load_fpm_profile
 from ..power import POWER_FIELDS, normalize_power_summary
 from .provider import AdapterReplaySpec, JSONValue, RuntimeHookSpec
 
-REPLAY_SPEC_API_VERSION = 1
+REPLAY_SPEC_API_VERSION = 2
 
 
 @dataclass(frozen=True)
@@ -153,6 +157,22 @@ class BackendDeploymentSpec:
     performance_model_metadata: dict[str, JSONValue] = field(default_factory=dict)
     forward_pass_estimators: dict[str, ForwardPassEstimatorSpec] = field(default_factory=dict)
     encoder: EncoderPoolSpec | None = None
+
+    @property
+    def afd_roles(self) -> tuple[str, ...]:
+        return tuple(
+            role
+            for role, args in (
+                ("aggregated", self.agg_engine_args),
+                ("prefill", self.prefill_engine_args),
+                ("decode", self.decode_engine_args),
+            )
+            if isinstance(args, Mapping) and "afd" in args.get("rank", args)
+        )
+
+    @property
+    def has_afd(self) -> bool:
+        return bool(self.afd_roles)
 
 
 @dataclass(frozen=True)
@@ -314,6 +334,7 @@ def _require_agentic_g2_scope(spec: ReplaySpec, roles: list[tuple[str, Mapping[s
 class RunnerCapabilities:
     """Replay-spec, backend/topology, and runtime-hook support advertised up front."""
 
+    supported_worker_types: tuple[str, ...] = field(default=("monolithic",), kw_only=True)
     replay_spec_api_version: int = REPLAY_SPEC_API_VERSION
     supported_backend_topologies: tuple[tuple[str, str], ...] = ()
     supported_hooks: tuple[HookCapability, ...] = ()
@@ -385,12 +406,34 @@ class RunnerCapabilities:
         if not self.supports_execution_mode(spec.execution_mode):
             raise ValueError(f"runner does not support execution mode {spec.execution_mode!r}")
         deployment = spec.backend_deployment
-        is_afd = deployment.deployment_mode in {"afd", "afd+pd"}
-        if spec.workload.get("cached_prefix_tokens"):
-            if is_afd:
-                raise ValueError("cached_prefix_tokens is unsupported for AFD")
-            if not self.supports_cached_prefix_tokens:
-                raise ValueError("runner does not support cached_prefix_tokens; use --stack engine")
+        is_afd = deployment.has_afd
+        if is_afd:
+            if "afd" not in self.supported_worker_types:
+                raise ValueError("runner does not support AFD worker type; use --stack engine")
+            if deployment.encoder is not None:
+                raise ValueError(
+                    "analytical EPD supports only agg/disagg ordinary language workers; AFD is unsupported"
+                )
+            from .afd_parallel import AFD_SCHEMA_VERSION
+
+            for afd_role in deployment.afd_roles:
+                provenance = deployment.parallel_config.get(afd_role)
+                if isinstance(provenance, Mapping) and "schema_version" in provenance:
+                    version = provenance["schema_version"]
+                    if type(version) is not int or version != AFD_SCHEMA_VERSION:
+                        raise ValueError(
+                            f"unsupported {afd_role} AFD topology schema {version!r}; expected {AFD_SCHEMA_VERSION}"
+                        )
+                metadata = deployment.performance_model_metadata.get(afd_role, {})
+                unsupported = [
+                    name
+                    for name in AFD_KERNEL_CONTROL_FIELDS
+                    if metadata.get(name) is not None and name not in self.supported_engine_model_controls
+                ]
+                if unsupported:
+                    raise ValueError(f"runner does not support engine model controls {unsupported}; use --stack engine")
+        if spec.workload.get("cached_prefix_tokens") and not self.supports_cached_prefix_tokens:
+            raise ValueError("runner does not support cached_prefix_tokens; use --stack engine")
         for role, args in (
             ("aggregated", deployment.agg_engine_args),
             ("prefill", deployment.prefill_engine_args),
@@ -443,8 +486,9 @@ class RunnerCapabilities:
                     for value in (identity.get(name), rank.get(name), rank.get(f"aic_{name}"))
                 )
             ]
-            if is_afd and active_controls:
-                raise ValueError(f"engine model controls {active_controls} are unsupported for AFD")
+            unsupported_afd = [name for name in active_controls if name not in AFD_KERNEL_CONTROL_FIELDS]
+            if "afd" in rank and unsupported_afd:
+                raise ValueError(f"engine model controls {unsupported_afd} are unsupported for AFD")
             unsupported_controls = [
                 name for name in active_controls if name not in self.supported_engine_model_controls
             ]
@@ -452,12 +496,11 @@ class RunnerCapabilities:
                 raise ValueError(
                     f"runner does not support engine model controls {unsupported_controls}; use --stack engine"
                 )
-            if any(rank.get(name) is not None for name in ("aic_nextn_accepted", "nextn_accepted")):
-                if is_afd:
-                    raise ValueError("explicit MTP expected acceptance is unsupported for AFD")
-                if not self.supports_mtp_expected_acceptance:
-                    raise ValueError("runner does not support explicit MTP expected acceptance; use --stack engine")
-            if is_afd and rank.get("enable_chunked_prefill") is not None:
+            if any(rank.get(name) is not None for name in ("aic_nextn_accepted", "nextn_accepted")) and (
+                not self.supports_mtp_expected_acceptance
+            ):
+                raise ValueError("runner does not support explicit MTP expected acceptance; use --stack engine")
+            if "afd" in rank and rank.get("enable_chunked_prefill") is not None:
                 raise ValueError("enable_chunked_prefill is unsupported for AFD")
         if not self.supports_state_cache:
             for args in (deployment.agg_engine_args, deployment.prefill_engine_args, deployment.decode_engine_args):

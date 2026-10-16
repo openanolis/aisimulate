@@ -402,6 +402,9 @@ def _derive_num_shared_experts(info: dict) -> int:
     multiple of the routed-expert intermediate size, else 0.
     """
     raw_config = _moe_source_config(info)
+    if info.get("architecture") == "Gemma4ForConditionalGeneration" and info.get("num_experts") and info.get("topk"):
+        # Gemma's always-active shared MLP is a distinct full-width branch.
+        return 1
     for key in ("n_shared_experts", "num_shared_experts"):
         count = raw_config.get(key)
         # Explicit ``null`` (e.g. MiMo-V2-Flash) means "no shared experts".

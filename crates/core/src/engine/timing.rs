@@ -687,10 +687,23 @@ pub enum TimingModelConfig {
     Fixed { prefill_ms: f64, decode_ms: f64 },
     /// Process-local provider loaded by a Runner or binding.
     External {
+        #[serde(deserialize_with = "deserialize_timing_provider")]
         provider: String,
         #[serde(default)]
         config: Value,
     },
+}
+
+/// Normalize the retired AFD name when loading saved descriptors.
+fn deserialize_timing_provider<'de, D: serde::Deserializer<'de>>(
+    deserializer: D,
+) -> std::result::Result<String, D::Error> {
+    let provider = String::deserialize(deserializer)?;
+    Ok(if provider == "aic-afd" {
+        "afd".into()
+    } else {
+        provider
+    })
 }
 
 /// Runtime latency model injected at the engine boundary.
@@ -884,6 +897,26 @@ pub(crate) fn modeled_duration_ms(raw_ms: f64, speedup_ratio: f64) -> Result<f64
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn external_provider_round_trip_normalizes_only_the_legacy_afd_name() {
+        for provider in ["afd", "aic-afd", "aic", "ais", "custom"] {
+            let mut saved = serde_json::json!({
+                "type": "external", "provider": provider,
+                "config": {"isl": 16, "osl": 128}
+            });
+            let config: TimingModelConfig = serde_json::from_value(saved.clone()).unwrap();
+            if provider == "aic-afd" {
+                saved["provider"] = serde_json::json!("afd");
+            }
+            let canonical = serde_json::to_value(&config).unwrap();
+            assert_eq!(canonical, saved);
+            assert_eq!(
+                serde_json::from_value::<TimingModelConfig>(canonical).unwrap(),
+                config
+            );
+        }
+    }
 
     #[test]
     fn provider_source_tags_preserve_known_and_unknown_values() {
